@@ -27,6 +27,7 @@ urlpatterns = [
     path("external-booking/<int:room_id>/",dashboard_views.external_hostel_booking,name="external_hostel_booking"),
     path("system-version/",views.system_version,name="system_version"),
     path("payment/demo/",views.demo_payment,name="demo_payment",),
+    path("db-check/", views.db_check),
 
     
 

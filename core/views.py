@@ -1085,3 +1085,12 @@ def demo_payment(request):
         "payment/demo_payment.html",
         context
     )
+
+from django.http import HttpResponse
+from django.db import connection
+
+def db_check(request):
+    return HttpResponse(
+        f"Vendor: {connection.vendor}<br>"
+        f"Database: {connection.settings_dict['NAME']}"
+    )
