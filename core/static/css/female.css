@@ -1,0 +1,2465 @@
+/* ================= GLOBAL ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #F6D6DE;
+  color: #2A2A2A;
+  /* FIX: was white (invisible on light bg) */
+  transition: 0.3s ease;
+  padding-top: 100px;
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+/* ==============================
+   DARK MODE DEFAULT
+============================== */
+body,
+.hero,
+.about,
+.how-it-works,
+.team-section,
+.testimonial-section,
+.faq-section,
+.room-section,
+.facilities-section,
+.services-section,
+footer {
+  background-color: #A34A6B;
+  color: #f5f5f5;
+  transition: background-color 0.4s, color 0.4s;
+}
+
+/* Links & buttons in dark mode */
+body a,
+.payment-btn,
+.more-btn,
+.faq-question,
+.nav-links li a {
+  color: #FFD1DC;
+  /* FIX: softer pink (more visible than E88DA8) */
+  transition: color 0.4s;
+}
+
+
+/* Hover effects */
+.payment-btn:hover,
+.more-btn:hover,
+.nav-links li a:hover {
+  color: #FFFFFF;
+  /* FIX: strong contrast on hover */
+}
+
+/* DARK MODE (optional) */
+body:not(.light-mode),
+body:not(.light-mode) .hero,
+body:not(.light-mode) .about,
+body:not(.light-mode) .how-it-works,
+body:not(.light-mode) .team-section,
+body:not(.light-mode) .testimonial-section,
+body:not(.light-mode) .faq-section,
+body:not(.light-mode) .room-section,
+body:not(.light-mode) .facilities-section,
+body:not(.light-mode) .services-section,
+body:not(.light-mode) footer {
+  background-color: #121212;
+  color: #F5F5F5;
+}
+
+body:not(.light-mode) a,
+body:not(.light-mode) .payment-btn,
+body:not(.light-mode) .more-btn,
+body:not(.light-mode) .faq-question,
+body:not(.light-mode) .nav-links li a {
+  color: #FF8FB1;
+  /* brighter for dark bg */
+}
+
+body:not(.light-mode) .payment-btn:hover,
+body:not(.light-mode) .more-btn:hover,
+body:not(.light-mode) .nav-links li a:hover {
+  color: #FFFFFF;
+}
+
+/* Navbar toggle spacing */
+#themeToggle {
+  margin-left: 15px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  background-color: #E88DA8;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* ==============================
+   LIGHT MODE
+============================== */
+body.light-mode,
+body.light-mode .hero,
+body.light-mode .about,
+body.light-mode .how-it-works,
+body.light-mode .team-section,
+body.light-mode .testimonial-section,
+body.light-mode .faq-section,
+body.light-mode .room-section,
+body.light-mode .facilities-section,
+body.light-mode .services-section,
+body.light-mode footer {
+  background-color: #FFF7F5;
+  color: #2A2A2A;
+}
+
+body.light-mode a,
+body.light-mode .payment-btn,
+body.light-mode .more-btn,
+body.light-mode .faq-question,
+body.light-mode .nav-links li a {
+  color: #D94F79;
+}
+
+body.light-mode .payment-btn:hover,
+body.light-mode .more-btn:hover,
+body.light-mode .nav-links li a:hover {
+  color: #B03060;
+}
+
+/* ==============================
+   MODERN PILL TOGGLE DESIGN
+============================== */
+#themeToggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 28px;
+  background-color: #2A2A2A;
+  border-radius: 14px;
+  font-size: 16px;
+  position: relative;
+  transition: background-color 0.3s;
+}
+
+#themeToggle::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 24px;
+  height: 24px;
+  background-color: #FF5C8A;
+  border-radius: 50%;
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+body.light-mode #themeToggle::after {
+  transform: translateX(22px);
+  background-color: #B03060;
+}
+
+section {
+  scroll-margin-top: 120px;
+}
+
+/* ================= NAVBAR ================= */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 8%;
+  background: #111;
+  z-index: 1000;
+  color: #fff;
+  /* FIX: ensures visibility */
+}
+
+.navbar a,
+.navbar i {
+  color: #fff;
+  /* FIX: links/icons visible */
+}
+
+body.light-mode .navbar {
+  background: #FFF7F5;
+}
+
+body.light-mode .navbar a,
+body.light-mode .navbar i {
+  color: #2A2A2A;
+  /* FIX: visible in light mode */
+}
+
+
+.logo img {
+  width: 140px;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 35px;
+  align-items: center;
+  margin-left: auto;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: inherit;
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Dropdown arrow only for Pages menu */
+.pages-menu>a::after {
+  content: " ▼";
+  font-size: 10px;
+  margin-left: 4px;
+}
+
+.nav-icons {
+  display: flex;
+  align-items: center;
+  margin-left: 40px;
+  gap: 22px;
+}
+
+#themeToggle {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: inherit;
+}
+
+.hamburger {
+  width: 28px;
+  height: 22px;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.hamburger span {
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 2px;
+  transition: 0.3s ease;
+}
+
+body.light-mode .hamburger span {
+  background: #B03060;
+}
+
+/* animation */
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* ================= HERO SECTION ================= */
+.hero {
+  position: relative;
+  min-height: min(92vh, 820px);
+  display: flex;
+  align-items: center;
+  padding: 40px 8%;
+  overflow: hidden;
+}
+
+.hero-content {
+  z-index: 2;
+  max-width: 600px;
+  margin-top: 90px;
+}
+
+
+
+.price {
+  margin:22px 0 10px;
+  font-size:24px;
+  font-weight: 700;
+  color: #FFD6E0;
+}
+
+.payment-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+
+    margin-top:22px;
+
+    padding:16px 34px;
+
+    background:#E75480;
+    color:#fff;
+
+    border-radius:12px;
+
+    text-decoration:none;
+    font-size:17px;
+    font-weight:600;
+    letter-spacing:.3px;
+
+    box-shadow:0 12px 30px rgba(37,99,235,.28);
+
+    transition:.3s ease;
+}
+
+.payment-btn i{
+    font-size:18px;
+}
+
+.payment-btn:hover{
+    background:#FF6F91;
+    transform:translateY(-3px);
+    /* box-shadow:0 18px 35px rgba(37,99,235,.38); */
+}
+
+
+.hero-image {
+  position: absolute;
+  top: 50%;
+  right: -40px;
+  transform: translateY(-50%);
+  height: 82%;
+  width: 66%;
+  overflow: hidden;
+  border-radius: 300px 0 0 300px;
+}
+
+/* container */
+.hero-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* sliding track */
+.hero-slider {
+  display: flex;
+  height: 100%;
+  /* width: 300%; */
+  transition: transform 3.2s ease;
+}
+
+/* images */
+.hero-slider img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.hero-arrows {
+  margin-top: 35px;
+  display: flex;
+  gap: 15px;
+}
+
+.hero-arrows {
+  margin-top: 20px;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.hero-prev,
+.hero-next {
+  background: #000;
+  /* color: white; */
+  border: none;
+  font-size: 1.5rem;
+  padding: 10px 18px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+
+/* ================= ABOUT SECTION ================= */
+.about {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 100px 8%;
+  background: #0b0c0c;
+  gap: 60px;
+  position: relative;
+}
+
+.about-left {
+  flex: 1;
+}
+
+.about-left h2 {
+  font-size: 34px;
+  margin-bottom: 20px;
+}
+
+.about-left p {
+   color:#D94F79;
+  margin-bottom: 30px;
+  line-height: 1.7;
+}
+/* body.light-mode .about-feature p{
+    color:#7A4A5F;
+}
+body.light-mode .hero-content p,
+body.light-mode .about-left p{
+    color:#7A4A5F;
+} */
+
+.about-feature {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.about-feature i {
+  font-size: 22px;
+  color: #FF5C8A;
+  margin-top: 5px;
+}
+
+.more-btn {
+  margin-top: 20px;
+  padding: 12px 30px;
+  border: 1px solid #FF5C8A;
+  background: transparent;
+  color: #FF5C8A;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.more-btn:hover {
+  background: #FF5C8A;
+  color: #fff;
+}
+
+/* ================= RIGHT IMAGE + EXPERIENCE CARD ================= */
+
+.about-right {
+  flex: 1;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+/* Background Image */
+.image-container {
+  position: relative;
+  width: 360px;
+  height: 440px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* White Floating Card (Like Screenshot) */
+.experience-box {
+  position: absolute;
+  right: -110px;
+  /* pushes it outside image */
+  top: 60px;
+  background: #ffffff;
+  border: 4px solid #FF5C8A;
+  color: #000;
+  padding: 45px 45px;
+  width: 300px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+}
+
+/* Top Small Heading */
+.experience-box h2 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 48px;
+}
+
+/* Years text */
+.experience-box p {
+  font-size: 13px;
+  letter-spacing: 1px;
+  margin-bottom: 0px;
+  font-weight: 600;
+  color: black;
+}
+
+/* Big 25+ */
+.experience-box span {
+  font-size: 70px;
+  font-weight: 800;
+  position: relative;
+  display: inline-block;
+  color: #FF5C8A;
+}
+
+/* Beige circle behind number */
+.experience-box span::after {
+  content: "";
+  position: absolute;
+  width: 85px;
+  height: 85px;
+  background: #FFD6E0;
+  border-radius: 50%;
+  right: -25px;
+  top: 15px;
+  z-index: -1;
+}
+
+/* ================= VERTICAL CONTACT INFO (FIXED) ================= */
+.side-contact {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  padding-left: 10px;
+  z-index: 3;
+}
+
+.side-contact .phone,
+.side-contact .email {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 13px;
+  letter-spacing: 2px;
+  color:#C63D69;
+  opacity: 0.8;
+}
+
+.side-contact .phone:hover,
+.side-contact .email:hover {
+  opacity: 1;
+}
+
+/* ================= HOW IT WORKS ================= */
+
+.how-it-works {
+  background: #0b0c0c;
+  padding: 120px 8%;
+  text-align: center;
+  position: relative;
+}
+
+.section-title {
+  font-size: 40px;
+  margin-bottom: 80px;
+  letter-spacing: 2px;
+  color: #FFFFFF;
+}
+
+body.light-mode .section-title,
+body.light-mode .about-left h2 {
+  color: #000000;
+}
+
+body:not(.light-mode) .section-title,
+body:not(.light-mode) .about-left h2 {
+  color: #FFFFFF;
+}
+
+.how-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+}
+
+.how-column {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  width: 320px;
+}
+
+.how-item {
+  position: relative;
+  text-align: left;
+}
+
+.number {
+  font-size: 14px;
+  color: #FF9CBD;
+  display: block;
+  margin-bottom: 15px;
+}
+
+/* ICON RECTANGLE */
+.icon-box {
+  width: 70px;
+  height: 70px;
+  background: #FF5C8A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.icon-box i {
+  font-size: 28px;
+  color: #000;
+}
+
+.how-text h4 {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.how-text p {
+  font-size: 14px;
+  color:#D94F79;
+  line-height: 1.6;
+}
+
+/* CENTER IMAGE */
+/* ===== ARCH SHAPE (LIKE IMAGE) ===== */
+
+.how-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.arch-container {
+  position: relative;
+  width: 170px;
+  height: 210px;
+  overflow: hidden;
+
+  /* THIS CREATES THE ARCH SHAPE */
+  border-radius: 100% 0% 68% 60% / 58% 78% 68% 0%;
+
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+}
+
+.arch-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* CENTER ICON */
+.arch-icon {
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  background: #FF5C8A;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.arch-icon i {
+  font-size: 30px;
+  color: #000;
+}
+
+.how-center img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* HOVER EFFECT */
+.how-item:hover .icon-box {
+  background: #FF7BA3;
+  transition: 0.3s ease;
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+  .how-container {
+    flex-direction: column;
+  }
+
+  .how-column {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+
+  .how-item {
+    text-align: center;
+  }
+}
+
+/* ===== PAGES DROPDOWN ===== */
+
+.pages-menu {
+  position: relative;
+}
+
+.pages-dropdown {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 220px;
+  background: #ffffff;
+  list-style: none;
+  display: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.pages-dropdown li {
+  border-bottom: 1px solid #eee;
+}
+
+.pages-dropdown li a {
+  display: block;
+  padding: 14px 18px;
+  text-decoration: none;
+  color: #333;
+  transition: 0.3s;
+}
+
+.pages-dropdown li a:hover {
+  background: #FF5C8A;
+  color: white;
+}
+
+.pages-dropdown.show {
+  display: block;
+}
+
+
+
+/* ===== MOBILE NAV ===== */
+
+@media (max-width: 768px) {
+
+  #navLinks {
+    position: absolute;
+    top: 70px;
+    right: -100%;
+    background: #0b0c0c;
+    width: 200px;
+    flex-direction: column;
+    transition: 0.4s;
+  }
+
+  #navLinks.active {
+    right: 0;
+  }
+
+}
+
+
+/* ===== MODAL ===== */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+.modal-box {
+  background: #0b0c0c;
+  color: white;
+  padding: 30px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 650px;
+  max-height: 80%;
+  overflow-y: auto;
+}
+
+.modal-box h2 {
+  margin-bottom: 10px;
+}
+
+.modal-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 15px;
+}
+
+.modal-list li {
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
+.modal-list i {
+  color: #FF5C8A;
+  margin-right: 10px;
+}
+
+#closeModal {
+  margin-top: 20px;
+  padding: 10px 25px;
+  border: none;
+  background: #FF5C8A;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+/* TEAM SECTION */
+
+.team-section {
+  background: #0b0c0c;
+  padding: 80px 10%;
+  text-align: center;
+}
+
+body.light-mode .team-title {
+  color: #000000;
+}
+
+body:not(.light-mode) .team-title {
+  color: #FFFFFF;
+}
+
+.team-title {
+  font-size: 32px;
+  text-decoration: underline;
+  color: white;
+  margin-bottom: 50px;
+}
+
+.team-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.team-card {
+  position: relative;
+  width: 280px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.team-card img {
+  width: 100%;
+  height: 340px;
+  object-fit: cover;
+  display: block;
+}
+
+/* FULL OVERLAY */
+
+.team-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  opacity: 0;
+  transition: 0.4s;
+}
+
+.team-overlay h3 {
+  margin-bottom: 5px;
+}
+
+.team-role {
+  color: #FF7BA3;
+  margin-bottom: 10px;
+}
+
+/* HOVER EFFECT */
+
+.team-card:hover .team-overlay {
+  opacity: 1;
+}
+
+/* TESTIMONIAL SECTION */
+
+.testimonial-section {
+  background: #0b0c0c;
+  padding: 80px 10%;
+}
+
+body.light-mode .testimonial-title {
+  color: #000000;
+}
+
+body:not(.light-mode) .testimonial-title {
+  color: #FFFFFF;
+}
+
+.testimonial-title {
+  text-align: center;
+  text-decoration: underline;
+  color: white;
+  font-size: 32px;
+  margin-bottom: 50px;
+}
+
+.testimonial-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.testimonial-card {
+  background: #111;
+  padding: 25px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: 0.3s;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-8px);
+  border-color: #FF5C8A;
+}
+
+.testimonial-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.testimonial-header img {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.testimonial-header h3 {
+  color: white;
+  font-size: 16px;
+}
+
+.testimonial-header p {
+  color: #FF7BA3;
+  font-size: 13px;
+}
+
+.testimonial-text {
+  color:#D94F79;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.stars {
+  color: #FF5C8A;
+  font-size: 16px;
+}
+
+/* ================= FAQ SECTION ================= */
+.faq-section {
+  background: #0b0c0c;
+  padding: 80px 10%;
+}
+
+body.light-mode .faq-title {
+  color: #000000;
+}
+
+body:not(.light-mode) .faq-title {
+  color: #FFFFFF;
+}
+
+.faq-title {
+  text-align: center;
+  text-decoration: underline;
+  font-size: 32px;
+  color: white;
+  margin-bottom: 50px;
+}
+
+.faq-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  background: #111;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  margin-bottom: 15px;
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.faq-question {
+  width: 100%;
+  padding: 20px 25px;
+  background: #111;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: left;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: 0.3s;
+}
+
+.faq-question:hover {
+  background: #1a1b1c;
+  color: #FF5C8A;
+}
+
+.faq-answer {
+  padding: 0 25px;
+  background: #0b0c0c;
+  color: #F2CAD7;
+  font-size: 14px;
+  line-height: 1.7;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+}
+
+.faq-item.active .faq-answer {
+  padding: 15px 25px;
+  max-height: 200px;
+}
+
+.faq-question i {
+  transition: 0.3s;
+}
+
+.faq-item.active .faq-question i {
+  transform: rotate(180deg);
+}
+
+/* ================= ROOM AVAILABILITY ================= */
+
+.room-section {
+  background: #0b0c0c;
+  padding: 80px 10%;
+}
+
+.room-title {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 50px;
+}
+
+body:not(.light-mode) .team-title {
+  color: white;
+}
+
+body.light-mode .team-title {
+  color: #111;
+}
+
+.room-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 25px;
+}
+
+/* CARD */
+
+.room-card {
+  position: relative;
+  background: #111;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: 0.3s ease;
+}
+
+/* IMAGE */
+
+.room-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+/* INFO */
+
+.room-info {
+  padding: 18px 15px 22px;
+  text-align: center;
+}
+
+.room-info h3 {
+  font-size: 22px;
+  color: #fff;
+  margin-bottom: 12px;
+}
+
+/* STATUS BADGES */
+
+.availability {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.available{
+    color:#38D27A;
+    background:rgba(56,210,122,.10);
+
+    border:1px solid #38D27A;
+
+    box-shadow:none;
+}
+
+.occupied{
+    color:#FF5A5A;
+
+    background:rgba(255,90,90,.10);
+
+    border:1px solid #FF5A5A;
+
+    box-shadow:none;
+}
+
+/* OVERLAY */
+
+.room-overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  width: 100%;
+  height: 220px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 5;
+}
+
+/* BUTTON */
+
+.room-action-btn {
+  background: #FF5C8A;
+  color:#FFFFFF;
+  border: 2px solid transparent;
+
+  font-weight: 700;
+  font-size: 15px;
+
+  box-shadow: 0 10px 25px rgba(255, 92, 138, .30);
+
+  transition: .3s;
+
+
+  padding: 13px 28px;
+  border-radius: 40px;
+
+  text-decoration: none;
+  
+
+  cursor: pointer;
+
+  min-width: 160px;
+  text-align: center;
+
+  transition: 0.3s ease;
+}
+
+  .room-action-btn:hover{
+    background:#FF7BA3;
+    color:#FFFFFF;
+    transform:translateY(-3px);
+    box-shadow:0 14px 30px rgba(255,92,138,.45);
+    transform: translateY(-2px);
+}
+  
+
+.available{
+    color:#38D27A;
+    background:rgba(56,210,122,.10);
+
+    border:1px solid #38D27A;
+
+    box-shadow:none;
+}
+.occupied{
+    color:#FF5A5A;
+
+    background:rgba(255,90,90,.10);
+
+    border:1px solid #FF5A5A;
+
+    box-shadow:none;
+}
+/* OCCUPIED BUTTON */
+
+.occupied-btn{
+
+    background:#2A2A2A;
+
+    color:#FF5A5A;
+
+    border:1px solid #FF5A5A;
+
+    opacity:.85;
+
+    cursor:not-allowed;
+}
+
+/* ================= DESKTOP ================= */
+
+@media (min-width:769px) {
+
+  /* only available rooms hover */
+
+  .available-overlay {
+    opacity: 0;
+    transition: 0.35s ease;
+    background: rgba(0, 0, 0, 0.45);
+  }
+
+  .room-card:hover .available-overlay {
+    opacity: 1;
+  }
+
+  /* occupied rooms always visible */
+
+  .occupied-overlay {
+    opacity: 1;
+    background: none;
+  }
+
+  /* hover ONLY available rooms */
+
+  .room-card:hover .available-overlay+.room-info,
+  .room-card:hover .available-overlay {
+    transform: none;
+  }
+
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width:768px) {
+
+  .room-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+
+  .room-card img {
+    height: 170px;
+  }
+
+  /* REMOVE OVERLAY STYLE ON MOBILE */
+
+  .room-overlay {
+    position: static;
+    height: auto;
+    background: none;
+    opacity: 1 !important;
+    margin-top: 12px;
+  }
+
+  /* MOBILE BOOK BUTTON */
+
+  .room-action-btn {
+    background: none;
+    color: #ffd700;
+
+    padding: 0;
+    min-width: auto;
+
+    border: none;
+    border-radius: 0;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    text-decoration: underline;
+  }
+
+  .room-action-btn:hover {
+    background: none;
+    transform: none;
+    color: #ffe45c;
+  }
+
+  .room-info {
+    padding-top: 10px;
+  }
+
+  .room-info h3 {
+    font-size: 18px;
+  }
+
+}
+
+/* ================= HOSTEL FACILITIES ================= */
+
+.facilities-section {
+  background: #0b0c0c;
+  padding: 80px 10%;
+}
+
+body.light-mode .facilities-title {
+  color: #000000;
+}
+
+body:not(.light-mode) .facilities-title {
+  color: #FFFFFF;
+}
+
+.facilities-title {
+  text-align: center;
+  text-decoration: underline;
+  font-size: 32px;
+  color: white;
+  margin-bottom: 50px;
+}
+
+.facilities-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+}
+
+.facility-card {
+  background: #111;
+  padding: 30px;
+  border-radius: 8px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: 0.3s;
+}
+
+.facility-card:hover {
+  transform: translateY(-8px);
+  border-color: #FF5C8A;
+}
+
+.facility-icon {
+  width: 65px;
+  height: 65px;
+  margin: auto;
+  margin-bottom: 20px;
+  background: #FF5C8A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+}
+
+.facility-icon i {
+  font-size: 26px;
+  color: #000;
+}
+
+.facility-card h3 {
+  color: white;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.facility-card p {
+  color: #F2CAD7;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* SMALL FOOTER */
+
+.small-footer {
+  background: #0b0c0c;
+  text-align: center;
+  padding: 15px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.small-footer p {
+  color: #E8AFC3;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+/* ================= SERVICES SECTION ================= */
+
+.services-section {
+  background: #0b0c0c;
+  padding: 80px 10%;
+}
+
+body.light-mode .services-title {
+  color: #000000;
+}
+
+body:not(.light-mode) .services-title {
+  color: #FFFFFF;
+}
+
+.services-title {
+  text-align: center;
+  text-decoration: underline;
+  font-size: 32px;
+  color: white;
+  margin-bottom: 50px;
+}
+
+.services-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.service-card {
+  background: #111;
+  padding: 30px;
+  border-radius: 8px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: 0.3s;
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  border-color: #FF5C8A;
+}
+
+.service-card i {
+  font-size: 32px;
+  color: #FF5C8A;
+  margin-bottom: 15px;
+}
+
+.service-card h3 {
+  color: white;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.service-card p {
+  color: #F2CAD7;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* ================= HERO ANIMATIONS ================= */
+
+/* Title animation */
+.hero-content h1 {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: heroTitle 1s ease forwards;
+}
+
+@keyframes heroTitle {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Price animation */
+.price {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: heroPrice 1s ease forwards;
+  animation-delay: 0.4s;
+}
+
+@keyframes heroPrice {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Button animation */
+.payment-btn {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: heroBtn 1s ease forwards;
+  animation-delay: 0.8s;
+}
+
+@keyframes heroBtn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Image animation */
+.hero-image img {
+  opacity: 0;
+  transform: translateX(100px);
+  animation: heroImage 1.2s ease forwards;
+  animation-delay: 0.5s;
+}
+
+@keyframes heroImage {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ================= ABOUT ANIMATION ================= */
+
+/* Left side (text area) */
+.about-left {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition: all 0.9s ease;
+}
+
+.about-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@keyframes aboutLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Right side (image + experience card) */
+.about-right {
+  opacity: 0;
+  transform: translateX(60px);
+  transition: all 0.9s ease;
+}
+
+.about-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@keyframes aboutRight {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Feature items appear one by one */
+.about-feature {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: featureFade 0.8s ease forwards;
+}
+
+.about-feature:nth-child(3) {
+  animation-delay: 0.8s;
+}
+
+.about-feature:nth-child(4) {
+  animation-delay: 1s;
+}
+
+@keyframes featureFade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================= HOW IT WORKS ANIMATION ================= */
+
+/* Left column animation */
+.how-column.left {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition: all 0.9s ease;
+}
+
+.how-column.left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+
+@keyframes howLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Right column animation */
+.how-column.right {
+  opacity: 0;
+  transform: translateX(60px);
+  transition: all 0.9s ease;
+}
+
+.how-column.right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@keyframes howRight {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Center image animation */
+.how-center {
+  opacity: 0;
+  transform: scale(0.85);
+  transition: all 0.9s ease;
+}
+
+.how-center.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+
+@keyframes howCenter {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Icon pop effect */
+.icon-box {
+  transition: transform 0.3s ease;
+}
+
+.how-item:hover .icon-box {
+  transform: scale(1.1);
+}
+
+/* ================= TEAM SECTION ANIMATION ================= */
+
+/* Cards appear from bottom */
+.team-card {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 0.8s ease;
+}
+
+.team-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger effect */
+.team-card:nth-child(1) {
+  animation-delay: 0.2s;
+}
+
+.team-card:nth-child(2) {
+  animation-delay: 0.5s;
+}
+
+.team-card:nth-child(3) {
+  animation-delay: 0.8s;
+}
+
+@keyframes teamReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Smooth image zoom on hover */
+.team-card img {
+  transition: transform 0.4s ease;
+}
+
+.team-card:hover img {
+  transform: scale(1.05);
+}
+
+/* Smooth overlay fade */
+.team-overlay {
+  transition: opacity 0.4s ease;
+}
+
+/* ================= TESTIMONIAL ANIMATIONS ================= */
+
+/* Cards start hidden and slide up */
+.testimonial-card {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 0.8s ease;
+}
+
+.testimonial-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger cards using nth-child */
+.testimonial-card:nth-child(1) {
+  animation-delay: 0.2s;
+}
+
+.testimonial-card:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+.testimonial-card:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+.testimonial-card:nth-child(4) {
+  animation-delay: 0.8s;
+}
+
+/* Keyframes for reveal */
+@keyframes testimonialReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Smooth hover lift (refine existing) */
+.testimonial-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(198, 168, 125, 0.4);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Star glow effect on hover */
+.testimonial-card:hover .stars i {
+  color: #fff8d6;
+  transform: scale(1.2);
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* ================= FAQ ANIMATIONS ================= */
+
+/* Smooth slide & fade for answers */
+.faq-answer {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: max-height 0.5s ease, padding 0.5s ease, opacity 0.5s ease, transform 0.5s ease;
+}
+
+.faq-item.active .faq-answer {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hover effect on question */
+.faq-question:hover {
+  color: #c6a87d;
+  background: #1a1b1c;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Smooth icon rotation refine */
+.faq-question i {
+  transition: transform 0.5s ease;
+}
+
+.faq-item.active .faq-question i {
+  transform: rotate(180deg);
+}
+
+/* Optional: subtle pulse on hover */
+.faq-question:hover i {
+  transform: rotate(10deg);
+  transition: transform 0.3s ease;
+}
+
+/* Initial state */
+.room-card {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+/* When visible */
+.room-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hover lift + zoom */
+.room-card:hover {
+  transform: translateY(-5px) scale(1.03);
+  border-color:#FF5C8A;
+}
+
+/* Badge glow for availability */
+/* .available {
+  animation: greenPulse 2s infinite;
+}
+
+.occupied {
+  animation: redPulse 2s infinite;
+} */
+
+/* @keyframes greenPulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 5px #00ff6a;
+  }
+
+  50% {
+    box-shadow: 0 0 15px #00ff6a;
+  }
+}
+
+@keyframes redPulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 5px #ff4c4c;
+  }
+
+  50% {
+    box-shadow: 0 0 15px #ff4c4c;
+  }
+} */
+
+/* Initial state */
+.facility-card {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+/* When visible */
+.facility-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hover pop + icon glow */
+.facility-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  border-color: #c6a87d;
+}
+
+.facility-card:hover .facility-icon {
+  animation: iconGlow 1.5s infinite alternate;
+}
+
+@keyframes iconGlow {
+  0% {
+    box-shadow: 0 0 5px #c6a87d;
+  }
+
+  100% {
+    box-shadow: 0 0 20px #c6a87d;
+  }
+}
+
+/* Initial state */
+.service-card {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+/* When visible */
+.service-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hover lift + icon pulse */
+.service-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  border-color: #c6a87d;
+}
+
+.service-card:hover i {
+  animation: iconPulse 1.5s infinite alternate;
+}
+
+@keyframes iconPulse {
+  0% {
+    color: #c6a87d;
+    transform: scale(1);
+  }
+
+  100% {
+    color: #fff;
+    transform: scale(1.2);
+  }
+}
+
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease-out;
+}
+
+.animate-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* HERO IMAGE ARROWS */
+
+.hero-arrows {
+  margin-top: 65px;
+  display: flex;
+  gap: 15px;
+}
+
+.hero-arrows button {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  background: #FF5C8A;
+  color: #fff;
+  opacity: 1;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.hero-arrows button:hover {
+  background: #FF7BA3;
+  color: #fff;
+  transform: scale(1.1);
+}
+
+@media (max-width:768px) {
+
+  .nav-links {
+    position: absolute;
+    top: 70px;
+    right: -100%;
+    width: 240px;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    padding: 20px 0;
+    border-radius: 8px;
+    transition: 0.35s ease;
+  }
+
+  body.light-mode .nav-links,
+  body.light-mode #navLinks {
+    background: rgba(255, 255, 255, 0.6);
+  }
+
+  .nav-links {
+    border-radius: 10px;
+    padding: 10px 0;
+  }
+
+  .nav-links a {
+    color: #fff;
+  }
+
+  body.light-mode .nav-links a {
+    color: #000;
+  }
+
+  .nav-links li {
+    width: 100%;
+  }
+
+  .nav-links li a {
+    display: block;
+    width: 100%;
+    padding: 14px 22px;
+  }
+
+  .nav-links.active {
+    right: 0;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+}
+
+/* ================= HERO RESPONSIVE ================= */
+
+@media (max-width: 992px) {
+
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 40px 20px 0;
+    align-items: center;
+  }
+
+  .hero-content {
+    max-width: 100%;
+  }
+
+  .hero-content {
+    max-width: 100%;
+    margin-bottom: 30px;
+  }
+
+  .hero-image {
+    position: relative;
+    transform: none;
+    width: 100%;
+    height: 320px;
+
+    border-radius: 25px;
+    margin-top: 30px;
+    overflow: hidden;
+  }
+
+  .hero-container {
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero-slider {
+    width: 300%;
+    height: 100%;
+    display: flex;
+  }
+
+  .hero-slider img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* ===== ARROWS ON SIDES OF IMAGE ===== */
+
+  .hero-arrows {
+    position: absolute;
+    top: 65%;
+    left: 0;
+    width: 100%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    padding: 0 40px;
+    z-index: 10;
+  }
+
+  .hero-arrows button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* move buttons slightly inside */
+  .hero-prev {
+    transform: translateX(10px);
+  }
+
+  .hero-next {
+    transform: translateX(-10px);
+  }
+
+  /* ================= ABOUT RESPONSIVE ================= */
+
+  @media (max-width: 992px) {
+
+    .about {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .about-right {
+      justify-content: center;
+    }
+
+    .image-container {
+      display: none;
+    }
+
+    .experience-box {
+      position: relative;
+      right: 0;
+      top: 40px;
+      margin: auto;
+    }
+
+  }
+
+  /* ================= HOW IT WORKS RESPONSIVE ================= */
+
+  @media (max-width: 992px) {
+
+    .how-container {
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .how-column {
+      width: 100%;
+      align-items: center;
+    }
+
+    .how-item {
+      text-align: center;
+    }
+
+  }
+
+  /* ================= ROOM GRID RESPONSIVE ================= */
+
+  @media (max-width: 768px) {
+
+    .room-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+  }
+
+  @media (max-width: 480px) {
+
+    .room-container {
+      grid-template-columns: 1fr;
+    }
+
+  }
+
+  /* ================= TEAM RESPONSIVE ================= */
+
+  @media (max-width: 768px) {
+
+    .team-container {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .team-card {
+      width: 90%;
+    }
+
+  }
+
+  /* ================= TESTIMONIAL RESPONSIVE ================= */
+
+  @media (max-width: 768px) {
+
+    .testimonial-container {
+      grid-template-columns: 1fr;
+    }
+
+  }
+
+  /* ================= FACILITIES & SERVICES ================= */
+
+  @media (max-width: 768px) {
+
+    .facilities-container,
+    .services-container {
+      grid-template-columns: 1fr;
+    }
+
+  }
+
+  @media (max-width:768px) {
+    .side-contact {
+      display: none;
+    }
+  }
+
+  @media (min-width:1440px) {
+
+    .hero,
+    .about,
+    .how-it-works,
+    .team-section,
+    .testimonial-section,
+    .faq-section,
+    .room-section,
+    .facilities-section,
+    .services-section {
+      padding-left: 12%;
+      padding-right: 12%;
+    }
+
+  }
+}
+
+@media (max-height: 650px) {
+
+  .hero {
+    padding: 20px 40px;
+    min-height: auto;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(24px, 4vw, 40px);
+    line-height: 1.1;
+  }
+
+  .price {
+    font-size: 18px;
+  }
+
+  .hero-image {
+    height: 250px;
+  }
+
+}
+
+.payment-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, .8);
+  z-index: 99999;
+  justify-content: center;
+  align-items: center;
+}
+
+.payment-modal-content {
+  background: #fff;
+  color: #222;
+  width: 90%;
+  max-width: 550px;
+  padding: 30px;
+  border-radius: 12px;
+  position: relative;
+}
+
+.payment-modal-content h2 {
+  margin-bottom: 15px;
+}
+
+.payment-modal-content ul {
+  margin: 20px 0;
+  padding-left: 20px;
+}
+
+.payment-modal-content li {
+  margin-bottom: 10px;
+}
+
+.close-payment {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.whatsapp-btn {
+  display: inline-block;
+  background: #25D366;
+  color: white;
+  text-decoration: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+.payment-area {
+  margin-top: 20px;
+}
+
+.booking-ref {
+  margin-bottom: 10px;
+  color: #FF5C8A;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.room-capacity {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 13px;
+  color: #bdbdbd;
+}
+
+.capacity-bar {
+  width: 100%;
+  height: 8px;
+  background: #222;
+  border-radius: 50px;
+  overflow: hidden;
+  margin-top: 8px;
+}
+
+.capacity-fill {
+  height: 100%;
+  border-radius: 50px;
+  width: 0;
+  transition: width .5s ease, background .5s ease;
+  background: #22c55e;
+}
+
+/* 0 - 24% */
+.capacity-fill.low {
+  background: #22c55e;
+}
+
+/* 25 - 49% */
+.capacity-fill.mid-low {
+  background: #84cc16;
+}
+
+/* 50 - 74% */
+.capacity-fill.medium {
+  background: #f59e0b;
+}
+
+/* 75 - 99% */
+.capacity-fill.high {
+  background:#FF5C8A;
+}
+
+/* 100% */
+.capacity-fill.full {
+  background: #FF5C8A;
+  box-shadow: 0 0 12px rgba(185, 28, 28, .45);
+}
+
+
+
+.beds-left {
+  margin-top: 8px;
+  font-size: 13px;
+  color: #FF7BA3;
+  font-weight: 600;
+}
+
+/* =====================================
+   LIGHT MODE FINAL POLISH
+===================================== */
+
+/* Price */
+body.light-mode .price{
+    color:#C63D69;
+    font-weight:700;
+}
+
+/* Payment button */
+body.light-mode .payment-btn{
+    background:#E75480;
+    color:#FFFFFF !important;
+    border:none;
+}
+
+body.light-mode .payment-btn:hover{
+    background:#D93E6E;
+    color:#FFFFFF !important;
+}
+
+/* Hero slider arrows */
+body.light-mode .hero-prev,
+body.light-mode .hero-next{
+    background:#FFFFFF;
+    color:#C63D69;
+    border:2px solid #E75480;
+    box-shadow:0 4px 15px rgba(0,0,0,.15);
+}
+
+body.light-mode .hero-prev:hover,
+body.light-mode .hero-next:hover{
+    background:#E75480;
+    color:#FFFFFF;
+}
+
+@media (max-width:768px){
+
+    body.light-mode .hero-arrows button{
+        background:#E75480;
+        color:#FFFFFF;
+        border:2px solid #FFFFFF;
+        box-shadow:0 6px 20px rgba(0,0,0,.18);
+    }
+
+    body.light-mode .hero-arrows button:hover{
+        background:#C63D69;
+    }
+
+}
+
+/* ======================================
+   DARK MODE - MOBILE HERO ARROWS
+====================================== */
+@media (max-width:768px){
+
+    body:not(.light-mode) .hero-arrows button{
+        background:#1F1F1F;
+        color:#FFFFFF;
+        border:2px solid #FF5C8A;
+        box-shadow:0 6px 20px rgba(0,0,0,.45);
+    }
+
+    body:not(.light-mode) .hero-arrows button:hover{
+        background:#FF5C8A;
+        color:#FFFFFF;
+    }
+
+}

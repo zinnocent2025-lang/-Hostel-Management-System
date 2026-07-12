@@ -1,0 +1,1097 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: #f4f6fb;
+    color: #222;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+/* =========================
+   PROFESSIONAL NAVBAR
+========================= */
+
+.navbar{
+
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
+
+    width:100%;
+
+    height:88px;
+
+    padding:0 7%;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    background:rgba(255,255,255,0.96);
+
+    backdrop-filter:blur(18px);
+
+    border-bottom:1px solid rgba(0,0,0,0.05);
+
+    box-shadow:
+    0 4px 20px rgba(0,0,0,0.04);
+}
+
+/* =========================
+   LEFT SIDE
+========================= */
+
+.logo-wrapper{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+}
+
+/* =========================
+   LOGO
+========================= */
+
+.logo-img{
+
+    width:64px;
+
+    height:64px;
+
+    object-fit:contain;
+
+    border-radius:16px;
+
+    padding:5px;
+
+    background:
+    linear-gradient(
+        145deg,
+        rgba(255,255,255,0.95),
+        rgba(240,244,255,0.9)
+    );
+
+    box-shadow:
+    0 6px 18px rgba(37,99,235,0.12),
+    inset 0 1px 0 rgba(255,255,255,0.9);
+
+    transition:0.35s ease;
+}
+
+.logo-img:hover{
+
+    transform:
+    translateY(-2px)
+    scale(1.03);
+
+    box-shadow:
+    0 10px 24px rgba(37,99,235,0.18);
+}
+/* =========================
+   BRAND TEXT
+========================= */
+
+.logo-text{
+
+    display:flex;
+
+    flex-direction:column;
+}
+
+.logo-text h2{
+
+    font-size:30px;
+
+    line-height:1;
+
+    color:#0f172a;
+
+    font-weight:800;
+
+    margin:0;
+}
+
+.logo-text span{
+
+    font-size:12px;
+
+    color:#64748b;
+
+    letter-spacing:0.4px;
+
+    margin-top:4px;
+}
+
+/* =========================
+   NAV LINKS
+========================= */
+
+.nav-links{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:38px;
+}
+
+.nav-links a{
+
+    position:relative;
+
+    text-decoration:none;
+
+    color:#334155;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    letter-spacing:0.3px;
+
+    padding:8px 0;
+
+    transition:0.3s ease;
+}
+.nav-links a:hover{
+
+    color:#2563eb;
+}
+
+.nav-links a::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    bottom:-7px;
+
+    width:0;
+
+    height:2px;
+
+    border-radius:10px;
+
+    background:#2563eb;
+
+    transition:0.3s ease;
+}
+
+.nav-links a:hover::after{
+
+    width:100%;
+}
+
+/* =========================
+   LOGO ANIMATION
+========================= */
+
+@keyframes navbarLogoFade{
+
+    from{
+
+        opacity:0;
+
+        transform:
+        translateY(-10px)
+        scale(0.9);
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+        translateY(0)
+        scale(1);
+    }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:768px){
+
+    .navbar{
+
+        height:auto;
+
+        padding:18px 5%;
+
+        flex-direction:column;
+
+        gap:16px;
+    }
+
+    .nav-links{
+
+        gap:20px;
+
+        flex-wrap:wrap;
+
+        justify-content:center;
+    }
+
+    .logo-text span{
+
+        display:none;
+    }
+
+    .logo-text h2{
+
+        font-size:24px;
+    }
+
+    .logo-img{
+
+        width:52px;
+
+        height:52px;
+    }
+}
+
+
+
+/* =========================
+   PAGE HEADER
+========================= */
+.page-header {
+    text-align: center;
+    padding: 50px 20px 30px;
+}
+
+.page-header h1 {
+    font-size: 28px;
+    color: #111;
+    margin-bottom: 10px;
+}
+
+.page-header p {
+    font-size: 15px;
+    color: #666;
+}
+
+/* =========================
+   HOSTEL LIST GRID
+========================= */
+.hostel-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 22px;
+    padding: 30px 10%;
+}
+
+/* =========================
+   HOSTEL CARD
+========================= */
+.hostel-card {
+    background: #ffffff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    position: relative;
+    transition: 0.3s ease;
+}
+
+.hostel-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 18px 35px rgba(0, 0, 0, 0.12);
+}
+
+.hostel-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.hostel-info {
+    padding: 16px;
+}
+
+.hostel-info h3 {
+    font-size: 18px;
+    margin-bottom: 6px;
+    color: #111;
+}
+
+.location {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.price {
+    font-size: 14px;
+    font-weight: bold;
+    color: #1d4ed8;
+}
+
+
+/* =========================
+   MODAL POPUP
+========================= */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s ease;
+    padding: 20px;
+    z-index: 100;
+}
+
+.modal.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background: white;
+    width: 100%;
+    max-width: 700px;
+    border-radius: 14px;
+    overflow: hidden;
+    animation: popUp 0.4s ease;
+    position: relative;
+    padding: 15px;
+}
+
+@keyframes popUp {
+    from {
+        transform: scale(0.85);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.inside-img {
+    width: 100%;
+    border-radius: 12px;
+    max-height: 500px;
+    object-fit: cover;
+}
+
+/* =========================
+   BACK BUTTON INSIDE MODAL
+========================= */
+.close-btn {
+    background: #1d4ed8;
+    color: white;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    transition: 0.3s;
+}
+
+.close-btn:hover {
+    background: #153bb8;
+}
+/* =========================
+   LOAD MORE BUTTON
+========================= */
+.load-more-container {
+    text-align: center;
+    margin: 30px 0 50px;
+}
+
+.load-more-btn {
+    background: #1d4ed8;
+    color: white;
+    border: none;
+    padding: 14px 22px;
+    border-radius: 12px;
+    font-size: 15px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-weight: bold;
+    transition: 0.3s ease;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+}
+
+.load-more-btn:hover {
+    background: #153bb8;
+    transform: translateY(-3px);
+}
+
+/* gear icon */
+.gear-icon {
+    width: 22px;
+    height: 22px;
+}
+
+/* spinning animation */
+.spin {
+    animation: spinGear 0.8s linear infinite;
+}
+
+@keyframes spinGear {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+.site-footer {
+    background: #ffffff;
+    padding: 25px 10%;
+    margin-top: 30px;
+    border-top: 1px solid #ddd;
+}
+
+.disclaimer {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 12px;
+    line-height: 1.6;
+}
+
+.copyright {
+    font-size: 13px;
+    color: #333;
+    font-weight: bold;
+}
+
+/* =========================
+   PAGE LOADER
+========================= */
+
+/* =========================
+   MODERN PAGE LOADER
+========================= */
+
+.page-loader{
+
+    position:fixed;
+
+    inset:0;
+
+    background:#ffffff;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:99999;
+
+    overflow:hidden;
+
+    transition:1s ease;
+}
+
+/* CENTER CONTAINER */
+
+.wave-container{
+
+    position:relative;
+
+    width:220px;
+
+    height:220px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+}
+
+/* LOGO CIRCLE */
+
+.logo-circle{
+
+    width:180px;
+    height:180px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(
+        circle at center,
+        rgba(255,255,255,1),
+        rgba(248,250,255,1)
+    );
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:5;
+
+    box-shadow:
+    0 0 35px rgba(37,99,235,0.25),
+    0 0 90px rgba(59,130,246,0.18),
+    inset 0 0 25px rgba(255,255,255,0.9);
+
+    animation:pulseLogo 2.2s ease-in-out infinite;
+}
+/* LOGO */
+
+.loader-logo{
+
+    width:125px;
+
+    height:auto;
+
+    object-fit:contain;
+
+    filter:
+    drop-shadow(0 8px 20px rgba(37,99,235,0.35));
+}
+
+/* WAVES */
+
+.wave{
+
+    position:absolute;
+
+    border:3px solid rgba(59,130,246,0.35);
+
+    border-radius:50%;
+
+    animation:ripple 3s linear infinite;
+}
+
+.wave1{
+
+    width:140px;
+    height:140px;
+
+    animation-delay:0s;
+}
+
+.wave2{
+
+    width:180px;
+    height:180px;
+
+    animation-delay:1s;
+}
+
+.wave3{
+
+    width:220px;
+    height:220px;
+
+    animation-delay:2s;
+}
+
+/* RIPPLE EFFECT */
+
+@keyframes ripple{
+
+    0%{
+
+        transform:scale(0.7);
+
+        opacity:0.8;
+    }
+
+    100%{
+
+        transform:scale(1.4);
+
+        opacity:0;
+    }
+}
+
+/* LOGO PULSE */
+
+@keyframes pulseLogo{
+
+    0%{
+
+        transform:scale(1);
+    }
+
+    50%{
+
+        transform:scale(1.06);
+    }
+
+    100%{
+
+        transform:scale(1);
+    }
+}
+
+/* FADE OUT */
+
+.page-loader.fade-out{
+
+    opacity:0;
+
+    visibility:hidden;
+}
+/* Page reveal animation */
+body.reveal .navbar,
+body.reveal .page-header,
+body.reveal .hostel-list,
+body.reveal .load-more-container,
+body.reveal .site-footer {
+    animation: fadeUp 0.8s ease forwards;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}@keyframes navbarLogoSpin {
+    0% {
+        transform: rotate(0deg) scale(0.8);
+        opacity: 0;
+    }
+    60% {
+        transform: rotate(370deg) scale(1.05);
+        opacity: 1;
+    }
+    100% {
+        transform: rotate(360deg) scale(1);
+    }
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 16px 6%;
+    }
+
+    .hostel-list {
+        padding: 20px 6%;
+    }
+
+    .page-header h1 {
+        font-size: 22px;
+    }
+
+    .modal-content {
+        max-width: 95%;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar nav a {
+        margin-left: 12px;
+        font-size: 13px;
+    }
+
+    .logo-img {
+        width: 65px;
+    }
+
+    .hostel-card img {
+        height: 160px;
+    }
+
+    .inside-img {
+        max-height: 380px;
+    }
+}
+
+/* upgrade */
+.desc {
+    font-size: 13px;
+    color: #555;
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.location i {
+    margin-right: 5px;
+    color: #1d4ed8;
+}
+
+.details-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    color: white;
+    margin-top: 10px;
+
+    background: linear-gradient(135deg, #4f46e5, #9333ea);
+    transition: 0.3s ease;
+}
+
+.details-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+}
+.hostel-info {
+    padding: 18px;
+}
+.hostel-card {
+    border-radius: 16px;
+}
+
+/* =========================
+   DETAILS SECTION
+========================= */
+
+.hostel-details {
+    padding: 30px 10%;
+}
+
+.details-container {
+    max-width: 1100px;
+    margin: auto;
+}
+
+.back-btn {
+    background: #1d4ed8;
+    color: white;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.detail-img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 14px;
+    margin: 15px 0;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+}
+
+.card-box {
+    background: #ffffff;
+    padding: 18px;
+    border-radius: 14px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+}
+
+.card-box h4 {
+    margin-bottom: 10px;
+}
+
+/* responsive */
+@media (max-width: 768px) {
+    .details-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ======================
+DETAILS MODERN DESIGN
+====================== */
+
+.info-card{
+    background:#ffffff;
+    border-radius:16px;
+    overflow:hidden;
+    box-shadow:0 10px 25px rgba(0,0,0,0.06);
+    margin-bottom:22px;
+}
+
+.card-title{
+    background:linear-gradient(90deg,#1d4ed8,#3b82f6);
+    color:white;
+    padding:14px 18px;
+    font-weight:bold;
+    font-size:16px;
+}
+
+.info-card p,
+.info-card h4{
+    padding:18px;
+    margin:0;
+}
+
+.room-box{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:16px 18px;
+    border-top:1px solid #eee;
+}
+
+.room-box h4{
+    margin:0;
+    padding:0;
+    font-size:16px;
+}
+
+.room-box p{
+    margin:4px 0 0;
+    padding:0;
+    color:#666;
+}
+
+.room-price{
+    color:#1d4ed8;
+    font-weight:bold;
+    font-size:15px;
+}
+
+.room-box{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    padding:18px;
+    border-top:1px solid #eee;
+    flex-wrap:wrap;
+}
+
+.room-left{
+    flex:1;
+}
+
+.room-center{
+    min-width:160px;
+}
+
+.room-right{
+    min-width:170px;
+    text-align:right;
+}
+
+.book-btn{
+    background:#1d4ed8;
+    color:white;
+    text-decoration:none;
+    padding:12px 18px;
+    border-radius:10px;
+    font-size:14px;
+    font-weight:bold;
+    display:inline-block;
+    transition:0.3s ease;
+}
+
+.book-btn:hover{
+    background:#153bb8;
+    transform:translateY(-2px);
+}
+@media (max-width:768px){
+
+.room-box{
+    flex-direction:column;
+    align-items:flex-start;
+}
+
+.room-right{
+    width:100%;
+    text-align:left;
+}
+
+.book-btn{
+    width:100%;
+    text-align:center;
+}
+
+}
+
+#map{
+    width:100%;
+    height:320px;
+    border-radius:14px;
+    overflow:hidden;
+}
+
+.detail-box{
+    background: #ffffff;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    margin-top: 20px;
+    border: 1px solid #eef2ff;
+}
+.detail-box h3{
+    margin: 0;
+    padding: 18px 20px;
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+    background: linear-gradient(90deg, #1d4ed8, #3b82f6);
+}
+.message-box {
+    margin-bottom: 15px;
+}
+
+.message {
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.message.error {
+    background: #ffe5e5;
+    color: #b30000;
+}
+
+.message.success {
+    background: #e6ffea;
+    color: #0a7a2f;
+}
+
+/* =========================
+   NO ROOMS
+========================= */
+
+.no-room{
+    padding:25px;
+    text-align:center;
+    color:#666;
+    font-size:15px;
+    font-weight:500;
+}
+
+/* =========================
+   OCCUPIED BUTTON
+========================= */
+
+.occupied-btn{
+    background:#ef4444;
+    color:white;
+    padding:12px 18px;
+    border-radius:10px;
+    font-size:14px;
+    font-weight:bold;
+    display:inline-block;
+    cursor:not-allowed;
+    opacity:0.92;
+}
+
+/* =========================
+   REBOOK BUTTON
+========================= */
+
+.rebook-btn{
+    background:#f59e0b;
+    color:white;
+    text-decoration:none;
+    padding:12px 18px;
+    border-radius:10px;
+    font-size:14px;
+    font-weight:bold;
+    display:inline-block;
+    transition:0.3s ease;
+}
+
+.rebook-btn:hover{
+    background:#d97706;
+    transform:translateY(-2px);
+}
+
+/* =========================
+   BOOKED BUTTON
+========================= */
+
+.booked-btn{
+    background:#10b981;
+    color:white;
+    padding:12px 18px;
+    border-radius:10px;
+    font-size:14px;
+    font-weight:bold;
+    display:inline-block;
+}
+
+/* =========================
+   ROOM STATUS BADGE
+========================= */
+
+.room-status{
+    display:inline-block;
+    padding:6px 12px;
+    border-radius:30px;
+    font-size:12px;
+    font-weight:bold;
+    margin-top:8px;
+}
+
+.status-available{
+    background:#dcfce7;
+    color:#166534;
+}
+
+.status-occupied{
+    background:#fee2e2;
+    color:#991b1b;
+}
+
+.status-pending{
+    background:#fef3c7;
+    color:#92400e;
+}
+
+.occupied-btn{
+    background:#dc2626;
+    color:white;
+    padding:12px 18px;
+    border-radius:10px;
+    font-size:14px;
+    font-weight:bold;
+    display:inline-block;
+}
+
+.no-room{
+    padding:25px;
+    text-align:center;
+    color:#666;
+    font-size:15px;
+}
+

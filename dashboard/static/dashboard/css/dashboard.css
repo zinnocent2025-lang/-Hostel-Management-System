@@ -1,0 +1,2074 @@
+/* RESET */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #eef3ff, #f8fbff);
+}
+
+/* ================= TOPBAR ================= */
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background: linear-gradient(to right, #007BFF, #4da3ff);
+    color: white;
+}
+
+.logo {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+}
+
+/* ================= HEADER ================= */
+.dashboard-header {
+    width: 80%;
+    margin: 30px auto 10px;
+}
+
+.dashboard-header h2 {
+    margin: 0;
+}
+
+.dashboard-header p {
+    margin: 5px 0;
+    color: #555;
+}
+
+/* ================= DASHBOARD LAYOUT ================= */
+.dashboard {
+    width: 80%;
+    margin: 20px auto;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+/* ================= CARD ================= */
+.card {
+    padding: 20px;
+    border-radius: 15px;
+
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* ================= CARD HEADER ================= */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-header .left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* ================= BOOKINGS ================= */
+.booking-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-top: 12px;
+    padding: 12px;
+    border-radius: 10px;
+
+    background: #f5f8ff;
+}
+
+/* STATUS */
+.status {
+    background: #28a745;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+/* ================= INPUT ================= */
+.card input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+}
+
+/* ================= BUTTON ================= */
+.btn {
+    margin-top: 15px;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.btn.purple {
+    background: linear-gradient(to right, #007BFF, #4da3ff);
+    color: white;
+}
+
+.btn.green {
+    background: #28a745;
+    color: white;
+}
+
+/* ================= FLOATING PANEL ================= */
+.floating-icons {
+    position: fixed;
+    right: 20px;
+    top: 35%;
+
+    background: white;
+    padding: 12px 10px;
+    border-radius: 30px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.floating-icons i {
+    color: #007BFF;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.floating-icons i:hover {
+    color: #0056b3;
+    transform: scale(1.1);
+}
+
+/* ================= CONTROL PANEL ================= */
+.control-panel {
+    position: fixed;
+    top: 0;
+    right: -350px;
+    width: 320px;
+    height: 100%;
+
+    background: white;
+    box-shadow: -5px 0 20px rgba(0, 0, 0, 0.2);
+
+    padding: 20px;
+    transition: 0.4s ease;
+    z-index: 999;
+}
+
+.control-panel.active {
+    right: 0;
+}
+
+/* HEADER */
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.panel-header i {
+    cursor: pointer;
+    font-size: 18px;
+}
+
+/* SECTION */
+.panel-section {
+    margin-top: 25px;
+}
+
+.section-title {
+    font-size: 14px;
+    color: gray;
+    margin-bottom: 10px;
+}
+
+/* ITEMS */
+.panel-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.panel-item:hover {
+    background: #f1f5ff;
+    transform: translateX(5px);
+}
+
+/* BACKGROUND OVERLAY */
+.profile-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0, 0, 0, 0.4);
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+/* CARD */
+.profile-card {
+    background: white;
+    width: 300px;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    position: relative;
+}
+
+/* CLOSE */
+.close-profile {
+    position: absolute;
+    right: 12px;
+    top: 10px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+/* IMAGE */
+.profile-image-wrapper {
+    position: relative;
+    width: 80px;
+    margin: auto;
+}
+
+.profile-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile-upload-btn {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #4c6fff;
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* INFO */
+.profile-info {
+    margin-top: 15px;
+}
+
+.profile-input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 8px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+/* BUTTON */
+.profile-save-btn {
+    width: 100%;
+    margin-top: 15px;
+    padding: 10px;
+    border: none;
+    background: #4c6fff;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* ADMIN SECTION */
+.admin-section {
+    position: relative;
+}
+
+/* ADMIN BUTTON */
+.admin-profile {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    color: white;
+}
+
+/* DROPDOWN */
+.dropdown {
+    position: absolute;
+    right: 0;
+    top: 40px;
+
+    background: white;
+    border-radius: 10px;
+    width: 180px;
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    padding: 8px;
+    z-index: 1000;
+    display: none;
+    flex-direction: column;
+}
+
+/* SHOW */
+.dropdown.show {
+    display: flex;
+}
+
+/* ITEM */
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+
+    color: #333;
+    font-size: 14px;
+}
+
+.dropdown-item:hover {
+    background: #eef3ff;
+    color: #4c6fff;
+}
+
+/* PROFILE MODAL */
+.profile-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0, 0, 0, 0.4);
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+/* CARD */
+.profile-card {
+    background: white;
+    width: 300px;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    position: relative;
+}
+
+/* CLOSE */
+.close-profile {
+    position: absolute;
+    right: 12px;
+    top: 10px;
+    cursor: pointer;
+}
+
+/* IMAGE */
+.profile-image-wrapper {
+    position: relative;
+    width: 80px;
+    margin: auto;
+}
+
+.profile-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile-upload-btn {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #4c6fff;
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* INPUT */
+.profile-input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+/* BUTTON */
+.profile-save-btn {
+    width: 100%;
+    margin-top: 15px;
+    padding: 10px;
+    border: none;
+    background: #4c6fff;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* SETTINGS PANEL */
+.settings-panel {
+    position: fixed;
+    right: 70px;
+    bottom: 100px;
+    width: 220px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    padding: 10px;
+    display: none;
+    z-index: 1000;
+}
+
+/* HEADER */
+.settings-header {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* ITEMS */
+.settings-item {
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.settings-item:hover {
+    background: #f2f2f2;
+}
+
+/* TOGGLE SWITCH */
+.switch {
+    position: relative;
+    width: 40px;
+    height: 20px;
+}
+
+.switch input {
+    display: none;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    background: #ccc;
+    border-radius: 20px;
+    width: 100%;
+    height: 100%;
+}
+
+.slider::before {
+    content: "";
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    background: white;
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    transition: 0.3s;
+}
+
+.switch input:checked + .slider {
+    background: #4CAF50;
+}
+
+.switch input:checked + .slider::before {
+    transform: translateX(20px);
+}
+body.dark {
+    background: #121212;
+    color: #fff;
+}
+
+body.dark .card {
+    background: #1e1e1e;
+    color: #fff;
+}
+body.dark input {
+    background: #2a2a2a;
+    color: #fff;
+    border: 1px solid #444;
+}
+body.dark h2,
+body.dark h3,
+body.dark p {
+    color: #ddd;
+}
+body.dark .topbar {
+    background: #0d47a1; /* keep your blue but darker */
+}
+body.dark .booking-item {
+    background: #2a2a2a;
+}
+body.dark .settings-panel {
+    background: #1e1e1e;
+    color: #fff;
+}
+body.dark .btn {
+    opacity: 0.9;
+}
+
+.info-card {
+    position: fixed;
+    right: 70px;
+    bottom: 280px;
+    width: 220px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    padding: 12px;
+    display: none;
+    z-index: 1000;
+}
+
+.info-header {
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+body.dark .info-card {
+    background: #1e1e1e;
+    color: #fff;
+}
+
+
+
+/* ===== MODAL BACKGROUND ===== */
+
+.manager-top{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:18px;
+}
+
+.manager-top span{
+font-size:28px;
+cursor:pointer;
+}
+
+
+.hostel-actions{
+display:flex;
+gap:10px;
+}
+
+.hostel-actions a{
+text-decoration:none;
+font-size:22px;
+}
+
+.hostel-list-box{
+margin-top:20px;
+overflow-y:auto;
+max-height:70vh;
+padding-right:8px;
+}
+
+.hostel-row{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:15px;
+padding:12px;
+border-bottom:1px solid #eee;
+}
+
+.hostel-row img{
+width:60px;
+height:60px;
+object-fit:cover;
+border-radius:10px;
+}
+
+.hostel-info-box{
+flex:1;
+}
+
+.hostel-actions a{
+margin-left:8px;
+text-decoration:none;
+font-size:20px;
+}
+
+.hostel-manager {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    background: rgba(0,0,0,0.5);
+
+    display: none;   /* hidden by default */
+    justify-content: center;
+    align-items: center;
+}
+
+.hostel-manager.show {
+    display: flex;   /* THIS is what shows it */
+}
+
+.hostel-manager-box {
+    background: white;
+    width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.hostel-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.hostel-info-box {
+    flex: 1;
+}
+
+.hostel-row img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.hostel-actions{
+    display:flex;
+    gap:10px;
+    margin-top:10px;
+}
+
+
+.delete-btn{
+    background:#dc2626;
+    color:white;
+    padding:6px 14px;
+    border-radius:6px;
+    text-decoration:none;
+    font-size:14px;
+}
+
+.hostel-search-box{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:#f1f5f9;
+    padding:12px;
+    border-radius:12px;
+    margin-bottom:20px;
+}
+
+.hostel-search-box input{
+    border:none;
+    outline:none;
+    background:none;
+    width:100%;
+    font-size:15px;
+}
+
+.hostel-row{
+    position:relative;
+}
+
+.hostel-top-actions{
+    position:absolute;
+    top:10px;
+    right:10px;
+    display:flex;
+    gap:10px;
+}
+
+.edit-btn,
+.delete-btn{
+    width:28px;
+    height:28px;
+    border:none;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    text-decoration:none;
+    color:white;
+    font-size:12px;
+}
+.edit-btn{
+    background:#2563eb;
+}
+
+.delete-btn{
+    background:#dc2626;
+}
+
+.delete-modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.5);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:9999;
+}
+
+.delete-box{
+    background:white;
+    width:350px;
+    padding:30px;
+    border-radius:20px;
+    text-align:center;
+}
+
+.delete-actions{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    margin-top:20px;
+}
+
+.delete-actions button,
+.delete-actions a{
+    padding:10px 20px;
+    border:none;
+    border-radius:10px;
+    text-decoration:none;
+    cursor:pointer;
+}
+
+#confirmDelete{
+    background:#dc2626;
+    color:white;
+}
+
+.hostel-row img{
+    width:65px;
+    height:65px;
+    object-fit:cover;
+    border-radius:12px;
+}
+
+.hostel-search-box{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:#f5f5f5;
+    padding:12px 15px;
+    border-radius:12px;
+    margin-bottom:20px;
+}
+
+.hostel-search-box input{
+    border:none;
+    background:none;
+    outline:none;
+    width:100%;
+    font-size:14px;
+}
+/* =========================
+   LOGOUT MODAL
+========================= */
+
+.logout-modal {
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(15, 23, 42, 0.45);
+
+    backdrop-filter: blur(5px);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: .3s ease;
+
+    z-index: 9999;
+}
+
+.logout-modal.active {
+
+    opacity: 1;
+    visibility: visible;
+}
+
+.logout-box {
+
+    width: 90%;
+    max-width: 420px;
+
+    background: white;
+
+    border-radius: 28px;
+
+    padding: 35px;
+
+    text-align: center;
+
+    animation: logoutFade .35s ease;
+}
+
+@keyframes logoutFade {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(20px) scale(.96);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0) scale(1);
+    }
+}
+
+.logout-icon {
+
+    width: 75px;
+    height: 75px;
+
+    margin: auto auto 20px;
+
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    font-size: 28px;
+}
+
+.logout-box h3 {
+
+    font-size: 1.7rem;
+
+    color: #0f172a;
+
+    margin-bottom: 12px;
+}
+
+.logout-box p {
+
+    color: #64748b;
+
+    line-height: 1.6;
+
+    margin-bottom: 30px;
+}
+
+.logout-actions {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 14px;
+
+    margin-top: 10px;
+}
+.logout-actions button {
+
+    width: 100%;
+
+    height: 54px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .3s ease;
+}
+#cancelLogout {
+
+    background: #f1f5f9;
+
+    color: #334155;
+}
+
+#cancelLogout:hover {
+
+    background: #e2e8f0;
+}
+
+.confirm-logout {
+
+    background: #2563eb;
+
+    color: white;
+}
+
+.confirm-logout:hover {
+
+    background: #1d4ed8;
+}
+
+/* =========================================
+   RESPONSIVE DESIGN
+========================================= */
+
+/* ================= TABLETS ================= */
+
+@media (max-width: 1024px){
+
+    .dashboard{
+
+        width: 92%;
+
+        grid-template-columns: 1fr;
+
+        gap: 20px;
+    }
+
+    .dashboard-header{
+
+        width: 92%;
+    }
+
+    .topbar{
+
+        padding: 15px 20px;
+    }
+
+    .nav-links{
+
+        display: none;
+    }
+
+    .hostel-manager-box{
+
+        width: 90%;
+    }
+}
+
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 768px){
+
+    body{
+
+        overflow-x: hidden;
+    }
+
+    /* ===== TOPBAR ===== */
+
+    .topbar{
+
+        flex-direction: column;
+
+        gap: 15px;
+
+        padding: 18px;
+    }
+
+    .logo{
+
+        font-size: 16px;
+
+        text-align: center;
+    }
+
+    .admin-profile span{
+
+        display: none;
+    }
+
+    /* ===== HEADER ===== */
+
+    .dashboard-header{
+
+        width: 92%;
+
+        margin-top: 20px;
+    }
+
+    .dashboard-header h2{
+
+        font-size: 24px;
+    }
+
+    /* ===== DASHBOARD ===== */
+
+    .dashboard{
+
+        width: 92%;
+
+        grid-template-columns: 1fr;
+
+        gap: 18px;
+    }
+
+    .card{
+
+        padding: 16px;
+    }
+
+    /* ===== BOOKINGS ===== */
+
+    .booking-item{
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 10px;
+    }
+
+    .status{
+
+        align-self: flex-start;
+    }
+
+    /* ===== FLOATING ICONS ===== */
+
+    .floating-icons{
+
+        right: 10px;
+
+        top: auto;
+
+        bottom: 20px;
+
+        flex-direction: row;
+
+        padding: 10px 14px;
+
+        border-radius: 18px;
+
+        gap: 12px;
+    }
+
+    .float-btn{
+
+        width: 40px;
+        height: 40px;
+    }
+
+    /* ===== CONTROL PANEL ===== */
+
+    .control-panel{
+
+        width: 85%;
+    }
+
+    /* ===== PROFILE MODAL ===== */
+
+    .profile-card{
+
+        width: 90%;
+    }
+
+    /* ===== SETTINGS ===== */
+
+    .settings-panel{
+
+        width: 85%;
+
+        right: 20px;
+
+        bottom: 90px;
+    }
+
+    .info-card{
+
+        width: 85%;
+
+        right: 20px;
+
+        bottom: 180px;
+    }
+
+    /* ===== HOSTEL MANAGER ===== */
+
+    .hostel-manager-box{
+
+        width: 92%;
+
+        padding: 15px;
+    }
+
+    .hostel-row{
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 12px;
+    }
+
+    .hostel-row img{
+
+        width: 100%;
+        height: 180px;
+    }
+
+    .hostel-top-actions{
+
+        position: static;
+
+        margin-top: 10px;
+    }
+
+    /* ===== LOGOUT MODAL ===== */
+
+    .logout-box{
+
+        width: 88%;
+
+        padding: 25px;
+    }
+
+    .logout-actions{
+
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* ================= SMALL PHONES ================= */
+
+@media (max-width: 480px){
+
+    .logo{
+
+        font-size: 14px;
+    }
+
+    .dashboard-header h2{
+
+        font-size: 22px;
+    }
+
+    .card-header h3{
+
+        font-size: 18px;
+    }
+
+    .btn{
+
+        font-size: 14px;
+    }
+
+    .floating-icons{
+
+        left: 50%;
+
+        transform: translateX(-50%);
+
+        right: auto;
+    }
+
+    .control-panel{
+
+        width: 100%;
+    }
+
+    .hostel-manager-box{
+
+        border-radius: 0;
+
+        height: 100vh;
+
+        max-height: 100vh;
+    }
+}
+
+/* ================= MESSAGE MODAL ================= */
+
+.message-modal{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,0.45);
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:99999;
+}
+
+.message-modal.active{
+
+    display:flex;
+}
+
+.message-box{
+
+    width:90%;
+
+    max-width:1100px;
+
+    height:85vh;
+
+    background:white;
+
+    border-radius:25px;
+
+    overflow:hidden;
+
+    display:grid;
+
+    grid-template-columns:300px 1fr;
+}
+
+/* LEFT */
+
+.chat-users{
+
+    background:#f8fafc;
+
+    border-right:1px solid #ddd;
+
+    overflow-y:auto;
+}
+
+.chat-top{
+
+    padding:20px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    border-bottom:1px solid #ddd;
+}
+
+.chat-top span{
+
+    font-size:28px;
+
+    cursor:pointer;
+}
+
+.student-item{
+
+    padding:16px 20px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.student-item:hover{
+
+    background:#eef3ff;
+}
+
+/* RIGHT */
+
+.chat-area{
+
+    display:flex;
+
+    flex-direction:column;
+
+    height:100%;
+
+    overflow:hidden;
+
+    position:relative;
+}
+
+.chat-header{
+
+    padding:18px 22px;
+
+    border-bottom:1px solid #e2e8f0;
+
+    background:white;
+
+    font-weight:600;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+}
+
+.chat-messages{
+
+    flex:1;
+
+    min-height:0;
+
+    overflow-y:auto;
+
+    overflow-x:hidden;
+
+    padding:20px;
+
+    background:#f9fafb;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+    scroll-behavior:smooth;
+}
+
+/* MESSAGES */
+
+.admin-message{
+
+    align-self:flex-end;
+
+    background:linear-gradient(
+        135deg,
+        #2563eb,
+        #3b82f6
+    );
+
+    color:white;
+
+    padding:10px 14px;
+
+    border-radius:18px 18px 5px 18px;
+
+    max-width:340px;
+
+    width:fit-content;
+
+    word-wrap:break-word;
+
+    box-shadow:0 4px 12px rgba(37,99,235,.2);
+
+    animation:fadeIn .2s ease;
+}
+
+.student-message{
+
+    align-self:flex-start;
+
+    background:white;
+
+    padding:10px 14px;
+
+    border-radius:18px 18px 18px 5px;
+
+    max-width:340px;
+
+    width:fit-content;
+
+    word-wrap:break-word;
+
+    box-shadow:0 4px 12px rgba(0,0,0,.06);
+
+    border:1px solid #f1f5f9;
+
+    animation:fadeIn .2s ease;
+}
+.admin-message small,
+.student-message small{
+
+    display:block;
+
+    margin-top:6px;
+
+    font-size:11px;
+
+    opacity:.7;
+}
+
+/* FORM */
+
+.chat-form{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:14px 18px;
+
+    background:white;
+
+    border-top:1px solid #e2e8f0;
+
+    flex-shrink:0;
+}
+
+.chat-form input{
+
+    flex:1;
+
+    height:52px;
+
+    border:none;
+
+    background:#f1f5f9;
+
+    border-radius:30px;
+
+    padding:0 20px;
+
+    font-size:15px;
+
+    outline:none;
+}
+
+.chat-form button{
+
+    width:48px;
+
+    height:48px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#2563eb;
+
+    color:white;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+    font-size:16px;
+
+    flex-shrink:0;
+}
+
+/* EMPTY */
+
+.empty-chat{
+
+    flex:1;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:#888;
+
+    gap:12px;
+}
+
+.empty-chat i{
+
+    font-size:55px;
+}
+
+/* =========================
+   STUDENT CHAT LIST
+========================= */
+
+.student-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 12px;
+    cursor: pointer;
+
+    border-bottom: 1px solid #eee;
+
+    transition: 0.3s;
+}
+
+.student-item:hover {
+    background: #f5f5f5;
+}
+
+.student-avatar {
+    width: 45px;
+    height: 45px;
+
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.fallback-avatar {
+    background: #6c63ff;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: bold;
+}
+
+.student-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.student-info span {
+    font-weight: 600;
+}
+
+.student-info small {
+    color: gray;
+    font-size: 12px;
+}
+
+/* =========================
+   TYPING INDICATOR
+========================= */
+
+.typing-indicator {
+
+    display: none;
+
+    padding: 10px 15px;
+
+    font-size: 13px;
+
+    color: gray;
+
+    font-style: italic;
+}
+
+.chat-image{
+
+    width:100%;
+
+    max-width:240px;
+
+    border-radius:16px;
+
+    display:block;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+.chat-image:hover{
+
+    transform:scale(1.02);
+}
+
+.chat-messages::-webkit-scrollbar{
+
+    width:6px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb{
+
+    background:#cbd5e1;
+
+    border-radius:20px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb:hover{
+
+    background:#94a3b8;
+}
+
+.chat-audio{
+
+    width:260px;
+
+    height:42px;
+
+    margin-top:5px;
+}
+
+.chat-file{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:10px 14px;
+
+    background:#eff6ff;
+
+    color:#2563eb;
+
+    border-radius:12px;
+
+    text-decoration:none;
+
+    font-size:14px;
+
+    margin-top:8px;
+}
+
+.chat-messages::-webkit-scrollbar{
+
+    width:8px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb{
+
+    background:#cbd5e1;
+
+    border-radius:20px;
+}
+
+.chat-messages::-webkit-scrollbar-track{
+
+    background:transparent;
+}
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(8px);
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+    }
+}
+
+
+.chat-date{
+
+    align-self:center;
+
+    background:#e2e8f0;
+
+    color:#475569;
+
+    font-size:12px;
+
+    padding:6px 14px;
+
+    border-radius:20px;
+
+    margin:10px 0;
+
+    font-weight:600;
+}
+
+.message-footer{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-top:8px;
+}
+
+.delete-message{
+
+    color:rgba(255,255,255,.7);
+
+    font-size:12px;
+
+    transition:.2s;
+}
+
+.student-message .delete-message{
+
+    color:#64748b;
+}
+
+.delete-message:hover{
+
+    color:red;
+
+    transform:scale(1.1);
+}
+
+/* =========================
+   PREMIUM BOOKINGS CARD
+========================= */
+
+.booking-card{
+    min-height: 500px;
+}
+
+.booking-title{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.booking-title i{
+    font-size:22px;
+    color:#2563eb;
+}
+
+.booking-title h3{
+    margin:0;
+}
+
+.booking-title small{
+    color:#64748b;
+}
+
+.view-all-link{
+    text-decoration:none;
+    color:#2563eb;
+    font-weight:600;
+}
+
+.booking-list{
+    margin-top:20px;
+}
+
+.booking-item{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:18px;
+
+    margin-bottom:14px;
+
+    border-radius:18px;
+
+    background:white;
+
+    border:1px solid #e5e7eb;
+
+    transition:.3s ease;
+}
+
+.booking-item:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.booking-left{
+
+    display:flex;
+    gap:15px;
+    align-items:flex-start;
+}
+
+.booking-avatar{
+
+    width:50px;
+    height:50px;
+
+    border-radius:50%;
+
+    background:linear-gradient(
+        135deg,
+        #2563eb,
+        #60a5fa
+    );
+
+    color:white;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-weight:bold;
+}
+
+.booking-details h4{
+
+    margin:0 0 8px;
+    font-size:15px;
+}
+
+.booking-details small{
+
+    display:block;
+    color:#64748b;
+    margin-top:4px;
+}
+
+.booking-date{
+
+    margin-top:8px;
+}
+
+/* HOSTEL BADGES */
+
+.hostel-badge{
+
+    display:inline-block;
+
+    padding:5px 10px;
+
+    border-radius:30px;
+
+    font-size:11px;
+
+    font-weight:600;
+
+    margin-bottom:6px;
+}
+
+.male{
+
+    background:#dbeafe;
+    color:#1d4ed8;
+}
+
+.female{
+
+    background:#fce7f3;
+    color:#be185d;
+}
+
+.external{
+
+    background:#ede9fe;
+    color:#6d28d9;
+}
+
+/* STATUS */
+
+.status-pending{
+
+    background:#f59e0b;
+    color:white;
+}
+
+.status-approved{
+
+    background:#16a34a;
+    color:white;
+}
+
+.status-expired{
+
+    background:#dc2626;
+    color:white;
+}
+
+.status-cancelled{
+
+    background:#64748b;
+    color:white;
+}
+
+.empty-booking{
+
+    text-align:center;
+    padding:40px;
+    color:#94a3b8;
+}
+
+.empty-booking i{
+
+    font-size:45px;
+    margin-bottom:10px;
+}
+
+.modal-overlay{
+
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,.55);
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    z-index:9999;
+}
+
+.modal-overlay.show{
+    display:flex;
+}
+
+.settings-modal{
+
+    width:700px;
+    max-width:95%;
+
+    background:#fff;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    box-shadow:0 20px 50px rgba(0,0,0,.2);
+}
+
+.settings-header{
+
+    padding:20px 25px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    border-bottom:1px solid #eee;
+}
+
+.settings-header button{
+
+    border:none;
+    background:none;
+
+    font-size:24px;
+    cursor:pointer;
+}
+
+.settings-body{
+
+    padding:25px;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(200px,1fr));
+
+    gap:20px;
+}
+
+.setting-card{
+
+    padding:20px;
+
+    border:1px solid #eee;
+
+    border-radius:14px;
+}
+
+.setting-card h4{
+
+    margin-bottom:15px;
+}
+
+.setting-card input[type="number"]{
+
+    width:100%;
+
+    padding:12px;
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+    margin-top:8px;
+    margin-bottom:15px;
+}
+
+.switch-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+}
+
+.settings-footer{
+
+    padding:20px;
+
+    border-top:1px solid #eee;
+
+    text-align:right;
+}
+
+.settings-footer button{
+
+    padding:12px 25px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#4f46e5;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-weight:600;
+}

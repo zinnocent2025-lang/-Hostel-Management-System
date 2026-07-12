@@ -1,0 +1,254 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hostels</title>
+    <link rel="stylesheet" href="{% static 'css/hostels.css'%}">
+
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+</head>
+
+
+<body data-authenticated="{{ request.user.is_authenticated }}" data-booking-status="{{ booking_status }}"
+    data-booked-room="{{ booked_room_id }}">
+
+    <!-- MODERN HMS LOADER -->
+    <div class="page-loader" id="pageLoader">
+
+        <div class="wave-container">
+
+            <div class="wave wave1"></div>
+            <div class="wave wave2"></div>
+            <div class="wave wave3"></div>
+
+            <div class="logo-circle">
+
+                <img src="{% static 'images/logo.png' %}" class="loader-logo">
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- navbar -->
+    <header class="navbar">
+
+        <div class="logo-wrapper">
+
+            <img src="{% static 'images/logo.png' %}" class="logo-img" alt="HMS Logo">
+
+            <div class="logo-text">
+                <h2>HMS</h2>
+                <span>Hostel Management System</span>
+            </div>
+
+        </div>
+
+        <nav class="nav-links">
+
+            <a href="{% url 'home' %}">Home</a>
+
+            <a href="{% url 'login' %}">
+                Student Login
+            </a>
+
+            <a href="{% url 'contact' %}">
+                Contact
+            </a>
+
+        </nav>
+
+    </header>
+
+    <!-- page header -->
+    <section class="page-header">
+        <h1>Hostels Around Obosi, Anambra State</h1>
+        <p>Browse available private hostels located around obosi and nearby roads.</p>
+    </section>
+
+    {% if no_results %}
+    <div class="no-results">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        No such property found.
+    </div>
+    {% endif %}
+
+    <!-- HOSTEL LIST -->
+    <section class="hostel-list">
+        {% for hostel in hostels %}
+
+        <!-- HOSTEL CARD -->
+        <div class="hostel-card">
+
+            {% if hostel.image %}
+            <img src="{{ hostel.image.url }}" alt="{{ hostel.name }}">
+            {% else %}
+            <img src="{% static 'images/default-hostel.png' %}">
+            {% endif %}
+
+            <div class="hostel-info">
+
+                <h3>{{ hostel.name }}</h3>
+
+                <p class="location">
+                    <i class="fa-solid fa-location-dot"></i>
+                    {{ hostel.location }}
+                </p>
+
+                <p class="hostel-badge">
+                    {{ hostel.hostel_type }}
+                </p>
+                <!-- <div class="hostel-stats">
+
+                    <span>
+                        <i class="fa-solid fa-users"></i>
+                        {{ hostel.capacity }} Persons
+                    </span>
+
+                    <span>
+                        <i class="fa-solid fa-door-open"></i>
+                        {{ hostel.total_rooms }} Rooms
+                    </span>
+
+                </div> -->
+
+                <p class="desc">
+                    {{ hostel.description|truncatewords:18 }}
+                </p>
+
+                <button class="details-btn"
+    data-name="{{ hostel.name }}"
+    data-location="{{ hostel.location }}"
+    data-type="{{ hostel.hostel_type }}"
+    data-description="{{ hostel.description }}"
+    data-image="{{ hostel.image.url }}"
+    data-capacity="{{ hostel.capacity }}"
+    data-totalrooms="{{ hostel.total_rooms }}"
+    data-rooms='[
+    {% for room in hostel.rooms.all %}
+    {
+        "id":"{{ room.id }}",
+        "number":"{{ room.room_number }}",
+        "type":"{{ room.room_type }}",
+        "capacity":"{{ room.capacity }}",
+        "price":"{{ room.price }}",
+        "status":"{{ room.status }}"
+    }{% if not forloop.last %},{% endif %}
+    {% endfor %}
+    ]'>
+                    View Details
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- keep duplicating your hostel cards, just include the button -->
+        {% endfor %}
+    </section>
+
+    <!-- HOSTEL DETAILS (HIDDEN INITIALLY) -->
+    <section class="hostel-details" id="hostelDetails" style="display:none;">
+        <!-- DETAILS CONTENT WILL GO HERE -->
+        <div class="details-container">
+
+            <!-- BACK BUTTON -->
+            <button id="backBtn" class="back-btn">
+                <i class="fa-solid fa-arrow-left"></i> Back to Hostels
+            </button>
+
+            <!-- TOP -->
+            <h2 id="detailName"></h2>
+            <p id="detailLocation" class="location"></p>
+            <p id="detailType" class="hostel-badge"></p>
+            
+            <img id="detailImage" class="detail-img">
+
+            <!-- CONTENT GRID -->
+            <div class="details-grid">
+
+                <!-- LEFT SIDE -->
+                <div class="details-left">
+
+                    <!-- DESCRIPTION -->
+                    <div class="info-card">
+                        <div class="card-title">Description</div>
+                        <p id="detailDescription">
+                            Nice hostel with steady water, light and security.
+                        </p>
+                    </div>
+
+                    <!-- AVAILABLE ROOMS -->
+                    <div class="info-card">
+
+                        <div class="card-title">
+                            Available Rooms
+                        </div>
+
+                        <div id="roomsContainer"></div>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- RIGHT SIDE -->
+                <div class="details-right">
+
+                    <!-- OWNER -->
+                    <div class="info-card">
+                        <div class="card-title">Property Owner</div>
+
+                        <h4 id="detailOwner">Mr. Chukwudi</h4>
+                        <p>Verified Owner</p>
+                    </div>
+
+                    <div class="detail-box">
+                        <h3><i class="fa-solid fa-map-location-dot"></i> Location</h3>
+
+                        <div id="map"></div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- LOAD MORE BUTTON -->
+    <div class="load-more-container">
+        <button class="load-more-btn" id="loadMoreBtn">
+            <img src="{% static 'images/gear.png' %}" class="gear-icon" id="gearIcon">
+            Load More Hostels
+        </button>
+    </div>
+
+    <!-- FOOTER / DISCLAIMER -->
+    <footer class="site-footer">
+        <p class="disclaimer">
+            Disclaimer: Hostel information and prices listed on this website may be updated from time to time.
+            This platform does not guarantee the accuracy or availability of all hostels displayed.
+            Students are advised to verify details directly with hostel owners before making any decisions.
+        </p>
+
+        <p class="copyright">
+            © 2026. All rights reserved.
+        </p>
+    </footer>
+
+    {% load static %}
+
+    <script src="{% static 'js/hostels.js' %}"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="{% static 'js/live_updates.js' %}"></script>
+</body>
+
+</html>

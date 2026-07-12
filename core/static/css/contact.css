@@ -1,0 +1,277 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background: #f4f6fb;
+}
+
+/* NAVBAR */
+.navbar {
+  background: #ffffff;
+  padding: 18px 10%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+.navbar nav{
+    display: flex;
+    gap: 25px;
+}
+
+.navbar nav a {
+  margin-left: 25px;
+  text-decoration: none;
+  color: #333;
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+.navbar nav a:hover {
+  color: #1d4ed8;
+}
+
+/* CONTACT SECTION */
+.contact-section {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 20px;
+}
+
+/* CONTACT CONTAINER */
+.contact-container {
+  background: #ffffff;
+  width: 100%;
+  max-width: 450px;
+  padding: 35px;
+  border-radius: 14px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeUp 1s ease forwards;
+}
+
+/* FORM LOGO */
+.form-logo {
+  width: 165px;
+  height: 165px;
+  margin: 0 auto 18px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  opacity: 0;
+  transform: scale(0.7);
+  animation: logoPop 0.9s ease forwards;
+  animation-delay: 0.2s;
+}
+
+.form-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* HEADINGS */
+.contact-container h2 {
+  text-align: center;
+  margin-bottom: 10px;
+  color: #111;
+  font-size: 24px;
+}
+
+.contact-container p {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #666;
+  font-size: 14px;
+}
+
+/* FORM */
+.form-group {
+  margin-bottom: 18px;
+}
+
+.input-icon {
+  position: relative;
+}
+
+.input-icon i {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #1d4ed8;
+  font-size: 15px;
+}
+
+.input-icon input,
+.input-icon textarea {
+  width: 100%;
+  padding: 12px 12px 12px 40px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.input-icon textarea {
+  resize: none;
+  padding-top: 14px;
+}
+
+/* TEXTAREA ICON FIX */
+.textarea-icon i {
+  top: 18px;
+  transform: none;
+}
+
+/* INPUT FOCUS */
+.input-icon input:focus,
+.input-icon textarea:focus {
+  outline: none;
+  border-color: #1d4ed8;
+  box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.15);
+}
+
+/* BUTTON */
+.btn-primary {
+  width: 100%;
+  padding: 13px;
+  background: #1d4ed8;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-primary i {
+  margin-right: 6px;
+}
+
+.btn-primary:hover {
+  background: #153bb8;
+  transform: translateY(-2px);
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+@keyframes logoPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 16px 8%;
+  }
+
+  .contact-container {
+    max-width: 95%;
+    padding: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 15px 6%;
+  }
+
+  .navbar nav a {
+    margin-left: 15px;
+    font-size: 14px;
+  }
+
+  .contact-container {
+    padding: 22px;
+  }
+
+  .contact-container h2 {
+    font-size: 21px;
+  }
+
+  .contact-container p {
+    font-size: 13px;
+  }
+
+  .form-logo {
+    width: 70px;
+    height: 70px;
+  }
+}
+/* ===============================
+PLANE ANIMATION
+=============================== */
+.plane-animation {
+    position: fixed;
+    bottom: 50px;
+    left: 50px;
+    font-size: 28px;
+    color: #2563eb;
+    opacity: 0;
+    z-index: 999;
+}
+
+.plane-animation.fly {
+    animation: flyPlane 1.2s ease forwards;
+}
+
+@keyframes flyPlane {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(500px, -400px) scale(0.5);
+        opacity: 0;
+    }
+}
+
+/* ===============================
+SUCCESS STATE
+=============================== */
+.success-state {
+    display: none;
+    text-align: center;
+    padding: 40px;
+    animation: fadeIn 0.5s ease;
+}
+
+.success-state.show {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px);}
+    to { opacity: 1; transform: translateY(0);}
+}

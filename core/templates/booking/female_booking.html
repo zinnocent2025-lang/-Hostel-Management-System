@@ -1,0 +1,236 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Female Hostel Booking</title>
+
+    <link rel="stylesheet" href="{% static 'css/male_booking.css' %}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body>
+
+    <div class="booking-container">
+
+        <!-- LEFT -->
+
+        <div class="booking-left">
+
+            <div class="glass-card">
+
+                <h1>
+
+                    Book Your Room
+
+                </h1>
+
+                <p class="subtitle">
+
+                    Complete the reservation form below
+
+                </p>
+
+                <form method="POST">
+
+                    {% csrf_token %}
+
+                    <div class="form-group">
+
+                        <label>Full Name</label>
+
+                        <input type="text" value="{{ request.user.first_name }}" class="form-control" readonly>
+
+                        <input type="hidden" name="full_name" value="{{ request.user.first_name }}">
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label>Gender</label>
+
+                        <input type="text" value="{{ request.user.user_profile.gender }}" class="form-control" readonly>
+
+                        <input type="hidden" name="gender" value="{{ request.user.user_profile.gender }}">
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label>Phone Number</label>
+
+                        <input type="text" value="{{ request.user.user_profile.phone }}" class="form-control" readonly>
+
+                        <input type="hidden" name="phone" value="{{ request.user.user_profile.phone }}">
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label>Department</label>
+
+                        {{ form.department }}
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label>Level</label>
+
+                        {{ form.level }}
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label>Duration</label>
+
+                        {{ form.duration }}
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label>Additional Note</label>
+
+                        {{ form.note }}
+
+                    </div>
+
+                    <button type="submit" class="book-btn">
+
+                        <i class="fa-solid fa-bed"></i>
+
+                        Reserve Room
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT -->
+
+        <div class="booking-right">
+
+            <div class="summary-card">
+
+                <img src="{% static 'images/sampl14.jpeg' %}" class="room-image">
+
+                <h2>
+
+                    Room {{ room.room_number }}
+
+                </h2>
+
+                <div class="summary-item">
+
+                    <span>Status</span>
+
+                    <span class="available">
+
+                        {{ room.status|title }}
+
+                    </span>
+
+                </div>
+                <div class="summary-item">
+                    <span>Capacity</span>
+                    <span>{{ room.capacity }} Beds</span>
+                </div>
+
+                <div class="summary-item">
+                    <span>Occupied</span>
+                    <span>{{ room.occupied_beds }} Student{{ room.occupied_beds|pluralize }}</span>
+                </div>
+
+                <div class="summary-item">
+                    <span>Available</span>
+                    <span>{{ room.remaining_beds }} Bed{{ room.remaining_beds|pluralize }}</span>
+                </div>
+
+                <div class="summary-item">
+
+                    <span>Hostel</span>
+
+                    <span>Female Hostel</span>
+
+                </div>
+
+                <div class="summary-item">
+
+                    <span>Deadline</span>
+
+                    <span>
+
+                        3 Days After Booking
+
+                    </span>
+
+                </div>
+                <hr>
+
+                <h4>Current Occupants</h4>
+
+                {% if current_bookings %}
+
+                <ul class="occupant-list">
+
+                    {% for booking in current_bookings %}
+
+                    <li>
+                        <i class="fa-solid fa-user"></i>
+                        {{ booking.user.first_name }}
+                    </li>
+
+                    {% endfor %}
+
+                </ul>
+
+                {% else %}
+
+                <p class="no-occupants">
+
+                    <i class="fa-solid fa-bed"></i>
+
+                    No occupants yet.<br>
+
+                    You will be the first student in this room.
+
+                </p>
+
+                {% endif %}
+
+                <div class="notice-box">
+
+                    <i class="fa-solid fa-circle-info"></i>
+
+                    <p>
+
+                        You have 3 days to complete
+                        payment through the hostel
+                        admin or school office.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

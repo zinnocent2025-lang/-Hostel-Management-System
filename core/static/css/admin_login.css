@@ -1,0 +1,360 @@
+/* =========================
+   ADMIN LOGIN PAGE
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+
+    font-family: Arial, sans-serif;
+
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background:
+        linear-gradient(
+            rgba(255,255,255,0.78),
+            rgba(255,255,255,0.78)
+        );
+
+
+    background-size: cover;
+    background-position: center;
+
+    overflow: hidden;
+}
+
+/* =========================
+   MAIN CONTAINER
+========================= */
+
+.admin-login-container {
+
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+}
+
+/* =========================
+   LOGIN CARD
+========================= */
+
+.admin-login-card {
+
+    width: 100%;
+    max-width: 430px;
+
+    background: rgba(255, 255, 255, 0.94);
+
+    backdrop-filter: blur(10px);
+
+    border-radius: 30px;
+
+    padding: 42px 35px;
+
+    box-shadow: 0 10px 35px rgba(15, 23, 42, 0.08);
+
+    animation: fadeUp .6s ease;
+}
+
+@keyframes fadeUp {
+
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.admin-header {
+
+    text-align: center;
+
+    margin-bottom: 32px;
+}
+
+.admin-logo {
+
+    width: 75px;
+    height: 75px;
+
+    margin: auto auto 18px;
+
+    border-radius: 22px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background:
+        linear-gradient(135deg,
+            #2563eb,
+            #3b82f6);
+
+    color: white;
+
+    font-size: 22px;
+    font-weight: bold;
+
+    box-shadow:
+        0 10px 25px rgba(37, 99, 235, 0.3);
+}
+
+.admin-header h1 {
+
+    color: #0f172a;
+
+    font-size: 2rem;
+
+    margin-bottom: 10px;
+}
+
+.admin-header p {
+
+    color: #64748b;
+
+    font-size: 15px;
+
+    line-height: 1.5;
+}
+
+/* =========================
+   ERROR
+========================= */
+
+.admin-error {
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 14px;
+
+    border-radius: 16px;
+
+    background: #fee2e2;
+
+    color: #dc2626;
+
+    margin-bottom: 22px;
+
+    font-size: 14px;
+}
+
+/* =========================
+   FORM
+========================= */
+
+.admin-login-form {
+
+    width: 100%;
+}
+
+.input-group {
+
+    margin-bottom: 24px;
+}
+
+.input-group label {
+
+    display: block;
+
+    margin-bottom: 10px;
+
+    color: #334155;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+/* =========================
+   INPUT FIELD
+========================= */
+
+.input-field {
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    height: 60px;
+
+    border-radius: 18px;
+
+    background: #f8fafc;
+
+    border: 1px solid #e2e8f0;
+
+    transition: .3s ease;
+}
+
+.input-field:focus-within {
+
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 4px rgba(37, 99, 235, 0.12);
+}
+
+.input-field i:first-child {
+
+    padding-left: 18px;
+
+    color: #64748b;
+
+    font-size: 16px;
+}
+
+.input-field input {
+
+    width: 100%;
+
+    height: 100%;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    padding: 0 18px;
+
+    font-size: 15px;
+
+    color: #0f172a;
+}
+
+.input-field input::placeholder {
+
+    color: #94a3b8;
+}
+
+/* =========================
+   PASSWORD TOGGLE
+========================= */
+
+.password-wrapper {
+
+    display: flex;
+    align-items: center;
+
+    padding-left: 12px;
+}
+
+.toggle-password {
+
+    width: 38px;
+    height: 38px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: transparent;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+
+    color: #64748b;
+
+    font-size: 16px;
+
+    transition: .3s ease;
+
+    flex-shrink: 0;
+}
+
+.toggle-password:hover {
+
+    background: #eff6ff;
+
+    color: #2563eb;
+}
+
+.password-wrapper input {
+
+    padding-left: 12px !important;
+}
+.toggle-password:hover {
+
+    background: #eff6ff;
+
+    color: #2563eb;
+}
+/* =========================
+   BUTTON
+========================= */
+
+.admin-login-btn {
+
+    width: 100%;
+
+    height: 60px;
+
+    border: none;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(135deg,
+            #2563eb,
+            #3b82f6);
+
+    color: white;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .3s ease;
+}
+
+.admin-login-btn:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 25px rgba(37, 99, 235, 0.25);
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width: 500px) {
+
+    .admin-login-card {
+
+        padding: 35px 24px;
+
+        border-radius: 24px;
+    }
+
+    .admin-header h1 {
+
+        font-size: 1.7rem;
+    }
+
+}

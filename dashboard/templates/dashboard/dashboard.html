@@ -1,0 +1,606 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Dashboard</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="{% static 'dashboard/css/dashboard.css' %}" />
+
+  <!-- FONT AWESOME -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+
+<body>
+  <!-- ================= TOPBAR ================= -->
+  <header class="topbar">
+    <!-- LOGO -->
+    <div class="logo">
+      <i class="fa-solid fa-house"></i> Hostel Management System
+    </div>
+
+    <!-- NAV -->
+    <nav class="nav-links">
+      <a href="{% url 'hostels' %}">Browse Properties</a>
+    </nav>
+
+    <!-- ADMIN PROFILE -->
+    <div class="admin-section">
+      <!-- ADMIN BUTTON -->
+      <div class="admin-profile" id="adminToggle">
+        <i class="fa-solid fa-user"></i>
+        <span>{{ request.user.first_name|default:request.user.username }}</span>
+        <i class="fa-solid fa-caret-down"></i>
+      </div>
+
+      <!-- DROPDOWN -->
+      <div class="dropdown" id="adminDropdown">
+        <div class="dropdown-item" id="openProfile">
+          <i class="fa-solid fa-user"></i> Profile
+        </div>
+
+        <a href="/" class="dropdown-item"><i class="fa-solid fa-eye"></i> View site</a>
+
+        <div class="dropdown-item" id="openLogoutModal">
+          <i class="fa-solid fa-right-from-bracket"></i>
+
+          Logout
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= HEADER ================= -->
+  <section class="dashboard-header">
+    <h2><i class="fa-solid fa-gauge"></i> Dashboard</h2>
+    <p>Welcome back,
+      {{ request.user.first_name|default:request.user.username }}</p>
+  </section>
+
+  <!-- ================= MAIN DASHBOARD ================= -->
+  <section class="dashboard">
+    <!-- RECENT BOOKINGS -->
+    <div class="card booking-card">
+
+      <div class="card-header">
+
+        <div class="booking-title">
+
+          <i class="fa-solid fa-clock-rotate-left"></i>
+
+          <div>
+            <h3>Recent Bookings</h3>
+            <small>{{ recent_bookings|length }} Recent Requests</small>
+          </div>
+
+        </div>
+
+        <a href="/dashboard/bookings/" class="view-all-link">
+          View All
+        </a>
+
+      </div>
+
+      <div class="booking-list">
+
+        {% for booking in recent_bookings %}
+
+        <div class="booking-item">
+
+          <div class="booking-left">
+
+            <div class="booking-avatar">
+
+              {{ booking.student|first|upper }}
+
+            </div>
+
+            <div class="booking-details">
+
+              <h4>{{ booking.student }}</h4>
+
+              <p>
+
+                {% if booking.hostel_type == "Male Hostel" %}
+                <span class="hostel-badge male">
+                  Male Hostel
+                </span>
+
+                {% elif booking.hostel_type == "Female Hostel" %}
+                <span class="hostel-badge female">
+                  Female Hostel
+                </span>
+
+                {% else %}
+                <span class="hostel-badge external">
+                  External Hostel
+                </span>
+
+                {% endif %}
+
+              </p>
+
+              <small>
+
+                {{ booking.hostel }}
+
+                •
+
+                Room {{ booking.room }}
+
+              </small>
+
+              <small class="booking-date">
+                {{ booking.created_at|date:"M d, Y" }}
+              </small>
+
+            </div>
+
+          </div>
+
+          <div>
+
+            <span class="status status-{{ booking.status }}">
+
+              {{ booking.status|upper }}
+
+            </span>
+
+          </div>
+
+        </div>
+
+        {% empty %}
+
+        <div class="empty-booking">
+
+          <i class="fa-solid fa-calendar-xmark"></i>
+
+          <p>No recent bookings found</p>
+
+        </div>
+
+        {% endfor %}
+
+      </div>
+
+    </div>
+
+    <!-- QUICK SEARCH -->
+    <div class="card">
+      <div class="card-header">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <h3>Quick Search</h3>
+      </div>
+
+      <form method="GET" action="{% url 'hostels' %}" class="card-body">
+        <input type="text" name="location" placeholder="Search by location..." />
+
+        <input type="text" name="type" placeholder="Property Type" />
+
+        <button type="submit" class="btn green">Search Properties</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ================= FLOATING ICONS ================= -->
+  <div class="floating-icons">
+    <i class="fa-solid fa-ellipsis-h" id="openPanel"></i>
+
+    <a href="{% url 'file_manager' %}"><i class="fa-solid fa-folder"></i></a>
+
+    <a href="{% url 'room_management' %}" class="float-btn"><i class="fa-solid fa-bed"></i></a>
+
+    <!-- NEW MESSAGE ICON -->
+    <i class="fa-solid fa-message" id="openMessages"></i>
+
+    <i class="fa-solid fa-gear"></i>
+  </div>
+  <div class="settings-panel" id="settingsPanel">
+    <div id="settingsMain">
+      <div class="settings-header">⚙️ Settings</div>
+
+      <div class="settings-item" onclick="openNotifications()">🔔 Notifications</div>
+
+      <div class="settings-item" onclick="openSystemInfo()">📊 System Info</div>
+      <div class="settings-item" id="openBookingSettings">
+
+        ⏳ Booking Settings
+
+      </div>
+    </div>
+
+    <!-- SUB CONTENT -->
+    <div id="settingsSub" style="display:none;"></div>
+  </div>
+  <div class="info-card" id="infoCard">
+    <div class="info-header" id="infoTitle"></div>
+    <div class="info-body" id="infoContent"></div>
+  </div>
+
+  <!-- ================= CONTROL PANEL ================= -->
+  <div class="control-panel" id="controlPanel">
+    <div class="panel-header">
+      <h3>Control Panel</h3>
+      <i class="fa-solid fa-xmark" id="closePanel"></i>
+    </div>
+
+    <!-- NAVIGATION -->
+    <div class="panel-section">
+      <p class="section-title">Navigation</p>
+
+      <div class="panel-item" onclick="location.href='/dashboard/'">
+        <i class="fa-solid fa-calendar"></i>
+        <span>Dashboard</span>
+      </div>
+
+      <div class="panel-item" onclick="location.href='/dashboard/bookings/'">
+        <i class="fa-solid fa-calendar"></i>
+        <span>Bookings</span>
+      </div>
+
+      <div class="panel-item" onclick="location.href='/dashboard/users/'">
+        <i class="fa-solid fa-calendar"></i>
+        <span>Users</span>
+      </div>
+
+      <div class="panel-item" onclick="location.href='/dashboard/groups/'">
+        <i class="fa-solid fa-calendar"></i>
+        <span>Groups</span>
+      </div>
+    </div>
+
+    <!-- QUICK ACTIONS -->
+    <div class="panel-section">
+      <p class="section-title">Quick Actions</p>
+
+      <div class="panel-item" onclick="location.href='/add-hostel/'">
+        <i class="fa-solid fa-plus"></i>
+        <span>Add Hostel</span>
+      </div>
+      <div class="panel-item" id="openHostelManager">
+        <i class="fa-solid fa-building"></i>
+        <span>Manage Hostels</span>
+      </div>
+
+
+      <div class="panel-item" onclick="location.href='/dashboard/analytics/'">
+        <i class="fa-solid fa-chart-line"></i>
+        <span>Analytics</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="profile-modal" id="profileModal">
+    <div class="profile-card">
+      <span class="close-profile" id="closeProfile">×</span>
+
+      <div class="profile-image-wrapper">
+        <img id="profilePreview" src="{{ request.user.profile.image.url }}" class="profile-img" />
+
+        <div class="profile-upload-btn" id="uploadTrigger">+</div>
+        <input type="file" id="profileInput" hidden />
+      </div>
+
+      <div class="profile-info">
+        <h3>{{ request.user.username }}</h3>
+
+        <input type="email" id="profileEmail" value="{{ request.user.email }}" class="profile-input" />
+      </div>
+
+      <button id="saveProfile" class="profile-save-btn">Save Changes</button>
+    </div>
+  </div>
+
+  <div class="hostel-manager" id="hostelManager">
+    <div class="hostel-manager-box">
+      <div class="manager-top">
+        <h2>Manage Hostels</h2>
+        <span id="closeHostelManager">×</span>
+      </div>
+
+      <div class="hostel-list-box">
+        <div class="hostel-search-box">
+          <i class="fa fa-search"></i>
+
+          <input type="text" id="hostelSearch" placeholder="Search hostel..." />
+        </div>
+
+        <p style="color:red;">{{ hostels|length }} hostels loaded</p>
+        {% for hostel in hostels %}
+        <div class="hostel-row">
+          <div class="hostel-top-actions">
+            <a href="{% url 'edit_hostel' hostel.id %}" class="edit-btn"><i class="fa fa-pen"></i></a>
+
+            <button class="delete-btn" data-url="{% url 'delete_hostel' hostel.id %}"><i
+                class="fa fa-trash"></i></button>
+          </div>
+
+          {% if hostel.image %}
+          <img src="{{ hostel.image.url }}" />
+          {% endif %}
+
+          <div class="hostel-info-box">
+            <h4>{{ hostel.name }}</h4>
+            <p>{{ hostel.location }}</p>
+            <small>₦{{ hostel.price }}</small>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="delete-modal" id="deleteModal">
+      <div class="delete-box">
+        <h3>Delete Hostel?</h3>
+
+        <p>This hostel will be permanently removed.</p>
+
+        <div class="delete-actions">
+          <button id="cancelDelete">Cancel</button>
+
+          <a href="#" id="confirmDelete">Delete</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MESSAGE MODAL ================= -->
+
+  <div class="message-modal" id="messageModal">
+    <div class="message-box">
+      <!-- LEFT -->
+      <div class="chat-users">
+        <div class="chat-top">
+          <h3>Student Messages</h3>
+
+          <span id="closeMessages">×</span>
+        </div>
+
+        {% for student in students %}
+        <div class="student-item" onclick="window.location.href='/dashboard/?student={{ student.id }}'">
+          {% if student.user_profile.image %}
+          <img src="{{ student.user_profile.image.url }}" class="student-avatar" />
+          {% else %}
+          <div class="student-avatar fallback-avatar">{{ student.username|first|upper }}</div>
+          {% endif %}
+
+          <div class="student-info">
+            <span>{{ student.first_name|default:student.username }}</span>
+
+            <small>{{ student.email }}</small>
+          </div>
+        </div>
+        {% empty %}
+        <p style="padding:20px;">No student messages</p>
+        {% endfor %}
+      </div>
+
+      <!-- RIGHT -->
+      <div class="chat-area">
+        {% if selected_student %}
+        <div class="chat-header">
+          <h3>{{ selected_student.first_name|default:selected_student.username }}</h3>
+        </div>
+
+        <div class="chat-messages">
+          {% for msg in messages %}
+          {% ifchanged msg.created_at.date %}
+
+          <div class="chat-date">
+            {% if msg.created_at.date == today %}
+            Today
+            {% elif msg.created_at.date == yesterday %}
+            Yesterday
+            {% else %}
+            {{ msg.created_at|date:'F d, Y' }}
+            {% endif %}
+          </div>
+
+          {% endifchanged %}
+          <div class="
+                    {% if msg.sender == request.user %}
+                    
+                    
+                                        
+                        admin-message
+
+
+
+
+                  {% else %}
+                    
+                    
+                                        
+                        student-message
+
+
+
+                  {% endif %}">
+            {% if msg.message_type == 'text' %}
+            <p>{{ msg.message|urlize }}</p>
+            {% elif msg.message_type == 'image' %}
+            <img src="{{ msg.file.url }}" class="chat-image" />
+            {% elif msg.message_type == 'file' %}
+            <a href="{{ msg.file.url }}" target="_blank" class="chat-file">
+              <i class="fa-solid fa-file"></i>
+              Open File
+            </a>
+            {% elif msg.message_type == 'voice' %}
+            <audio controls>
+              <source src="{{ msg.file.url }}" />
+            </audio>
+            {% endif %}
+
+            <div class="message-footer">
+              <small>{{ msg.created_at|date:'H:i' }}</small>
+
+              {% if request.user.is_staff %}
+              <a href="{% url 'delete_message' msg.id %}" class="delete-message"><i class="fa-solid fa-trash"></i></a>
+              {% endif %}
+            </div>
+          </div>
+          <div class="typing-indicator" id="typingIndicator">Student is typing...</div>
+          {% endfor %}
+        </div>
+
+        <form method="POST" class="chat-form" id="chatForm" enctype="multipart/form-data">
+          {% csrf_token %}
+
+          <input type="text" name="message" id="chatInput" placeholder="Type message..." autocomplete="off" />
+
+          <input type="file" id="chatFile" name="file" hidden />
+
+          <label for="chatFile" class="chat-upload"><i class="fa-solid fa-paperclip"></i></label>
+
+          <button type="button" id="recordVoice"><i class="fa-solid fa-microphone"></i></button>
+
+          <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+        </form>
+        {% else %}
+        <div class="empty-chat">
+          <i class="fa-solid fa-comments"></i>
+
+          <p>Select a student to start chatting</p>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <!-- LOGOUT MODAL -->
+
+  <div class="logout-modal" id="logoutModal">
+    <div class="logout-box">
+      <div class="logout-icon">
+        <i class="fa-solid fa-right-from-bracket"></i>
+      </div>
+
+      <h3>Logout Session?</h3>
+
+      <p>Are you sure you want to logout from your dashboard?</p>
+
+      <div class="logout-actions">
+        <button id="cancelLogout">Cancel</button>
+
+        <form action="{% url 'logout' %}" method="POST">
+          {% csrf_token %}
+
+          <button type="submit" class="confirm-logout">Logout</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  {% if selected_student %}
+
+
+
+  <script>
+    window.addEventListener('load', () => {
+      const modal = document.getElementById('messageModal')
+
+      modal.classList.add('active')
+    })
+  </script>
+  {% endif %}
+  <!-- ================= JS ================= -->
+
+
+  <!-- BOOKING SETTINGS MODAL -->
+
+  <div class="modal-overlay" id="bookingSettingsModal">
+
+    <div class="settings-modal">
+
+      <div class="settings-header">
+
+        <h2>Booking Settings</h2>
+
+        <button id="closeBookingModal">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+
+      </div>
+
+      <div class="settings-body">
+
+        <div class="setting-card">
+
+          <h4>Male Hostel</h4>
+
+          <label>Deadline (Minutes)</label>
+
+          <input type="number" id="maleDeadline" min="1">
+          <label>Hostel Price (₦)</label>
+
+          <input type="number" id="malePrice" value="{{ settings.male_hostel_price }}">
+
+          <label class="switch-row">
+
+            <span>Enable Booking</span>
+
+            <input type="checkbox" id="allowMale">
+
+          </label>
+
+        </div>
+
+
+        <div class="setting-card">
+
+          <h4>Female Hostel</h4>
+
+          <label>Deadline (Minutes)</label>
+
+          <input type="number" id="femaleDeadline" min="1">
+          <label>Hostel Price (₦)</label>
+
+          <input type="number" id="femalePrice" value="{{ settings.female_hostel_price }}">
+
+          <label class="switch-row">
+
+            <span>Enable Booking</span>
+
+            <input type="checkbox" id="allowFemale">
+
+          </label>
+
+        </div>
+
+        <div class="setting-card">
+
+          <h4>External Hostel</h4>
+
+          <label>Deadline (Minutes)</label>
+
+          <input type="number" id="externalDeadline" min="1">
+
+          <label class="switch-row">
+
+            <span>Enable Booking</span>
+
+            <input type="checkbox" id="allowExternal">
+
+          </label>
+
+        </div>
+
+      </div>
+
+      <div class="settings-footer">
+
+        <button id="saveBookingSettings">
+          Save Settings
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+  <script src="{% static 'dashboard/js/dashboard.js' %}"></script>
+  <script src="{% static 'js/global_refresh.js' %}"></script>
+</body>
+
+</html>

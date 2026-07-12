@@ -1,0 +1,1019 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hostel Management</title>
+
+    <!-- GOOGLE FONT -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+    <!-- PREMIUM PAGE LOADER -->
+
+    <div class="loader" id="loader">
+
+        <div class="loader-content">
+
+            <div class="loader-logo">
+                HostelManager
+            </div>
+
+            <div class="loader-bar">
+
+                <div class="loader-progress" id="loaderProgress"></div>
+
+            </div>
+
+            <h3 id="loaderPercent">0%</h3>
+
+        </div>
+
+    </div>
+
+    <!-- SCROLL PROGRESS BAR -->
+
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <!-- LOGO -->
+
+        <div class="logo-area">
+
+            <img src="{% static 'images/logo.png' %}" class="logo">
+
+            <h2>Hostel<span>Manager</span></h2>
+
+        </div>
+
+        <!-- NAV LINKS -->
+
+        <nav class="nav-links" id="navLinks">
+
+            <a href="{% url 'home' %}" class="active">Home</a>
+
+            <a href="{% url 'hostels' %}">Hostels</a>
+
+            <a href="{% url 'contact' %}">Contact</a>
+
+            <!-- <a href="{% url 'login' %}">Login</a> -->
+            <a href="#" id="loginBtn">Login</a>
+
+            <a href="{% url 'register' %}" class="mobile-start-btn">
+                Get Started
+            </a>
+
+        </nav>
+
+        <!-- DESKTOP BUTTON -->
+
+        <a href="{% url 'register' %}" class="start-btn desktop-btn">
+            Get Started
+        </a>
+
+        <!-- HAMBURGER -->
+
+        <div class="hamburger" id="hamburger">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </div>
+
+    </header>
+
+    <!-- OVERLAY -->
+
+    <div class="nav-overlay" id="navOverlay"></div>
+    <!-- ================= HERO ================= -->
+
+    <section class="hero-section">
+
+        <!-- LEFT -->
+
+        <div class="hero-left reveal-right">
+
+            <div class="small-badge">
+                ⭐ Smart Hostel Management System
+            </div>
+
+            <h1>
+                Complete Hostel <br>
+                Management <br>
+                Solution <br>
+
+                <span>
+                    For Students & <br>
+                    Administrators
+                </span>
+            </h1>
+
+            <p>
+                Manage rooms, students, fees, complaints,
+                staff, and everything in your hostel
+                efficiently with our all-in-one system.
+            </p>
+
+            <!-- BUTTONS -->
+
+            <div class="hero-buttons">
+
+                <a href="#" class="purple-btn" id="viewHostelBtn">
+                    View School Hostel
+                </a>
+
+                <a href="{% url 'register' %}" class="white-btn">
+                    Apply Now
+                </a>
+
+            </div>
+
+            <!-- USERS -->
+
+            <div class="trusted-section">
+
+                <div class="trusted-images">
+
+                    <img src="{% static 'images/profile_1.png' %}">
+                    <img src="{% static 'images/profile_2.png' %}">
+                    <img src="{% static 'images/profile_3.png' %}">
+                    <img src="{% static 'images/profile_4.png' %}">
+
+                </div>
+
+                <p>
+                    Trusted by students and hostel administrators
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT -->
+
+        <div class="hero-right">
+
+            <img src="{% static 'images/sample1.jpg' %}" class="hero-image">
+
+            <!-- FLOATING CARD -->
+
+            <div class="floating-card">
+
+                <div class="feature-box">
+
+                    <i class="fa-solid fa-chart-line"></i>
+
+                    <h4>Smart Management</h4>
+
+                    <p>Automate hostel operations</p>
+
+                </div>
+
+                <div class="feature-box">
+
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                    <h4>Secure & Reliable</h4>
+
+                    <p>Your data is safe with us</p>
+
+                </div>
+
+                <div class="feature-box">
+
+                    <i class="fa-solid fa-users"></i>
+
+                    <h4>Easy to Use</h4>
+
+                    <p>Simple interface for everyone</p>
+
+                </div>
+
+                <div class="feature-box">
+
+                    <i class="fa-solid fa-headset"></i>
+
+                    <h4>24/7 Support</h4>
+
+                    <p>We are always here to help</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= STATS ================= -->
+
+    <section class="stats-section reveal">
+
+        <div class="stat-card">
+
+            <div class="stat-icon purple">
+                <i class="fa-solid fa-building"></i>
+            </div>
+
+            <div>
+                <h2>5+</h2>
+                <p>Hostels Managed</p>
+            </div>
+
+        </div>
+
+        <div class="stat-card">
+
+            <div class="stat-icon green">
+                <i class="fa-solid fa-users"></i>
+            </div>
+
+            <div>
+                <h2>500+</h2>
+                <p>Students Managed</p>
+            </div>
+
+        </div>
+
+        <div class="stat-card">
+
+            <div class="stat-icon orange">
+                <i class="fa-solid fa-bed"></i>
+            </div>
+
+            <div>
+                <h2>3,200+</h2>
+                <p>Rooms Allocated</p>
+            </div>
+
+        </div>
+
+        <div class="stat-card">
+
+            <div class="stat-icon blue">
+                <i class="fa-solid fa-wallet"></i>
+            </div>
+
+            <div>
+                <h2>₦2.5M+</h2>
+                <p>Payments Managed</p>
+            </div>
+
+        </div>
+
+        <div class="stat-card">
+
+            <div class="stat-icon pink">
+                <i class="fa-solid fa-face-smile"></i>
+            </div>
+
+            <div>
+                <h2>99.5%</h2>
+                <p>Satisfaction Rate</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= POWERFUL MODULES ================= -->
+
+    <section class="modules-section reveal">
+
+        <div class="section-title">
+
+            <span>POWERFUL MODULES</span>
+
+            <h2>
+                Everything You Need To Run Your Hostel
+            </h2>
+
+        </div>
+
+        <div class="modules-grid">
+
+            <!-- CARD 1 -->
+
+            <div class="module-card">
+
+                <div class="module-icon blue-icon">
+                    <i class="fa-solid fa-bed"></i>
+                </div>
+
+                <h3>Room Management</h3>
+
+                <p>
+                    Add, update and manage
+                    rooms, types and availability
+                    in real-time.
+                </p>
+
+            </div>
+
+            <!-- CARD 2 -->
+
+            <div class="module-card">
+
+                <div class="module-icon green-icon">
+                    <i class="fa-solid fa-id-card"></i>
+                </div>
+
+                <h3>Student Management</h3>
+
+                <p>
+                    Maintain student records,
+                    documents and allocations
+                    easily.
+                </p>
+
+            </div>
+
+            <!-- CARD 3 -->
+
+            <div class="module-card">
+
+                <div class="module-icon orange-icon">
+                    <i class="fa-solid fa-wallet"></i>
+                </div>
+
+                <h3>Fee Management</h3>
+
+                <p>
+                    Track payments, receipts
+                    and hostel fee collections
+                    efficiently.
+                </p>
+
+            </div>
+
+            <!-- CARD 4 -->
+
+            <div class="module-card">
+
+                <div class="module-icon sky-icon">
+                    <i class="fa-solid fa-chart-column"></i>
+                </div>
+
+                <h3>Reports & Analytics</h3>
+
+                <p>
+                    Generate detailed hostel
+                    reports and analytics
+                    instantly.
+                </p>
+
+            </div>
+
+            <!-- CARD 5 -->
+
+            <div class="module-card">
+
+                <div class="module-icon pink-icon">
+                    <i class="fa-solid fa-comments"></i>
+                </div>
+
+                <h3>Complaint Management</h3>
+
+                <p>
+                    Students can submit and
+                    track complaints with ease.
+                </p>
+
+            </div>
+
+            <!-- CARD 6 -->
+
+            <div class="module-card">
+
+                <div class="module-icon purple-icon">
+                    <i class="fa-solid fa-user-shield"></i>
+                </div>
+
+                <h3>Staff Management</h3>
+
+                <p>
+                    Manage hostel staff,
+                    permissions and activities
+                    smoothly.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= LIVE DASHBOARD ================= -->
+
+    <section class="dashboard-preview">
+
+        <!-- LEFT -->
+
+        <div class="dashboard-left reveal-right">
+
+            <span>LIVE DASHBOARD PREVIEW</span>
+
+            <h2>
+                All Important Data <br>
+                At Your Fingertips
+            </h2>
+
+            <p>
+                Real-time dashboard to monitor hostel
+                operations, occupancy, fee payments,
+                complaints and student activities.
+            </p>
+
+            <div class="dashboard-points">
+
+                <div class="point">
+                    <i class="fa-solid fa-check"></i>
+                    <p>Real-time statistics & overview</p>
+                </div>
+
+                <div class="point">
+                    <i class="fa-solid fa-check"></i>
+                    <p>Interactive charts & reports</p>
+                </div>
+
+                <div class="point">
+                    <i class="fa-solid fa-check"></i>
+                    <p>Student & room occupancy</p>
+                </div>
+
+                <div class="point">
+                    <i class="fa-solid fa-check"></i>
+                    <p>Fee collection tracking</p>
+                </div>
+
+                <div class="point">
+                    <i class="fa-solid fa-check"></i>
+                    <p>Export reports in one click</p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT -->
+
+        <div class="dashboard-card">
+
+            <!-- SIDEBAR -->
+
+            <div class="dashboard-sidebar">
+
+                <h3>HostelManager</h3>
+
+                <ul>
+                    <li class="active">
+                        <i class="fa-solid fa-chart-line"></i>
+                        Dashboard
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-user-group"></i>
+                        Students
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-bed"></i>
+                        Rooms
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-money-bill-wave"></i>
+                        Fee Collection
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                        Complaints
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-user-tie"></i>
+                        Staff
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-chart-pie"></i>
+                        Reports
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-gear"></i>
+                        Settings
+                    </li>
+                </ul>
+
+            </div>
+
+            <!-- CONTENT -->
+
+            <div class="dashboard-content">
+
+                <!-- HEADER -->
+
+                <div class="dashboard-header">
+
+                    <div>
+                        <h4>Dashboard</h4>
+                        <p>Welcome back, Admin!</p>
+                    </div>
+
+                    <div class="dashboard-top-right">
+
+                        <span>May 1 - May 31, 2024</span>
+
+                        <i class="fa-regular fa-bell"></i>
+
+                        <img src="{% static 'images/user.jpg' %}" alt="">
+
+                    </div>
+
+                </div>
+
+                <!-- STATS -->
+
+                <div class="dashboard-top-stats">
+
+                    <div class="mini-stat">
+                        <span>Total Students</span>
+                        <h4>1,250</h4>
+                        <p>↑ 12% this month</p>
+                    </div>
+
+                    <div class="mini-stat">
+                        <span>Total Rooms</span>
+                        <h4>520</h4>
+                        <p>↑ 8% this month</p>
+                    </div>
+
+                    <div class="mini-stat">
+                        <span>Occupied Rooms</span>
+                        <h4>380</h4>
+                        <p>↑ 5% this month</p>
+                    </div>
+
+                    <div class="mini-stat">
+                        <span>Pending Fees</span>
+                        <h4>₦2,45,000</h4>
+                        <p>↑ 15% this month</p>
+                    </div>
+
+                </div>
+
+                <!-- BOTTOM -->
+
+                <div class="dashboard-bottom">
+
+                    <!-- DONUT -->
+
+                    <div class="circle-chart">
+
+                        <h5>Room Occupancy</h5>
+
+                        <div class="circle">
+                            <h3>73%</h3>
+                        </div>
+
+                        <div class="chart-info">
+
+                            <div>
+                                <span class="dot blue-dot"></span>
+                                Occupied
+                            </div>
+
+                            <div>
+                                <span class="dot light-dot"></span>
+                                Available
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- BAR CHART -->
+
+                    <div class="bar-chart">
+
+                        <h5>Fee Collection (This Month)</h5>
+
+                        <div class="bars">
+
+                            <div class="bar-wrap">
+                                <div class="bar b1"></div>
+                                <span>Jan</span>
+                            </div>
+
+                            <div class="bar-wrap">
+                                <div class="bar b2"></div>
+                                <span>Feb</span>
+                            </div>
+
+                            <div class="bar-wrap">
+                                <div class="bar b3"></div>
+                                <span>Mar</span>
+                            </div>
+
+                            <div class="bar-wrap">
+                                <div class="bar b4"></div>
+                                <span>Apr</span>
+                            </div>
+
+                            <div class="bar-wrap">
+                                <div class="bar b5"></div>
+                                <span>May</span>
+                            </div>
+
+                            <div class="bar-wrap">
+                                <div class="bar b6"></div>
+                                <span>Jun</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ================= WHY CHOOSE US ================= -->
+
+    <section class="why-choose reveal">
+
+        <span class="section-tag">
+            WHY CHOOSE OUR SYSTEM?
+        </span>
+
+        <div class="why-container">
+
+            <!-- ITEM -->
+
+            <div class="why-item">
+
+                <div class="why-icon purple">
+                    <i class="fa-solid fa-clock"></i>
+                </div>
+
+                <div class="why-text">
+                    <h4>Saves Time</h4>
+                    <p>
+                        Automate daily tasks and
+                        save valuable time.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- ITEM -->
+
+            <div class="why-item">
+
+                <div class="why-icon cyan">
+                    <i class="fa-solid fa-layer-group"></i>
+                </div>
+
+                <div class="why-text">
+                    <h4>Reduces Workload</h4>
+                    <p>
+                        Streamline operations and
+                        reduce manual work.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- ITEM -->
+
+            <div class="why-item">
+
+                <div class="why-icon blue">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+
+                <div class="why-text">
+                    <h4>Accurate Data</h4>
+                    <p>
+                        Maintain accurate and
+                        up-to-date information.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- ITEM -->
+
+            <div class="why-item">
+
+                <div class="why-icon green">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+
+                <div class="why-text">
+                    <h4>Better Security</h4>
+                    <p>
+                        Role-based access and
+                        secure protection.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- ITEM -->
+
+            <div class="why-item">
+
+                <div class="why-icon indigo">
+                    <i class="fa-solid fa-mobile-screen"></i>
+                </div>
+
+                <div class="why-text">
+                    <h4>Easy Access</h4>
+                    <p>
+                        Access your system
+                        anytime, anywhere.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- ITEM -->
+
+            <div class="why-item">
+
+                <div class="why-icon orange">
+                    <i class="fa-solid fa-wallet"></i>
+                </div>
+
+                <div class="why-text">
+                    <h4>Cost Effective</h4>
+                    <p>
+                        Affordable solution
+                        for every institution.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= CTA SECTION ================= -->
+
+    <section class="cta-section reveal">
+
+        <div class="cta-left">
+
+            <div class="cta-icon">
+                <i class="fa-solid fa-building"></i>
+            </div>
+
+            <div class="cta-text">
+
+                <h2>
+                    Ready to Simplify Your Hostel Management?
+                </h2>
+
+                <p>
+                    Join hundreds of institutions using our
+                    system to manage hostel operations efficiently.
+                </p>
+
+            </div>
+
+        </div>
+
+        <a href="{% url 'register' %}" class="cta-btn">
+            Get Started Now
+            <i class="fa-solid fa-arrow-right"></i>
+        </a>
+
+    </section>
+
+
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer reveal">
+
+        <div class="footer-grid">
+
+            <!-- COLUMN 1 -->
+
+            <div class="footer-brand">
+
+                <div class="footer-logo">
+
+                    <i class="fa-solid fa-house"></i>
+
+                    <h2>HostelManager</h2>
+
+                </div>
+
+                <p>
+                    A smart and complete student hostel
+                    management system to simplify operations
+                    and improve student living experiences.
+                </p>
+
+                <div class="footer-socials">
+
+                    <a href="#">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="fa-brands fa-twitter"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- COLUMN 2 -->
+
+            <div class="footer-links">
+
+                <h3>Quick Links</h3>
+
+                <a href="#">Home</a>
+                <a href="#">About Us</a>
+                <a href="#">Features</a>
+                <a href="#">Modules</a>
+                <a href="#">Contact Us</a>
+
+            </div>
+
+            <!-- COLUMN 3 -->
+
+            <div class="footer-links">
+
+                <h3>Modules</h3>
+
+                <a href="#">Room Management</a>
+                <a href="#">Student Management</a>
+                <a href="#">Fee Management</a>
+                <a href="#">Complaint Management</a>
+                <a href="#">Reports & Analytics</a>
+
+            </div>
+
+            <!-- COLUMN 4 -->
+
+            <div class="footer-links">
+
+                <h3>Support</h3>
+
+                <a href="#">Help Center</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & Conditions</a>
+                <a href="#">FAQ</a>
+
+            </div>
+
+            <!-- COLUMN 5 -->
+
+            <div class="footer-links">
+
+                <h3>Contact Us</h3>
+
+                <p>
+                    <i class="fa-solid fa-phone"></i>
+                    +234 801 234 5678
+                </p>
+
+                <p>
+                    <i class="fa-solid fa-envelope"></i>
+                    support@hostelmanager.com
+                </p>
+
+                <p>
+                    <i class="fa-solid fa-location-dot"></i>
+                    Onitsha, Nigeria
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- BOTTOM -->
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 C21. All rights reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================================
+     HOSTEL MODAL
+========================================= -->
+
+    <div class="hostel-modal" id="hostelModal">
+
+        <div class="hostel-modal-content">
+
+            <button class="close-hostel-modal" id="closeHostelModal">
+                ×
+            </button>
+
+            <h2>Select Hostel Type</h2>
+
+            <p>
+                Choose the hostel category you want
+                to explore.
+            </p>
+
+            <div class="hostel-options">
+
+                <button id="maleHostel" class="hostel-option-btn male-btn">
+
+                    <i class="fa-solid fa-mars"></i>
+
+                    Male Hostel
+
+                </button>
+
+                <button id="femaleHostel" class="hostel-option-btn female-btn">
+
+                    <i class="fa-solid fa-venus"></i>
+
+                    Female Hostel
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- LOGIN CHOICE MODAL -->
+
+    <div class="login-modal" id="loginModal">
+
+        <div class="login-modal-box">
+
+            <span class="close-login-modal" id="closeLoginModal">&times;</span>
+
+            <h2>Choose Login Type</h2>
+
+            <p>
+                Continue as a student or administrator
+            </p>
+
+            <div class="login-options">
+
+                <button id="studentLoginBtn" class="student-login-btn">
+
+                    <i class="fa-solid fa-user-graduate"></i>
+
+                    Student Login
+
+                </button>
+
+                
+
+            </div>
+
+        </div>
+
+    </div>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+
+</html>

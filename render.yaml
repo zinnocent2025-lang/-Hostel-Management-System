@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: hostel-management-system
+    env: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn hostel_system.wsgi:application"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.13.9

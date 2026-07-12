@@ -1,0 +1,136 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Roles & Permissions</title>
+    <link rel="stylesheet" href="{% static 'dashboard/css/groups.css' %}">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <span class="back-btn" onclick="location.href='/dashboard/'">←</span>
+        <h2>Roles & Permissions</h2>
+        <p>Manage what each user can do</p>
+    </div>
+
+    <!-- CREATE GROUP -->
+    <div class="create-box">
+        <form method="POST" action="{% url 'create_group' %}">
+            {% csrf_token %}
+            <input type="text" name="group_name" placeholder="New role name..." required>
+            <button type="submit">+ Add Role</button>
+        </form>
+    </div>
+
+    <!-- GROUP CARDS -->
+    <div class="groups-container">
+
+        {% for group in groups %}
+        <div class="group-card" id="group-{{group.id}}">
+
+            <!-- TOP -->
+            <div class="group-header">
+                <h3>{{ group.name }}</h3>
+                <span class="badge">{{ group.user_set.count }} users</span>
+            </div>
+
+            <!-- PERMISSIONS PREVIEW -->
+            <div class="permissions-preview">
+
+                <p class="{% if 'can_manage_bookings' in group.permissions %}active{% else %}disabled{% endif %}">
+                    {% if 'can_manage_bookings' in group.permissions %}✔{% else %}✖{% endif %}
+                    Manage Bookings
+                </p>
+
+                <p class="{% if 'can_view_users' in group.permissions %}active{% else %}disabled{% endif %}">
+                    {% if 'can_view_users' in group.permissions %}✔{% else %}✖{% endif %}
+                    View Users
+                </p>
+
+                <p class="{% if 'can_delete_users' in group.permissions %}active{% else %}disabled{% endif %}">
+                    {% if 'can_delete_users' in group.permissions %}✔{% else %}✖{% endif %}
+                    Delete Users
+                </p>
+
+            </div>
+
+            <!-- ACTIONS -->
+            <div class="group-actions">
+                <button onclick="openUsers('{{ group.id }}', '{{ group.name }}')">Manage</button>
+                <button onclick="openPermissions('{{ group.id }}', '{{ group.name }}')">
+                    Permissions
+                </button>
+
+            </div>
+
+        </div>
+        {% endfor %}
+
+    </div>
+
+    <!-- MANAGE GROUP MODAL -->
+    <div class="modal" id="permissionsModal">
+
+        <div class="modal-box">
+
+            <div class="modal-header">
+                <h3 id="permTitle"></h3>
+                <span class="close" onclick="closePermissions()">×</span>
+            </div>
+
+            <div class="modal-body">
+
+                <h4 class="section-title">Permissions</h4>
+
+                <div id="permContainer" class="list-container"></div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button id="deleteGroupBtn" class="btn-danger" onclick="deleteGroup()">
+                    Delete Group
+                </button>
+
+                <button class="btn-secondary" onclick="closePermissions()">
+                    Close
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="modal" id="usersModal">
+
+        <div class="modal-box">
+
+            <div class="modal-header">
+                <h3 id="usersTitle"></h3>
+                <span class="close" onclick="closeUsers()">×</span>
+            </div>
+
+            <div class="modal-body">
+
+                <h4 class="section-title">Users</h4>
+
+                <div id="usersContainer" class="list-container"></div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeUsers()">Close</button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="{% static 'dashboard/js/groups.js' %}"></script>
+
+</body>
+
+</html>

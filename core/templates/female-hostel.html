@@ -1,0 +1,711 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> female Hostel Design</title>
+    <link rel="stylesheet" href="{% static 'css/female.css'%}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="{% static 'images/logo.png'%}" alt="Room 4">
+        </div>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li class="pages-menu">
+                <a href="#" id="pagesToggle">Pages</a>
+
+                <ul class="pages-dropdown" id="pagesDropdown">
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#rooms">Room Availability</a></li>
+                    <li><a href="#facilities">Hostel Facilities</a></li>
+                </ul>
+            </li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="{% url 'login' %}">Login </a></li>
+        </ul>
+
+        <div class="nav-icons">
+            <button id="themeToggle"></button>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>FEMALE LODGE<br>ACCOMMODATION</h1>
+            <p class="price">₦{{ settings.female_hostel_price }}</p>
+            <a href="{% url 'demo_payment' %}" class="payment-btn">
+                <i class="fas fa-credit-card"></i>
+               Launch Payment Demo
+            </a>
+
+            <div class="hero-arrows">
+                <button class="hero-prev"><i class="fas fa-arrow-left"></i></button>
+                <button class="hero-next"><i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+
+
+        <div class="hero-image">
+
+            <div class="hero-container">
+
+                <div class="hero-slider" id="heroSlider">
+                    <img src="{% static 'images/hms_hostel_sample_1.png'%}" alt="Room 4">
+                    <img src="{% static 'images/hms_hostel_sample_2.png'%}" alt="Room 4">
+                    <img src="{% static 'images/hms_hostel_sample_3.png'%}" alt="Room 4">
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="side-contact">
+            <span class="phone">+234 800 123 4567</span>
+            <span class="email">info@jobitechhostel.com</span>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="about" id="about">
+        <div class="about-left">
+            <h2>WELCOME TO JOBITECH HOSTEL</h2>
+            <p>
+                At Jobitech Hostel, we provide safe, comfortable, and affordable
+                accommodation designed for students. Our hostel offers a peaceful
+                learning environment with modern facilities to support academic success.
+            </p>
+
+            <div class="about-feature">
+                <i class="fas fa-bed"></i>
+                <div>
+                    <h4>Comfortable Rooms</h4>
+                    <p>Spacious and well-ventilated rooms for productive student living.</p>
+                </div>
+            </div>
+
+            <div class="about-feature">
+                <i class="fas fa-shield-alt"></i>
+                <div>
+                    <h4>24/7 Security</h4>
+                    <p>Round-the-clock security to ensure student safety.</p>
+                </div>
+            </div>
+
+            <button class="more-btn">More Details →</button>
+        </div>
+
+        <div class="about-right">
+            <div class="image-container">
+                <img src="{% static 'images/sampl14.jpeg'%}" alt="Room 4">
+            </div>
+
+            <div class="experience-box">
+                <h2>FUN FACTS IN GREAT NUMBERS</h2>
+                <p>YEARS OF EXPERIENCE</p>
+                <span>25+</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS SECTION -->
+    <section class="how-it-works">
+        <h2 class="section-title">HOW IT WORKS</h2>
+
+        <div class="how-container">
+
+            <!-- LEFT SIDE -->
+            <div class="how-column left">
+
+                <div class="how-item">
+                    <span class="number">01</span>
+                    <div class="icon-box">
+                        <i class="fas fa-bed"></i>
+                    </div>
+                    <div class="how-text">
+                        <h4>Comfortable Accommodation</h4>
+                        <p>Spacious, well-ventilated rooms designed for student comfort and productivity.</p>
+                    </div>
+                </div>
+
+                <div class="how-item">
+                    <span class="number">02</span>
+                    <div class="icon-box">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="how-text">
+                        <h4>24/7 Security</h4>
+                        <p>CCTV surveillance, secure entry systems, and trained security personnel.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- CENTER IMAGE -->
+            <div class="how-center">
+                <div class="arch-container">
+                    <img src="{% static 'images/sampl14.jpeg'%}" alt="Room 4">
+
+
+                    <div class="arch-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- RIGHT SIDE -->
+            <div class="how-column right">
+
+                <div class="how-item">
+                    <span class="number">03</span>
+                    <div class="icon-box">
+                        <i class="fas fa-book-reader"></i>
+                    </div>
+                    <div class="how-text">
+                        <h4>Study & Recreation</h4>
+                        <p>Dedicated study halls and relaxing lounges for balanced student living.</p>
+                    </div>
+                </div>
+
+                <div class="how-item">
+                    <span class="number">04</span>
+                    <div class="icon-box">
+                        <i class="fas fa-soap"></i>
+                    </div>
+                    <div class="how-text">
+                        <h4>Clean & Hygienic</h4>
+                        <p>Daily cleaning services and well-maintained sanitary facilities.</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+    <section class="team-section" id="team">
+
+        <h2 class="team-title">HOSTEL MANAGEMENT</h2>
+
+        <div class="team-container">
+
+            <div class="team-card">
+                <img src="{% static 'images/profile_2.png'%}" alt="Room 4">
+
+                <div class="team-overlay">
+                    <h3>Mrs. Ugoma Wilcox</h3>
+                    <p class="team-role">Hostel Manager</p>
+                    <p>Responsible for overall hostel operations, student welfare and facility management.</p>
+                </div>
+
+            </div>
+
+            <div class="team-card">
+                <img src="{% static 'images/profile_4.png'%}" alt="Room 4">
+
+                <div class="team-overlay">
+                    <h3>Jessica Brown</h3>
+                    <p class="team-role">Administrative Officer</p>
+                    <p>Handles hostel records, room allocation and student communication.</p>
+                </div>
+
+            </div>
+
+            <div class="team-card">
+                <img src="{% static 'images/profile_8.png'%}" alt="Room 4">
+
+                <div class="team-overlay">
+                    <h3>Chiamanda Okeke</h3>
+                    <p class="team-role">Security Supervisor</p>
+                    <p>Supervises CCTV monitoring and ensures hostel safety 24/7.</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+    <section class="testimonial-section" id="testimonials">
+
+        <h2 class="testimonial-title">STUDENT TESTIMONIALS</h2>
+
+        <div class="testimonial-container">
+
+            <div class="testimonial-card">
+
+                <div class="testimonial-header">
+                    <img src="{% static 'images/sampl14.jpeg'%}" alt="Room 4">
+                    <div>
+                        <h3>Mary Okafor</h3>
+                        <p>Computer Science Student</p>
+                    </div>
+                </div>
+
+                <p class="testimonial-text">
+                    Staying at Jobitech Hostel has been a great experience. The rooms are clean,
+                    the environment is peaceful for studying, and security is excellent.
+                </p>
+
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <i class="far fa-star"></i>
+                </div>
+
+            </div>
+
+
+            <div class="testimonial-card">
+
+                <div class="testimonial-header">
+                    <img src="{% static 'images/sampl14.jpeg'%}" alt="Room 4">
+                    <div>
+                        <h3>David Johnson</h3>
+                        <p>Engineering Student</p>
+                    </div>
+                </div>
+
+                <p class="testimonial-text">
+                    The hostel provides reliable electricity and fast WiFi which really helps
+                    with my assignments and online classes.
+                </p>
+
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+
+            </div>
+
+
+            <div class="testimonial-card">
+
+                <div class="testimonial-header">
+                    <img src="{% static 'images/sampl14.jpeg'%}" alt="Room 4">
+
+                    <div>
+                        <h3>Sarah Williams</h3>
+                        <p>Business Administration</p>
+                    </div>
+                </div>
+
+                <p class="testimonial-text">
+                    I love the calm environment and the friendly management staff.
+                    It truly feels safe and comfortable living here.
+                </p>
+
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
+
+            </div>
+
+
+            <div class="testimonial-card">
+
+                <div class="testimonial-header">
+                    <img src="{% static 'images/sampl14.jpeg'%}" alt="Room 4">
+                    <div>
+                        <h3>Michael Adams</h3>
+                        <p>Medical Student</p>
+                    </div>
+                </div>
+
+                <p class="testimonial-text">
+                    Clean facilities, steady water supply and great security.
+                    One of the best student hostels around campus.
+                </p>
+
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+    <!-- FAQ SECTION -->
+    <section class="faq-section" id="faq">
+        <h2 class="faq-title">FREQUENTLY ASKED QUESTIONS</h2>
+
+        <div class="faq-container">
+            <div class="faq-item">
+                <button class="faq-question">
+                    What are the check-in and check-out times?
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    Check-in is from 2:00 PM and check-out is by 11:00 AM. Early check-in or late check-out may be
+                    available upon request.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    Are meals provided at the hostel?
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    Meals are not included by default, but there is a cafeteria where students can purchase meals daily.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    Is the hostel safe for students?
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    Yes, the hostel has 24/7 security, CCTV surveillance, and trained security personnel to ensure
+                    student safety.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    Can I bring guests to the hostel?
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    Guest visits are allowed during visiting hours only and must be approved by hostel management.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROOM AVAILABILITY SECTION -->
+    <section class="room-section" id="rooms">
+
+        <h2 class="room-title">ROOM AVAILABILITY</h2>
+
+        <div class="room-container">
+
+            {% for room in female_rooms %}
+
+            <div class="room-card" id="room-{{ room.id }}">
+
+                {% if room.image %}
+                <img src="{{ room.image.url }}">
+                {% else %}
+                <img src="{% static 'images/hms_room_1.png' %}">
+                {% endif %}
+
+                <!-- OVERLAY -->
+
+                {% if room.status == "available" or room.status == "filling" %}
+
+                <div class="room-overlay available-overlay">
+
+                    {% if request.user.is_authenticated and not request.user.is_superuser %}
+
+                    {% with booking=request.user.femalebooking_set.first %}
+
+                    {% if booking %}
+
+                    {% if booking.status == "expired" and booking.room.id == room.id %}
+
+                    <a href="{% url 'female_room_booking' room.id %}" class="room-action-btn">
+                        Rebook Room
+                    </a>
+
+                    {% elif booking.status == "pending" or booking.status == "approved" %}
+
+                    {% if room.status == "available" or room.status == "filling" %}
+                    <button class="room-action-btn occupied-btn">
+                        Booking Exists
+                    </button>
+                    {% endif %}
+
+                    {% else %}
+
+                    {% if room.status == "available" or room.status == "filling" %}
+                    <a href="{% url 'female_room_booking' room.id %}" class="room-action-btn">
+                        Book Now
+                    </a>
+                    {% endif %}
+
+                    {% endif %}
+
+                    {% else %}
+
+                    {% if room.status == "available" or room.status == "filling" %}
+                    <a href="{% url 'female_room_booking' room.id %}" class="room-action-btn">
+                        Book Now
+                    </a>
+                    {% endif %}
+
+                    {% endif %}
+
+                    {% endwith %}
+
+                    {% else %}
+
+                    {% if room.status == "available" or room.status == "filling" %}
+                     <a href="{% url 'register' %}?next={{ request.path }}" class="room-action-btn">
+                        Register to Book
+                    </a>
+                    {% endif %}
+
+                    {% endif %}
+                </div>
+
+                {% endif %}
+
+                <div class="room-info">
+
+                    <h3>{{ room.room_number }}</h3>
+
+                    <span class="availability room-status {{ room.status }}">
+                        {{ room.status|title }}
+                    </span>
+
+                    <div class="room-capacity">
+
+                        <small>
+                            {{ room.occupied_beds }}/{{ room.capacity }} Beds Occupied
+                        </small>
+
+                        <small>
+                            {{ room.capacity }}
+                        </small>
+
+                    </div>
+
+                    <div class="capacity-bar">
+
+                        <div class="capacity-fill room-progress
+    {% if room.progress >= 100 %}
+        full
+    {% elif room.progress >= 75 %}
+        high
+    {% elif room.progress >= 50 %}
+        medium
+    {% elif room.progress >= 25 %}
+        mid-low
+    {% else %}
+        low
+    {% endif %}" style="width: {{ room.progress }}%;">
+                        </div>
+
+                    </div>
+
+                    <p class="beds-left remaining-beds">
+
+                        {% if room.status == "full" %}
+
+                        Room Full
+
+                        {% elif room.remaining_beds == 1 %}
+
+                        1 Bed Left
+
+                        {% else %}
+
+                        {{ room.remaining_beds }} Beds Left
+
+                        {% endif %}
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+    <!-- HOSTEL FACILITIES SECTION -->
+    <section class="facilities-section" id="facilities">
+
+        <h2 class="facilities-title">HOSTEL FACILITIES</h2>
+
+        <div class="facilities-container">
+
+            <div class="facility-card">
+                <div class="facility-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h3>24/7 Electricity</h3>
+                <p>Constant power supply to ensure students can study and relax without interruption.</p>
+            </div>
+
+            <div class="facility-card">
+                <div class="facility-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>24/7 Security</h3>
+                <p>CCTV monitoring and trained security personnel ensure a safe environment.</p>
+            </div>
+
+            <div class="facility-card">
+                <div class="facility-icon">
+                    <i class="fas fa-tint"></i>
+                </div>
+                <h3>Clean Water Supply</h3>
+                <p>Regular water supply with properly maintained sanitary facilities.</p>
+            </div>
+
+            <div class="facility-card">
+                <div class="facility-icon">
+                    <i class="fas fa-book"></i>
+                </div>
+                <h3>Study Area</h3>
+                <p>Quiet study spaces designed to support concentration and productivity.</p>
+            </div>
+
+            <div class="facility-card">
+                <div class="facility-icon">
+                    <i class="fas fa-broom"></i>
+                </div>
+                <h3>Cleaning Services</h3>
+                <p>Regular cleaning services keep the hostel environment hygienic.</p>
+            </div>
+
+            <div class="facility-card">
+                <div class="facility-icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <h3>Kitchen Area</h3>
+                <p>A shared kitchen space where students can prepare meals comfortably.</p>
+            </div>
+
+        </div>
+
+    </section>
+    <!-- SERVICES SECTION -->
+    <section class="services-section" id="services">
+
+        <h2 class="services-title">OUR SERVICES</h2>
+
+        <div class="services-container">
+
+            <div class="service-card">
+                <i class="fas fa-door-open"></i>
+                <h3>Room Allocation</h3>
+                <p>We assist students in selecting and managing their hostel rooms for a comfortable stay.</p>
+            </div>
+
+            <div class="service-card">
+                <i class="fas fa-shield-alt"></i>
+                <h3>24/7 Security Monitoring</h3>
+                <p>Continuous monitoring and security personnel ensure a safe living environment.</p>
+            </div>
+
+            <div class="service-card">
+                <i class="fas fa-tools"></i>
+                <h3>Maintenance & Repairs</h3>
+                <p>Our team quickly handles electrical, plumbing, and room maintenance issues.</p>
+            </div>
+
+            <div class="service-card">
+                <i class="fas fa-broom"></i>
+                <h3>Cleaning Services</h3>
+                <p>Regular cleaning keeps shared hostel spaces neat and hygienic.</p>
+            </div>
+
+            <div class="service-card">
+                <i class="fas fa-user-check"></i>
+                <h3>Visitor Management</h3>
+                <p>We manage visitor entry and exit to maintain security and order.</p>
+            </div>
+
+            <div class="service-card">
+                <i class="fas fa-headset"></i>
+                <h3>Student Support</h3>
+                <p>Residents can easily reach hostel management for assistance or complaints.</p>
+            </div>
+
+            <div class="service-card">
+                <i class="fas fa-bolt"></i>
+                <h3>Utility Management</h3>
+                <p>We ensure stable electricity and water supply throughout the hostel.</p>
+            </div>
+
+            <div class="service-card">
+                <i class="fas fa-book-reader"></i>
+                <h3>Study Environment</h3>
+                <p>A calm and quiet environment that helps students focus on their studies.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <div class="payment-modal" id="paymentModal">
+
+        <div class="payment-modal-content">
+
+            <span class="close-payment" id="closePayment">
+                &times;
+            </span>
+
+            <h2>Female Hostel Payment Instructions</h2>
+
+            {% if booking %}
+            <p class="booking-ref">
+                Booking Reference:
+                <strong>{{ booking.booking_reference }}</strong>
+            </p>
+            {% endif %}
+
+            <p>
+                To complete your hostel reservation, kindly visit the
+                Hostel Administration Office.
+            </p>
+
+            <ul>
+                <li>Present your Booking Reference.</li>
+                <li>Meet an authorized hostel officer.</li>
+                <li>Make payment only through approved channels.</li>
+                <li>Collect your official receipt.</li>
+                <li>Your room remains reserved until the payment deadline.</li>
+            </ul>
+
+            <a href="https://wa.me/2347072614948" target="_blank" class="whatsapp-btn">
+                Contact Administration
+            </a>
+
+        </div>
+
+    </div>
+    <script src="{% static 'js/female.js'%}"></script>
+    <!-- <script src="{% static 'js/global_refresh.js' %}"></script> -->
+    <footer class="small-footer">
+        <p>Made by C21</p>
+    </footer>
+</body>
+
+</html>

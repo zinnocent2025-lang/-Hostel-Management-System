@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>Analytics Dashboard</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        h1 {
+            margin-bottom: 25px;
+            color: #0f172a;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .progress-item {
+            margin-bottom: 25px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background: #e2e8f0;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .fill {
+            height: 100%;
+            border-radius: 20px;
+        }
+
+        canvas {
+            max-height: 300px;
+        }
+
+        @media(max-width:768px) {
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Hostel Analytics Dashboard</h1>
+
+        <div class="grid">
+
+            <!-- FORM -->
+            <div class="card">
+
+                <form method="POST">
+
+                    {% csrf_token %}
+
+                    <label>Electricity</label>
+                    <input type="number" name="electricity" value="{{ analytics.electricity }}">
+
+                    <label>Water</label>
+                    <input type="number" name="water" value="{{ analytics.water }}">
+
+                    <label>Maintenance</label>
+                    <input type="number" name="maintenance" value="{{ analytics.maintenance }}">
+
+                    <label>Occupied Rooms (%)</label>
+                    <input type="number" name="occupied" value="{{ analytics.occupied }}">
+
+                    <label>Available Rooms (%)</label>
+                    <input type="number" name="available" value="{{ analytics.available }}">
+
+                    <label>Monday Electricity</label>
+                    <input type="number" name="mon" value="{{ analytics.mon }}">
+
+                    <label>Tuesday Electricity</label>
+                    <input type="number" name="tue" value="{{ analytics.tue }}">
+
+                    <label>Wednesday Electricity</label>
+                    <input type="number" name="wed" value="{{ analytics.wed }}">
+
+                    <label>Thursday Electricity</label>
+                    <input type="number" name="thu" value="{{ analytics.thu }}">
+
+                    <label>Friday Electricity</label>
+                    <input type="number" name="fri" value="{{ analytics.fri }}">
+
+                    <label>Saturday Electricity</label>
+                    <input type="number" name="sat" value="{{ analytics.sat }}">
+
+                    <label>Sunday Electricity</label>
+                    <input type="number" name="sun" value="{{ analytics.sun }}">
+
+                    <button type="submit">
+                        Save Analytics
+                    </button>
+
+                </form>
+            </div>
+
+
+            <!-- PROGRESS -->
+            <div class="card">
+
+                <div class="progress-item">
+
+                    <div class="progress-label">
+                        <span>⚡ Electricity</span>
+                        <span>{{ analytics.electricity }}%</span>
+                    </div>
+
+                    <div class="progress-bar">
+
+                        <div class="fill" id="electricityFill" style="width: {{ analytics.electricity }}%;">
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="progress-item">
+
+                    <div class="progress-label">
+                        <span>💧 Water</span>
+                        <span>{{ analytics.water }}%</span>
+                    </div>
+
+                    <div class="progress-bar">
+
+                        <div class="fill" id="waterFill" style="width: {{ form.instance.water }}%;">
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="progress-item">
+
+                    <div class="progress-label">
+                        <span>🛠 Maintenance</span>
+                        <span>{{ analytics.maintenance }}%</span>
+                    </div>
+
+                    <div class="progress-bar">
+
+                        <div class="fill" id="maintenanceFill" style="width: {{ analytics.maintenance }}%;">
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PIE CHART -->
+            <div class="card">
+
+                <h2>Resource Overview</h2>
+
+                <canvas id="pieChart"></canvas>
+
+            </div>
+
+
+            <!-- LINE CHART -->
+            <div class="card">
+
+                <h2>Electricity Trend</h2>
+
+                <canvas id="lineChart"></canvas>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+const electricity = {{ analytics.electricity }};
+const water = {{ analytics.water }};
+const maintenance = {{ analytics.maintenance }};
+
+const occupied = {{ analytics.occupied }};
+const available = {{ analytics.available }};
+
+function setColor(id, value) {
+
+    const bar = document.getElementById(id);
+
+    if (value >= 70) {
+        bar.style.background = "#22c55e";
+    }
+
+    else if (value >= 40) {
+        bar.style.background = "#f59e0b";
+    }
+
+    else {
+        bar.style.background = "#ef4444";
+    }
+}
+
+setColor("electricityFill", electricity);
+setColor("waterFill", water);
+setColor("maintenanceFill", maintenance);
+
+
+
+/* PIE CHART */
+
+new Chart(document.getElementById("pieChart"), {
+
+    type: "doughnut",
+
+    data: {
+
+        labels: [
+            "Occupied",
+            "Available",
+            "Maintenance"
+        ],
+
+        datasets: [{
+
+            data: [
+
+                {{ analytics.occupied }},
+                {{ analytics.available }},
+                {{ analytics.maintenance }}
+
+            ],
+
+            backgroundColor: [
+
+                "#2563eb",
+                "#22c55e",
+                "#f59e0b"
+
+            ]
+
+        }]
+
+    }
+
+});
+
+/* LINE GRAPH */
+
+new Chart(document.getElementById("lineChart"), {
+
+    type: "line",
+
+    data: {
+
+        labels: [
+            "Mon",
+            "Tue",
+            "Wed",
+            "Thu",
+            "Fri",
+            "Sat",
+            "Sun"
+        ],
+
+        datasets: [{
+
+            label: "Electricity",
+
+            data: [
+
+                {{ analytics.mon }},
+                {{ analytics.tue }},
+                {{ analytics.wed }},
+                {{ analytics.thu }},
+                {{ analytics.fri }},
+                {{ analytics.sat }},
+                {{ analytics.sun }}
+
+            ],
+
+            borderColor: "#2563eb",
+
+            backgroundColor: "rgba(37,99,235,0.1)",
+
+            fill: true,
+
+            tension: 0.4
+
+        }]
+
+    }
+
+});
+</script>
+</body>
+
+</html>

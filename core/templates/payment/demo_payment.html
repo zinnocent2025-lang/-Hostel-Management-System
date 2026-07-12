@@ -1,0 +1,324 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Payment Demo</title>
+
+    <link rel="stylesheet" href="{% static 'css/demo_payment.css' %}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body>
+
+    <div class="payment-container">
+
+        <div class="payment-card">
+
+            <div class="top">
+
+                <h2>
+                    Demo Payment Gateway
+                </h2>
+
+                <span class="sandbox">
+                    SANDBOX MODE
+                </span>
+
+            </div>
+
+            <div class="merchant">
+
+                <h3>Hostel Management System</h3>
+
+                <p>Secure Payment Portal</p>
+
+            </div>
+
+            <div class="amount-box">
+
+                <small>Amount</small>
+
+                <h1>₦{{ amount }}</h1>
+
+            </div>
+
+            <!-- SCREEN 1 -->
+            <div id="detailsScreen">
+
+                <form id="paymentForm">
+
+                    <div class="input-group">
+                        <label>Full Name</label>
+                        <input type="text" placeholder="John Doe" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Email</label>
+                        <input type="email" placeholder="john@email.com" required>
+                    </div>
+
+                    <div class="input-group">
+
+                        <label>Payment Method</label>
+
+                        <select>
+
+                            <option>Debit Card</option>
+
+                            <option>Bank Transfer</option>
+
+                            <option>USSD</option>
+
+                        </select>
+
+                    </div>
+
+                    <button class="pay-btn" type="submit">
+
+                        Continue
+
+                    </button>
+
+                </form>
+
+            </div>
+
+
+            <!-- SCREEN 2 -->
+
+            <div id="cardScreen" style="display:none;">
+
+                <h2>Bank Transfer</h2>
+
+                <p class="transfer-subtitle">
+                    Make a demo transfer using the details below.
+                </p>
+
+                <div class="bank-card">
+
+                    <div class="bank-row">
+
+                        <span>Bank</span>
+
+                        <strong>Demo Bank Plc</strong>
+
+                    </div>
+
+                    <div class="bank-row">
+
+                        <span>Account Name</span>
+
+                        <strong> Hostel Management System</strong>
+
+                    </div>
+
+                    <div class="bank-row">
+
+                        <span>Account Number</span>
+
+                        <strong id="accountNumber">
+                            7072614948
+                        </strong>
+
+                    </div>
+
+                    <div class="bank-row">
+
+                        <span>Amount</span>
+
+                        <strong>
+                            ₦{{ amount }}
+                        </strong>
+
+                    </div>
+
+                    <div class="bank-row">
+
+                        <span>Reference</span>
+
+                        <strong id="transferReference">
+
+                        </strong>
+
+                    </div>
+
+                </div>
+
+                <button class="copy-btn" id="copyAccount">
+
+                    <i class="fa fa-copy"></i>
+
+                    Copy Account Number
+
+                </button>
+
+                <button class="pay-btn" id="payNow">
+
+                    I've Made the Transfer
+
+                </button>
+
+            </div>
+            <!-- SCREEN 3 -->
+
+            <div id="processingScreen" style="display:none;">
+
+                <div class="processing-box">
+
+                    <div class="spinner"></div>
+
+                    <h2>Processing Payment...</h2>
+
+                    <p id="processingText">
+                        Connecting to payment gateway...
+                    </p>
+
+                </div>
+
+            </div>
+            <!-- SCREEN 4 -->
+
+            <div id="successScreen" style="display:none;">
+
+                <div class="success-box">
+
+                    <div class="success-icon">
+                        <i class="fa-solid fa-check"></i>
+                    </div>
+
+                    <h2>Demo Payment Successful</h2>
+
+                    <p class="success-note">
+                        Sandbox Demonstration
+                    </p>
+
+                    <div class="receipt">
+
+                        <div class="receipt-row">
+                            <span>Transaction ID</span>
+                            <strong id="transactionId"></strong>
+                        </div>
+
+                        <div class="receipt-row">
+                            <span>Reference</span>
+                            <strong id="referenceId"></strong>
+                        </div>
+
+                        <div class="receipt-row">
+                            <span>Merchant</span>
+                            <strong>Jobitech Hostel</strong>
+                        </div>
+
+                        <div class="receipt-row">
+                            <span>Amount</span>
+                            <strong>₦{{ amount }}</strong>
+                        </div>
+
+                        <div class="receipt-row">
+                            <span>Status</span>
+                            <strong class="paid-status">
+                                SUCCESS
+                            </strong>
+                        </div>
+
+                    </div>
+
+                    <div class="demo-warning">
+
+                        <i class="fa-solid fa-circle-info"></i>
+
+                        This is a demonstration payment.
+
+                        No money was charged.
+
+                        Your booking remains pending until you make payment physically in school.
+
+                    </div>
+
+                    <button class="pay-btn" id="continueBtn">
+
+                        Continue
+
+                    </button>
+
+                </div>
+
+            </div>
+            <div id="instructionModal" class="instruction-modal">
+
+                <div class="instruction-card">
+
+                    <h2>
+                        Final Payment Instructions
+                    </h2>
+
+                    <p class="instruction-intro">
+
+                        Your booking has been successfully created.
+
+                        The payment you just completed was only a demonstration.
+
+                    </p>
+
+                    <ul>
+
+                        <li>
+                            Visit the Hostel Administration Office.
+                        </li>
+
+                        <li>
+                            Present your Booking Reference.
+                        </li>
+
+                        <li>
+                            Make the hostel payment physically.
+                        </li>
+
+                        <li>
+                            Collect your official receipt.
+                        </li>
+
+                        <li>
+                            Your room will remain reserved until your payment deadline.
+                        </li>
+
+                    </ul>
+
+                    <div class="instruction-buttons">
+
+                        <a href="https://wa.me/2347072614948" target="_blank" class="whatsapp-btn">
+
+                            <i class="fab fa-whatsapp"></i>
+
+                            Contact Hostel Admin
+
+                        </a>
+
+                        <button id="closeInstruction" class="close-btn">
+
+                            Close
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="{% static 'js/demo_payment.js' %}"></script>
+
+</body>
+
+</html>

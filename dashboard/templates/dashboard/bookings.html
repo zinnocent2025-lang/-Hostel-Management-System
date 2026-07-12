@@ -1,0 +1,385 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Bookings</title>
+
+    <link rel="stylesheet" href="{% static 'dashboard/css/bookings.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="left">
+            <i class="fa-solid fa-arrow-left" onclick="location.href='/dashboard/'"></i>
+            <h2>Bookings</h2>
+        </div>
+
+        <!-- MENU -->
+        <div class="menu">
+            <i class="fa-solid fa-ellipsis-h" id="menuBtn"></i>
+
+            <div class="dropdown" id="menuDropdown">
+                <p id="showAll">All</p>
+                <p id="showPending">Pending</p>
+                <p id="showApproved">Approved</p>
+                <p id="showRejected">Rejected</p>
+
+                <hr>
+
+                <p onclick="location.href='/dashboard/'">Exit</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- TABLE -->
+    <!-- STATS -->
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <h4>Total</h4>
+            <h2>{{ total_bookings }}</h2>
+        </div>
+
+        <div class="stat-card pending-card">
+            <h4>Pending</h4>
+            <h2>{{ pending_count }}</h2>
+        </div>
+
+        <div class="stat-card approved-card">
+            <h4>Approved</h4>
+            <h2>{{ approved_count }}</h2>
+        </div>
+
+        <div class="stat-card expired-card">
+            <h4>Expired</h4>
+            <h2>{{ expired_count }}</h2>
+        </div>
+
+        <div class="stat-card cancelled-card">
+            <h4>Cancelled</h4>
+            <h2>{{ cancelled_count }}</h2>
+        </div>
+
+    </div>
+
+    <!-- SEARCH -->
+    <div class="search-box">
+        <input type="text" id="bookingSearch" placeholder="Search student, room, hostel...">
+    </div>
+
+
+
+    <!-- TABLE -->
+    <h3 class="table-title male-title">
+        <i class="fa-solid fa-mars"></i>
+        Male Hostel Bookings
+    </h3>
+    <div class="table-box">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Student</th>
+                    <th>Hostel</th>
+                    <th>Room</th>
+                    <th>Department</th>
+                    <th>Phone</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for booking in male_bookings %}
+
+                <tr data-booking-id="male-{{ booking.id }}" data-status="{{ booking.status }}" data-hostel="male">
+                    <td>
+                        <div class="student-cell">
+
+                            <div class="avatar">
+                                {{ booking.full_name|first|upper }}
+                            </div>
+
+                            {{ booking.full_name }}
+
+                        </div>
+                    </td>
+
+                    <td>
+                        <span class="hostel-badge external">
+                            <i class="fa-solid fa-building"></i>
+                            {{ booking.hostel.name }}
+                        </span>
+                    </td>
+
+                    <td>{{ booking.room }}</td>
+
+                    <td>{{ booking.department }}</td>
+
+                    <td>{{ booking.phone }}</td>
+
+                    <td>
+
+                        <span class="status {{ booking.status }}">
+                            {{ booking.status }}
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        {{ booking.created_at|date:"M d, Y" }}
+
+                    </td>
+
+                    <td class="action-buttons">
+
+                        <button class="approve-btn" onclick="updateStatus('{{ booking.id }}','male','approved')">
+
+                            <i class="fa fa-check"></i>
+
+                        </button>
+
+                        <button class="expired-btn"
+                            onclick="updateStatus('{{ booking.id }}','{{ booking.booking_type }}','expired')">
+
+                            <i class="fa fa-clock"></i>
+
+                        </button>
+
+                        <button class="reject-btn"
+                            onclick="updateStatus('{{ booking.id }}','{{ booking.booking_type }}','cancelled')">
+
+                            <i class="fa fa-ban"></i>
+
+                        </button>
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <h3 class="table-title female-title">
+        <i class="fa-solid fa-venus"></i>
+        Female Hostel Bookings
+    </h3>
+    <div class="table-box">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Student</th>
+                    <th>Hostel</th>
+                    <th>Room</th>
+                    <th>Department</th>
+                    <th>Phone</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for booking in female_bookings %}
+
+                <tr data-booking-id="female-{{ booking.id }}" data-status="{{ booking.status }}" data-hostel="female">
+                    <td>
+                        <div class="student-cell">
+
+                            <div class="avatar">
+                                {{ booking.full_name|first|upper }}
+                            </div>
+
+                            {{ booking.full_name }}
+
+                        </div>
+                    </td>
+
+                    <td>
+                        <span class="hostel-badge female">
+                            <i class="fa-solid fa-venus"></i>
+                            Female
+                        </span>
+                    </td>
+
+                    <td>{{ booking.room }}</td>
+
+                    <td>{{ booking.department }}</td>
+
+                    <td>{{ booking.phone }}</td>
+
+                    <td>
+
+                        <span class="status {{ booking.status }}">
+                            {{ booking.status }}
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        {{ booking.created_at|date:"M d, Y" }}
+
+                    </td>
+
+                    <td class="action-buttons">
+
+                        <button class="approve-btn" onclick="updateStatus('{{ booking.id }}','female','approved')">
+
+                            <i class="fa fa-check"></i>
+
+                        </button>
+
+                        <button class="expired-btn"
+                            onclick="updateStatus('{{ booking.id }}','{{ booking.booking_type }}','expired')">
+
+                            <i class="fa fa-clock"></i>
+
+                        </button>
+
+                        <button class="reject-btn"
+                            onclick="updateStatus('{{ booking.id }}','{{ booking.booking_type }}','cancelled')">
+
+                            <i class="fa fa-ban"></i>
+
+                        </button>
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+    <h3 class="table-title external-title">
+        <i class="fa-solid fa-building"></i>
+        External Hostel Bookings
+    </h3>
+    <div class="table-box">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Student</th>
+                    <th>Hostel</th>
+                    <th>Room</th>
+                    <th>Department</th>
+                    <th>Phone</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for booking in external_bookings %}
+
+                <tr data-booking-id="external-{{ booking.id }}" data-status="{{ booking.status }}"
+                    data-hostel="external">
+                    <td>
+                        <div class="student-cell">
+
+                            <div class="avatar">
+                                {{ booking.full_name|first|upper }}
+                            </div>
+
+                            {{ booking.full_name }}
+
+                        </div>
+                    </td>
+
+                    <td>
+                        <span class="hostel-badge female">
+                            <i class="fa-solid fa-venus"></i>
+                            Female
+                        </span>
+                    </td>
+
+                    <td>{{ booking.room }}</td>
+
+                    <td>{{ booking.department }}</td>
+
+                    <td>{{ booking.phone }}</td>
+
+                    <td>
+
+                        <span class="status {{ booking.status }}">
+                            {{ booking.status }}
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        {{ booking.created_at|date:"M d, Y" }}
+
+                    </td>
+
+                    <td class="action-buttons">
+
+                        <button class="approve-btn" onclick="updateStatus('{{ booking.id }}','external','approved')">
+
+                            <i class="fa fa-check"></i>
+
+                        </button>
+
+                        <button class="expired-btn"
+                            onclick="updateStatus('{{ booking.id }}','{{ booking.booking_type }}','expired')">
+
+                            <i class="fa fa-clock"></i>
+
+                        </button>
+
+                        <button class="reject-btn"
+                            onclick="updateStatus('{{ booking.id }}','{{ booking.booking_type }}','cancelled')">
+
+                            <i class="fa fa-ban"></i>
+
+                        </button>
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <script src="{% static 'dashboard/js/bookings.js' %}?v=10"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,382 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #eef3ff, #f7f9ff);
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+}
+
+/* FORM CONTAINER */
+.register-container {
+    background: rgba(255, 255, 255, 0.95);
+    max-width: 430px;
+    width: 100%;
+    padding: clamp(18px, 4vw, 32px);
+    border-radius: 18px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+    backdrop-filter: blur(10px);
+
+    animation: popIn 0.9s ease forwards;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+/* OPENING ANIMATION */
+@keyframes popIn {
+    0% {
+        opacity: 0;
+        transform: translateY(40px) scale(0.95);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* LOGO TOP CENTER */
+.logo-box {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 12px;
+}
+
+.logo-box img {
+    width: 75px;
+    height: auto;
+}
+
+/* TITLE */
+.register-container h2 {
+    font-size: clamp(22px, 4vw, 28px);
+    text-align: center;
+    color: #1d4ed8;
+    font-weight: bold;
+}
+
+.register-container p {
+    text-align: center;
+    font-size: clamp(13px, 3vw, 15px);
+    margin: 10px 0 25px;
+    color: #555;
+}
+
+/* INPUT GROUP */
+.input-group {
+    margin-bottom: 16px;
+    position: relative;
+}
+
+.input-group label {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* ICON */
+.input-group i {
+    position: absolute;
+    left: 14px;
+    top: 38px;
+    color: #1d4ed8;
+    font-size: 15px;
+}
+
+/* INPUTS */
+.input-group input,
+.input-group select {
+    width: 100%;
+    padding: 12px 14px 12px 42px;
+    border-radius: 12px;
+    border: 1px solid #dce2f2;
+    outline: none;
+    font-size: 14px;
+    background: #f5f7ff;
+    transition: 0.3s ease;
+}
+
+/* FOCUS EFFECT */
+.input-group input:focus,
+.input-group select:focus {
+    border-color: #1d4ed8;
+    box-shadow: 0 0 0 4px rgba(29, 78, 216, 0.2);
+    transform: translateY(-2px);
+}
+
+/* BUTTON */
+button {
+    width: 100%;
+    padding: 13px;
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    border: none;
+    color: white;
+    border-radius: 14px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    transition: 0.3s ease;
+    margin-top: 10px;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(29, 78, 216, 0.35);
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+/* RESPONSIVE */
+@media (max-width: 420px) {
+    .register-container {
+        border-radius: 14px;
+        padding: 18px;
+    }
+
+    .logo-box img {
+        width: 65px;
+    }
+
+    .input-group input,
+    .input-group select {
+        font-size: 13px;
+        padding: 11px 12px 11px 40px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 12px;
+    }
+}
+
+.popup-message {
+    position: fixed;
+    top: 20px;
+    right: -300px;
+    padding: 15px 25px;
+    border-radius: 8px;
+    color: white;
+    font-weight: 500;
+    transition: 0.5s ease;
+    z-index: 999;
+}
+
+.popup-message.show {
+    right: 20px;
+}
+
+.popup-message.success {
+    background: #28a745;
+}
+
+.popup-message.error {
+    background: #dc3545;
+}
+button.loading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+button.loading::after {
+    content: " ⏳";
+}
+
+/* =========================
+   SUCCESS OVERLAY
+========================= */
+.success-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.4s ease;
+}
+
+.success-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* SUCCESS BOX */
+.success-box {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 18px;
+    text-align: center;
+    animation: popUp 0.4s ease;
+}
+
+.success-box h3 {
+    margin-top: 15px;
+    color: #1d4ed8;
+}
+
+.success-box p {
+    color: #666;
+    font-size: 14px;
+}
+
+/* =========================
+   CHECKMARK ANIMATION
+========================= */
+
+.checkmark-circle {
+    width: 80px;
+    height: 80px;
+    margin: auto;
+}
+
+.checkmark-circle svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* CIRCLE DRAW */
+.circle {
+    fill: none;
+    stroke: #22c55e;
+    stroke-width: 4;
+    stroke-dasharray: 160;
+    stroke-dashoffset: 160;
+    animation: drawCircle 0.6s ease forwards;
+}
+
+/* CHECK DRAW */
+.check {
+    fill: none;
+    stroke: #22c55e;
+    stroke-width: 4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    animation: drawCheck 0.4s ease 0.6s forwards;
+}
+
+/* ANIMATIONS */
+@keyframes drawCircle {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes drawCheck {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+/* POP EFFECT */
+@keyframes popUp {
+    from {
+        transform: scale(0.7);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* ERROR SHAKE */
+.shake {
+    animation: shake 0.4s;
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    50% { transform: translateX(6px); }
+    75% { transform: translateX(-6px); }
+    100% { transform: translateX(0); }
+}
+
+/* INPUT STATES */
+.input-group input.valid {
+    border: 2px solid #22c55e;
+}
+
+.input-group input.invalid {
+    border: 2px solid #dc3545;
+}
+
+.input-group input.loading {
+    border: 2px solid #f59e0b;
+}
+
+/* STRENGTH BAR */
+.strength-bar {
+    width: 100%;
+    height: 6px;
+    background: #e5e7eb;
+    border-radius: 10px;
+    margin-top: 6px;
+    overflow: hidden;
+}
+
+#strengthFill {
+    height: 100%;
+    width: 0%;
+    transition: 0.3s ease;
+}
+
+/* COLORS */
+.weak {
+    width: 33%;
+    background: #dc3545;
+}
+
+.medium {
+    width: 66%;
+    background: #f59e0b;
+}
+
+.strong {
+    width: 100%;
+    background: #22c55e;
+}
+
+.password-group i {
+    cursor: pointer;
+    right: 14px;
+    left: auto;
+}
+
+input.invalid, select.invalid {
+    border: 2px solid #dc3545;
+}
+
+input.valid, select.valid {
+    border: 2px solid #22c55e;
+}
+
+.error-text {
+    color: #dc3545;
+    font-size: 12px;
+    margin-top: 4px;
+    display: block;
+    opacity: 0;
+    transform: translateY(-5px);
+    transition: 0.3s ease;
+}
+
+.error-text.show {
+    opacity: 1;
+    transform: translateY(0);
+}

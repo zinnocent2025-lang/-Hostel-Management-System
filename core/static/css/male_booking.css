@@ -1,0 +1,529 @@
+/* =========================
+   GLOBAL
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:Arial, Helvetica, sans-serif;
+
+    background:
+    linear-gradient(
+        135deg,
+        #0f172a,
+        #1e3a8a,
+        #2563eb
+    );
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:40px 20px;
+
+    overflow-x:hidden;
+
+    
+    opacity:1;
+
+    transition:0.6s ease;
+}
+
+
+/* =========================
+   MAIN CONTAINER
+========================= */
+
+.booking-container{
+
+    width:100%;
+
+    max-width:1300px;
+
+    display:grid;
+
+    grid-template-columns:1.3fr 0.9fr;
+
+    gap:40px;
+
+    align-items:start;
+}
+
+/* =========================
+   GLASS EFFECT
+========================= */
+
+.glass-card,
+.summary-card{
+
+    background:rgba(255,255,255,0.12);
+
+    backdrop-filter:blur(20px);
+
+    -webkit-backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,0.2);
+
+    border-radius:25px;
+
+    box-shadow:
+    0 8px 32px rgba(0,0,0,0.2);
+
+    padding:35px;
+
+    color:white;
+}
+
+/* =========================
+   LEFT SIDE
+========================= */
+
+.glass-card h1{
+
+    font-size:38px;
+
+    margin-bottom:10px;
+
+    font-weight:700;
+}
+
+.subtitle{
+
+    opacity:0.8;
+
+    margin-bottom:35px;
+
+    font-size:15px;
+}
+
+/* =========================
+   FORM
+========================= */
+
+form{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:22px;
+}
+
+.form-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+}
+
+.form-group label{
+
+    font-size:14px;
+
+    font-weight:600;
+
+    letter-spacing:0.5px;
+}
+
+/* =========================
+   INPUTS
+========================= */
+
+.form-control{
+
+    width:100%;
+
+    padding:15px 18px;
+
+    border-radius:14px;
+
+    border:none;
+
+    outline:none;
+
+    background:rgba(255,255,255,0.18);
+
+    color:white;
+
+    font-size:15px;
+
+    transition:0.3s ease;
+}
+
+.form-control::placeholder{
+
+    color:rgba(255,255,255,0.7);
+}
+
+.form-control:focus{
+
+    background:rgba(255,255,255,0.25);
+
+    transform:scale(1.01);
+
+    box-shadow:
+    0 0 15px rgba(255,255,255,0.15);
+}
+
+/* =========================
+   SELECT
+========================= */
+
+/* FIX SELECT TEXT VISIBILITY */
+
+select.form-control{
+
+    color:black;
+
+    background:white;
+}
+
+select.form-control option{
+
+    color:black;
+
+    background:white;
+}
+
+
+/* =========================
+   TEXTAREA
+========================= */
+
+textarea.form-control{
+
+    resize:none;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.book-btn{
+
+    margin-top:15px;
+
+    border:none;
+
+    outline:none;
+
+    background:white;
+
+    color:#1e3a8a;
+
+    padding:18px;
+
+    border-radius:16px;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:0.3s ease;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:10px;
+}
+
+.book-btn:hover{
+
+    transform:translateY(-3px);
+
+    background:#dbeafe;
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,0.25);
+}
+
+/* =========================
+   RIGHT SIDE
+========================= */
+
+.summary-card{
+
+    position:sticky;
+
+    top:30px;
+}
+
+.room-image{
+
+    width:100%;
+
+    height:240px;
+
+    object-fit:cover;
+
+    border-radius:18px;
+
+    margin-bottom:25px;
+}
+
+.summary-card h2{
+
+    font-size:28px;
+
+    margin-bottom:30px;
+}
+
+/* =========================
+   SUMMARY ITEMS
+========================= */
+
+.summary-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:16px 0;
+
+    border-bottom:
+    1px solid rgba(255,255,255,0.15);
+
+    font-size:15px;
+}
+
+.available{
+
+    color:#4ade80;
+
+    font-weight:700;
+}
+
+/* =========================
+   NOTICE BOX
+========================= */
+
+.notice-box{
+
+    margin-top:30px;
+
+    background:rgba(255,255,255,0.1);
+
+    border-radius:18px;
+
+    padding:20px;
+
+    display:flex;
+
+    gap:15px;
+
+    align-items:flex-start;
+}
+
+.notice-box i{
+
+    font-size:20px;
+
+    color:#facc15;
+
+    margin-top:2px;
+}
+
+.notice-box p{
+
+    line-height:1.7;
+
+    font-size:14px;
+
+    opacity:0.9;
+}
+/* =========================
+   OCCUPANTS
+========================= */
+
+.summary-card hr{
+
+    border:none;
+
+    height:1px;
+
+    background:rgba(255,255,255,0.15);
+
+    margin:25px 0;
+}
+
+.summary-card h4{
+
+    font-size:17px;
+
+    margin-bottom:15px;
+
+    color:#fff;
+
+    letter-spacing:.5px;
+}
+
+.occupant-list{
+
+    list-style:none;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+    margin-bottom:20px;
+}
+
+.occupant-list li{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    background:rgba(255,255,255,.08);
+
+    padding:12px 15px;
+
+    border-radius:12px;
+
+    transition:.3s;
+}
+
+.occupant-list li:hover{
+
+    background:rgba(255,255,255,.14);
+
+    transform:translateX(5px);
+}
+
+.occupant-list i{
+
+    color:#4ade80;
+
+    font-size:15px;
+}
+
+.no-occupants{
+
+    background:rgba(255,255,255,.08);
+
+    border-radius:12px;
+
+    padding:18px;
+
+    text-align:center;
+
+    line-height:1.8;
+
+    opacity:.9;
+}
+
+.no-occupants i{
+
+    display:block;
+
+    font-size:26px;
+
+    color:#4ade80;
+
+    margin-bottom:10px;
+}
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:1100px){
+
+    .booking-container{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .summary-card{
+
+        position:relative;
+
+        top:0;
+    }
+}
+
+@media(max-width:768px){
+
+    body{
+
+        padding:20px 12px;
+    }
+
+    .glass-card,
+    .summary-card{
+
+        padding:25px;
+    }
+
+    .glass-card h1{
+
+        font-size:30px;
+    }
+
+    .summary-card h2{
+
+        font-size:24px;
+    }
+
+    .room-image{
+
+        height:210px;
+    }
+}
+
+@media(max-width:500px){
+
+    .glass-card h1{
+
+        font-size:26px;
+    }
+
+    .subtitle{
+
+        font-size:14px;
+    }
+
+    .form-control{
+
+        padding:14px;
+    }
+
+    .book-btn{
+
+        padding:16px;
+
+        font-size:15px;
+    }
+
+    .summary-item{
+
+        font-size:14px;
+    }
+
+    .notice-box{
+
+        flex-direction:column;
+    }
+}

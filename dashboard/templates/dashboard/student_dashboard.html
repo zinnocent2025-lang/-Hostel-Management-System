@@ -1,0 +1,673 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Dashboard</title>
+
+  <link rel="stylesheet" href="{% static 'dashboard/css/student_dashboard.css' %}" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+</head>
+
+<body>
+  <div class="dashboard-container">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="logo-box">
+        {% if request.session.google_picture %}
+        <img src="{{ request.session.google_picture }}" alt="User" class="user-photo" />
+        {% else %}
+
+        {% endif %}
+
+        <h2>Hostel Dashboard</h2>
+      </div>
+
+      <ul class="menu">
+        <li class="active">
+          <a href="{% url 'student_dashboard' %}">
+            <i class="fa-solid fa-house"></i>
+            Dashboard
+          </a>
+        </li>
+
+        <li>
+          <a href="{% url 'hostels' %}">
+            <i class="fa-solid fa-building"></i>
+            Browse Hostels
+          </a>
+        </li>
+
+        <li>
+          <a href="#recent-bookings">
+            <i class="fa-solid fa-bed"></i>
+            My Bookings
+          </a>
+        </li>
+
+        <li>
+          <a href="#student-chat">
+            <i class="fa-solid fa-message"></i>
+            Messages
+          </a>
+        </li>
+
+        <li>
+          <a href="#analytics">
+            <i class="fa-solid fa-chart-line"></i>
+            Analytics
+          </a>
+        </li>
+
+        <li>
+          <a href="#profile">
+            <i class="fa-solid fa-user"></i>
+            Profile
+          </a>
+        </li>
+
+        <li>
+          <button type="button" class="logout-btn" onclick="openLogoutModal()">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Logout
+          </button>
+        </li>
+      </ul>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+      <!-- TOP BAR -->
+      <header class="topbar">
+        <button class="menu-toggle" id="menuToggle"><i class="fa-solid fa-bars"></i></button>
+
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="dashboardSearch" placeholder="Search hostels..." />
+        </div>
+        <div class="search-box">
+
+          <!-- <i class="fa-solid fa-magnifying-glass"></i> -->
+
+          <input type="text" id="dashboardSearch" placeholder="">
+
+          <div id="searchResults"></div>
+
+        </div>
+
+        <div class="user-box">
+
+
+          {% if request.user.socialaccount_set.first.extra_data.picture %}
+          <img src="{{ request.user.socialaccount_set.first.extra_data.picture }}" alt="User" class="small-photo" />
+          {% else %}
+          <div class="avatar-circle {{ avatar_color }}">{{ request.user.email|first|upper }}</div>
+          {% endif %}
+
+          <div>
+            <p>Welcome,</p>
+            <h4>{{ request.user.email }}</h4>
+          </div>
+        </div>
+      </header>
+
+      <!-- WELCOME -->
+      <section class="welcome-card">
+        <div>
+          <h1>
+            Welcome back,{% if request.user.first_name %}
+            {{ request.user.first_name }}
+            {% else %}
+            {{ request.user.username }}
+            {% endif %}👋
+          </h1>
+          <p>Here’s what’s happening in your hostel account.</p>
+        </div>
+      </section>
+
+      <!-- STATUS CARDS -->
+      <section class="cards-row">
+        <!-- BOOKING STATUS -->
+        <div class="info-card">
+          <i class="fa-solid fa-bookmark"></i>
+
+          <h3>Booking Status</h3>
+
+          {% if booking %}
+          <p class="success-text">Room {{ current_room }} Booked</p>
+          {% else %}
+          <p>No Booking Yet</p>
+          {% endif %}
+        </div>
+
+
+        <!-- CURRENT HOSTEL -->
+        <a href="{{ current_hostel_url }}" class="info-card hostel-card">
+
+          <i class="fa-solid fa-house"></i>
+
+          <h3 id="currentHostel">
+            {{ current_hostel }}
+          </h3>
+
+          <p id="currentRoom">
+            {{ current_room }}
+          </p>
+        </a>
+
+
+        <!-- PAYMENT COUNTDOWN -->
+        <div class="info-card">
+          <i class="fa-solid fa-clock"></i>
+
+          <h3>Payment Countdown</h3>
+
+          {% if booking %}
+          <div id="bookingDeadline" data-deadline="{{ deadline }}" hidden>
+          </div>
+          <p id="countdownTimer"></p>
+          {% else %}
+          <p>No Active Timer</p>
+          {% endif %}
+        </div>
+
+        <!-- ACCOUNT STATUS -->
+        <div class="info-card">
+          <i class="fa-solid fa-circle-check"></i>
+
+          <h3>Account Status</h3>
+
+          <p>Active</p>
+        </div>
+      </section>
+
+      <!-- MIDDLE SECTION -->
+      <section class="middle-grid">
+        <!-- QUICK ACTION -->
+        <div class="quick-actions">
+          <h2>Quick Actions</h2>
+
+          <a href="{% url 'hostels' %}" class="action-box">
+            <i class="fa-solid fa-building"></i>
+            Browse Hostels
+          </a>
+
+          <a href="#recent-bookings" class="action-box">
+            <i class="fa-solid fa-bed"></i>
+            My Booking
+          </a>
+
+          <a href="#student-chat" class="action-box">
+            <i class="fa-solid fa-message"></i>
+            Message Admin
+          </a>
+        </div>
+
+        <!-- ANALYTICS -->
+        <div class="analytics-box" id="analytics">
+          <h2>Utility Analytics</h2>
+
+          <div class="chart-card">
+            <canvas id="pieChart"></canvas>
+          </div>
+
+          <div class="chart-card">
+            <canvas id="lineChart"></canvas>
+          </div>
+
+          <div class="analytic-progress">
+            <label>⚡ Electricity %</label>
+            <div class="progress-bar">
+              <div class="fill electric" data-width="{{ analytics.electricity|default:5 }}"></div>
+            </div>
+
+            <label>💧 Water Supply %</label>
+            <div class="progress-bar">
+              <div class="fill water" data-width="{{ analytics.water|default:50 }}"></div>
+            </div>
+
+            <label>🛠 Maintenance %</label>
+            <div class="progress-bar">
+              <div class="fill maintenance" data-width="{{ analytics.maintenance|default:40 }}"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BOTTOM SECTION -->
+
+      <section class="bottom-grid">
+        <!-- RECENT BOOKINGS -->
+        <div class="recent-box" id="recent-bookings">
+          <h2>Recent Bookings</h2>
+
+          {% if booking_history %}
+          {% for item in booking_history %}
+          <div class="booking-item">
+            <div>
+              <p>
+                {% if item.room %}
+                Room {{ item.room.room_number }}
+                {% else %}
+                External Hostel
+                {% endif %}
+              </p>
+
+              <small>
+                {% if request.user.user_profile.gender == 'Male' %}
+                Male Hostel
+                {% else %}
+                Female Hostel
+                {% endif %}
+              </small>
+            </div>
+
+            <span class="{% if item.status == 'approved' %}
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                    approved-status
+
+
+
+
+
+
+
+                    {% elif item.status == 'pending' %}
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                    pending-status
+
+
+
+
+
+
+
+                    {% elif item.status == 'rejected' %}
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                    rejected-status
+
+
+
+
+
+
+
+                    {% elif item.status == 'expired' %}
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                    expired-status
+
+
+
+
+
+
+
+                    {% else %}
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                    cancelled-status
+
+
+
+
+
+
+
+                    {% endif %} ">
+              {{ item.status|title }}
+            </span>
+          </div>
+          {% endfor %}
+          {% else %}
+          <div class="booking-item">
+            <p>No Booking History</p>
+          </div>
+          {% endif %}
+        </div>
+
+        <!-- ================= CHAT SECTION ================= -->
+
+        <div class="recent-box chat-box" id="student-chat">
+          <!-- HEADER -->
+
+          <div class="chat-header">
+            <div class="chat-admin">
+              <div class="admin-avatar">
+                <i class="fa-solid fa-user-shield"></i>
+              </div>
+
+              <div>
+                <h3>Admin Support</h3>
+
+                <small>Usually replies instantly</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- CHAT BODY -->
+
+          <div class="chat-messages" id="chatMessages">
+            {% for msg in messages %}
+            {% ifchanged msg.created_at.date %}
+
+            <div class="chat-day">
+              {% if msg.created_at.date == today %}
+              Today
+              {% elif msg.created_at.date == yesterday %}
+              Yesterday
+              {% else %}
+              {{ msg.created_at|date:'F d, Y' }}
+              {% endif %}
+            </div>
+
+            {% endifchanged %}
+
+            <!-- STUDENT -->
+
+            {% if msg.sender == request.user %}
+            <div class="message-row own">
+              <div class="message-bubble own-bubble">
+                <div class="message-actions">
+                  <a href="{% url 'delete_message' msg.id %}" onclick="return confirm('Delete this message?')"><i
+                      class="fa-solid fa-trash"></i></a>
+                </div>
+                {% if msg.message %}
+                <p>{{ msg.message }}</p>
+                {% endif %}
+
+                <!-- IMAGE -->
+
+                {% if msg.message_type == 'image' %}
+                <img src="{{ msg.file.url }}" class="chat-image" />
+                {% endif %}
+
+                <!-- VOICE -->
+
+                {% if msg.message_type == 'voice' %}
+                <audio controls class="voice-player">
+                  <source src="{{ msg.file.url }}" />
+                </audio>
+                {% endif %}
+
+                <!-- FILE -->
+
+                {% if msg.message_type == 'file' %}
+                <a href="{{ msg.file.url }}" target="_blank" class="file-box">
+                  <i class="fa-solid fa-file"></i>
+
+                  Open File
+                </a>
+                {% endif %}
+
+                <small>{{ msg.created_at|date:'h:i A' }}</small>
+              </div>
+            </div>
+            {% else %}
+            <!-- ADMIN -->
+
+            <div class="message-row">
+              <div class="message-bubble admin-bubble">
+                {% if msg.message %}
+                <p>{{ msg.message }}</p>
+                {% endif %}
+
+                {% if msg.message_type == 'image' %}
+                <img src="{{ msg.file.url }}" class="chat-image" />
+                {% endif %}
+
+                {% if msg.message_type == 'voice' %}
+                <audio controls class="voice-player">
+                  <source src="{{ msg.file.url }}" />
+                </audio>
+                {% endif %}
+
+                {% if msg.message_type == 'file' %}
+                <a href="{{ msg.file.url }}" target="_blank" class="file-box">
+                  <i class="fa-solid fa-file"></i>
+
+                  Open File
+                </a>
+                {% endif %}
+
+                <small>{{ msg.created_at|date:'h:i A' }}</small>
+              </div>
+            </div>
+            {% endif %}
+            {% empty %}
+            <div class="empty-chat">
+              <i class="fa-solid fa-comments"></i>
+
+              <p>Start a conversation with admin</p>
+            </div>
+            {% endfor %}
+          </div>
+
+          <!-- FORM -->
+
+          <form method="POST" enctype="multipart/form-data" class="chat-form">
+            {% csrf_token %}
+
+            <label for="chatFile" class="file-upload"><i class="fa-solid fa-paperclip"></i></label>
+
+            <input type="file" name="file" id="chatFile" hidden />
+
+            <input type="text" name="message" placeholder="Type your message..." />
+            <button type="button" id="recordBtn">
+              <i class="fa-solid fa-microphone"></i>
+            </button>
+
+            <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+          </form>
+        </div>
+      </section>
+
+      <section class="profile-section" id="profile">
+        <div class="profile-card glass-card">
+          <div class="profile-top">
+            {% if request.user.user_profile.image %}
+            <img src="{{ request.user.user_profile.image.url }}" class="profile-photo" id="previewImage" />
+            {% else %}
+            <div class="profile-avatar {{ avatar_color }}" id="previewAvatar">{{ request.user.email|first|upper }}</div>
+            {% endif %}
+
+            <div>
+              <h2>{{ request.user.first_name|default:'Student' }}</h2>
+              <p>{{ request.user.email }}</p>
+            </div>
+
+            <button class="edit-profile-btn" onclick="openProfileModal()"><i class="fa-solid fa-pen"></i> Edit</button>
+          </div>
+
+          <div class="profile-grid">
+            <div class="profile-item">
+              <span>Gender</span>
+              <strong>{{ request.user.user_profile.gender|default:'Not Set' }}</strong>
+            </div>
+
+            <div class="profile-item">
+              <span>Phone</span>
+              <strong>{{ request.user.user_profile.phone|default:'Not Added' }}</strong>
+            </div>
+
+            <div class="profile-item">
+              <span>Department</span>
+              <strong>{{ request.user.user_profile.department|default:'Not Added' }}</strong>
+            </div>
+
+            <div class="profile-item">
+              <span>Level</span>
+              <strong>{{ request.user.user_profile.level|default:'Not Added' }}</strong>
+            </div>
+
+            <div class="profile-item">
+              <span>Matric No</span>
+              <strong>{{ request.user.user_profile.matric_no|default:'Pending' }}</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="profile-modal" id="profileModal">
+        <div class="modal-box">
+          <h2>Edit Profile</h2>
+
+          <form id="profileForm" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <input type="file" name="image" id="imageInput" />
+
+            <input type="text" name="phone" placeholder="Phone Number" />
+            <input type="text" name="department" placeholder="Department" />
+            <input type="text" name="level" placeholder="Level" />
+            <input type="text" name="matric_no" placeholder="Matric Number" />
+
+            <button type="submit">Save Changes</button>
+          </form>
+
+          <button class="close-btn" onclick="closeProfileModal()">Close</button>
+        </div>
+      </div>
+
+      <div class="logout-modal" id="logoutModal">
+        <div class="logout-box">
+          <h2>Logout</h2>
+
+          <p>Are you sure you want to logout?</p>
+
+          <div class="logout-actions">
+            <button class="cancel-logout" onclick="closeLogoutModal()">Cancel</button>
+
+            <form method="POST" action="{% url 'logout' %}">
+              {% csrf_token %}
+
+              <button type="submit" class="confirm-logout">Yes Logout</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script id="analytics-data" type="application/json">
+{
+  "electricity": "{{ analytics.electricity|default:'0' }}",
+  "water": "{{ analytics.water|default:'0' }}",
+  "maintenance": "{{ analytics.maintenance|default:'0' }}",
+
+  "occupied": "{{ analytics.occupied|default:'0' }}",
+  "available": "{{ analytics.available|default:'0' }}",
+
+  "mon": "{{ analytics.mon|default:'0' }}",
+  "tue": "{{ analytics.tue|default:'0' }}",
+  "wed": "{{ analytics.wed|default:'0' }}",
+  "thu": "{{ analytics.thu|default:'0' }}",
+  "fri": "{{ analytics.fri|default:'0' }}",
+  "sat": "{{ analytics.sat|default:'0' }}",
+  "sun": "{{ analytics.sun|default:'0' }}"
+}
+</script>
+
+  <script>
+
+    const hostelAnalytics = JSON.parse(
+      document.getElementById("analytics-data").textContent
+    );
+
+    console.log(hostelAnalytics);
+
+  </script>
+
+  <script>
+
+    const countdownElement =
+      document.getElementById("countdownTimer");
+
+    const deadlineElement =
+      document.getElementById("bookingDeadline");
+
+    if (countdownElement && deadlineElement) {
+
+      const deadline =
+        deadlineElement.dataset.deadline;
+
+      if (deadline) {
+
+        const endTime =
+          new Date(deadline);
+
+        const timer = setInterval(() => {
+
+          const now = new Date();
+
+          const diff =
+            Math.floor(
+              (endTime - now) / 1000
+            );
+
+          if (diff <= 0) {
+
+            clearInterval(timer);
+
+            countdownElement.innerHTML =
+              "Booking Expired";
+
+            location.reload();
+
+            return;
+          }
+
+          const minutes =
+            Math.floor(diff / 60);
+
+          const seconds =
+            diff % 60;
+
+          countdownElement.innerHTML =
+            `${minutes}m ${seconds}s`;
+
+        }, 1000);
+
+      }
+
+    }
+
+  </script>
+
+  <script src="{% static 'dashboard/js/student_dashboard.js' %}"></script>
+</body>
+
+</html>

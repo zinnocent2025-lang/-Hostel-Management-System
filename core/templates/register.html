@@ -1,0 +1,102 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>registration Form</title>
+    <link rel="stylesheet" href="{% static 'css/register.css'%}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <div class="register-container">
+        <div class="logo-box">
+            <img src="{% static 'images/logo.png'%}">
+        </div>
+        <h2>Student Registration</h2>
+        <p>Create your hostel account</p>
+        <form method="POST" action="{% url 'register' %}">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ next }}">
+            <div class="input-group">
+                <label>Full Name</label>
+                <i class="fa-solid fa-circle-user"></i>
+                <input type="text" name="full_name" id="fullName" placeholder="Enter your full name" required>
+                <small class="error-text"></small>
+            </div>
+            <div class="input-group">
+                <label>Email Address</label>
+                <i class="fa-solid fa-envelope"></i>
+                <input type="email" name="email" id="emailInput" placeholder="example@gmail.com" required>
+                <small class="error-text"></small>
+            </div>
+
+            <div class="input-group">
+                <label>Phone Number</label>
+                <i class="fa-solid fa-phone"></i>
+                <input type="tel" name="phone" id="phoneInput" placeholder="080xxxxxxxx" required>
+                <small class="error-text"></small>
+            </div>
+
+            <div class="input-group">
+                <label>Gender</label>
+                <select name="gender" id="genderInput" required>
+                    <option value="">Select Gender</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                </select>
+            </div>
+
+            <div class="input-group password-group">
+                <label>Password</label>
+
+                <i class="fa-solid fa-eye toggle-password" data-target="password"></i>
+
+                <input type="password" name="password" id="password" placeholder="Create password" required>
+                <small class="error-text"></small>
+
+                <div class="strength-bar">
+                    <div id="strengthFill"></div>
+                </div>
+            </div>
+
+            <div class="input-group password-group">
+                <label>Confirm Password</label>
+
+                <i class="fa-solid fa-eye toggle-password" data-target="confirm_password"></i>
+
+                <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm password" required>
+                <small class="error-text"></small>
+            </div>
+
+            <button type="submit" id="registerBtn">Register</button>
+
+        </form>
+        <div id="successOverlay" class="success-overlay">
+
+            <div class="success-box">
+
+                <!-- ANIMATION -->
+                <div class="checkmark-circle">
+                    <svg viewBox="0 0 52 52">
+                        <circle class="circle" cx="26" cy="26" r="25"></circle>
+                        <path class="check" d="M14 27l7 7 16-16"></path>
+                    </svg>
+                </div>
+
+                <h3>Registration Successful</h3>
+                <p>Your account has been created</p>
+
+            </div>
+
+        </div>
+
+    </div>
+    <script src="{% static 'js/register.js' %}"></script>
+</body>
+
+</html>

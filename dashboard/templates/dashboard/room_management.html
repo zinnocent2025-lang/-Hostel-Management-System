@@ -1,0 +1,225 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Room Management</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="stylesheet" href="{% static 'dashboard/css/room_management.css' %}">
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <div class="top-bar">
+
+        <div class="left">
+
+            <i class="fa-solid fa-arrow-left" onclick="location.href='/dashboard/'"></i>
+
+            <h2>Room Management</h2>
+
+        </div>
+
+    </div>
+
+    <!-- TABS -->
+
+    <div class="tabs">
+
+        <button class="tab-btn active" onclick="showSection('maleSection', this)">
+            Male Hostel
+        </button>
+
+        <button class="tab-btn" onclick="showSection('femaleSection', this)">
+            Female Hostel
+        </button>
+
+        <button class="tab-btn" onclick="showSection('externalSection', this)">
+            External Hostels
+        </button>
+
+    </div>
+    <!-- MALE SECTION -->
+
+    <div class="rooms-section active" id="maleSection">
+
+        <div class="rooms-grid">
+
+            {% for room in male_rooms %}
+
+            <div class="room-card">
+
+                <div class="room-top">
+
+                    <i class="fa-solid fa-bed"></i>
+
+                    <span class="
+                        {% if room.status == 'available' %}
+                            available
+                        {% else %}
+                            occupied
+                        {% endif %}
+                    ">
+                        {{ room.status }}
+                    </span>
+
+                </div>
+
+                <h3>{{ room.room_number }}</h3>
+
+                <select onchange="updateRoomStatus(
+                        '{{ room.id }}',
+                        this.value,
+                        'male'
+                    )">
+
+                    <option value="available" {% if room.status == "available" %} selected {% endif %}>
+                        Available
+                    </option>
+
+                    <option value="occupied" {% if room.status == "occupied" %} selected {% endif %}>
+                        Occupied
+                    </option>
+
+                </select>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+    <!-- FEMALE SECTION -->
+
+    <div class="rooms-section" id="femaleSection">
+
+        <div class="rooms-grid">
+
+            {% for room in female_rooms %}
+
+            <div class="room-card">
+
+                <div class="room-top">
+
+                    <i class="fa-solid fa-bed"></i>
+
+                    <span class="
+                        {% if room.status == 'available' %}
+                            available
+                        {% else %}
+                            occupied
+                        {% endif %}
+                    ">
+                        {{ room.status }}
+                    </span>
+
+                </div>
+
+                <h3>{{ room.room_number }}</h3>
+
+                <select onchange="updateRoomStatus(
+                        '{{ room.id }}',
+                        this.value,
+                        'female'
+                    )">
+
+                    <option value="available" {% if room.status == "available" %} selected {% endif %}>
+                        Available
+                    </option>
+
+                    <option value="occupied" {% if room.status == "occupied" %} selected {% endif %}>
+                        Occupied
+                    </option>
+
+                </select>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+    <!-- EXTERNAL HOSTELS -->
+
+    <div class="rooms-section" id="externalSection">
+
+        {% for hostel in external_hostels %}
+
+        <h3 class="hostel-title">
+            {{ hostel.name }}
+        </h3>
+
+        <div class="rooms-grid">
+
+            {% for room in hostel.rooms.all %}
+
+            <div class="room-card">
+
+                <div class="room-top">
+
+                    <i class="fa-solid fa-bed"></i>
+
+                    <span class="
+                    {% if room.status == 'available' %}
+                        available
+                    {% else %}
+                        occupied
+                    {% endif %}
+                ">
+                        {{ room.status }}
+                    </span>
+
+                </div>
+
+                <h3>{{ room.room_number }}</h3>
+
+                <p>{{ room.room_type }}</p>
+
+                <select onchange="updateRoomStatus(
+                    '{{ room.id }}',
+                    this.value,
+                    'external'
+                )">
+
+                    <option value="available" {% if room.status == "available" %}selected{% endif %}>
+                        Available
+                    </option>
+
+                    <option value="occupied" {% if room.status == "occupied" %}selected{% endif %}>
+                        Occupied
+                    </option>
+
+                </select>
+
+            </div>
+
+            {% empty %}
+
+            <p>No rooms added.</p>
+
+            {% endfor %}
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    <script src="{% static 'dashboard/js/room_management.js' %}"></script>
+
+</body>
+
+</html>

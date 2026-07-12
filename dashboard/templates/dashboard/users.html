@@ -1,0 +1,366 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+
+    <link rel="stylesheet" href="{% static 'dashboard/css/users.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+
+        <div class="left">
+            <i class="fa-solid fa-arrow-left" onclick="location.href='/dashboard/'"></i>
+            <h2>Users</h2>
+        </div>
+        <!-- ADD USER MODAL -->
+        <div class="modal" id="userModal">
+
+            <div class="modal-content">
+
+                <h3>Add New User</h3>
+
+                <form method="POST" action="/dashboard/add-user/">
+                    {% csrf_token %}
+
+                    <input type="text" name="username" placeholder="Username" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="password" name="password" placeholder="Password" required>
+
+                    <label class="checkbox">
+                        <input type="checkbox" name="is_staff">Make Admin (Staff)
+                    </label>
+
+                    <div class="modal-actions">
+                        <button type="submit" class="save-btn">Create</button>
+                        <button type="button" class="cancel-btn" id="closeModal">Cancel</button>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        <div class="right">
+
+            <!-- SEARCH -->
+            <div class="search-box">
+                <i class="fa-solid fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Search users...">
+                <p id="searchStatus"></p>
+            </div>
+
+            <!-- ADD USER -->
+            <button class="add-btn">
+                <i class="fa-solid fa-plus"></i> Add User
+            </button>
+
+            <!-- MENU -->
+            <div class="menu">
+                <i class="fa-solid fa-ellipsis-h" id="menuBtn"></i>
+
+                <div class="dropdown" id="menuDropdown">
+                    <p id="filterAll">All Users</p>
+                    <p id="filterActive">Active Users</p>
+                    <p id="filterStaff">Staff Users</p>
+
+                    <hr>
+
+                    <p id="bulkDelete">Bulk Delete</p>
+                    <p id="exportUsers">Export Users</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- USERS GRID -->
+    <div class="users-container" id="usersContainer">
+
+        {% for user in users %}
+        <div class="user-card" data-active="{{ user.is_active }}" data-staff="{{ user.is_staff }}"
+            data-id="{{ user.id }}">
+
+            <input type="checkbox" class="select-user">
+
+            <div class="avatar-wrapper">
+                <div class="avatar-circle">
+
+                    {% if user.user_profile.image %}
+                    <img src="{{ user.user_profile.image.url }}" class="avatar-img">
+                    {% else %}
+                    <div class="avatar-fallback">
+                        {{ user.username|first|upper }}
+                    </div>
+                    {% endif %}
+
+                </div>
+
+                <div class="plus-btn" onclick="triggerUpload(this)">
+                    <i class="fa-solid fa-plus"></i>
+                </div>
+
+                <input type="file" class="upload-input" hidden onchange="uploadImage(event, '{{ user.id }}')">
+            </div>
+
+            <div class="user-info">
+
+                <h3>
+                    {% if user.first_name or user.last_name %}
+                    {{ user.first_name }} {{ user.last_name }}
+                    {% else %}
+                    {{ user.username }}
+                    {% endif %}
+                </h3>
+
+                <p class="username-tag">
+                    @{{ user.username }}
+                </p>
+
+                <p class="user-email">
+                    {{ user.email }}
+                </p>
+
+                <small>
+                    <i class="fa-solid fa-phone"></i>
+                    {{ user.user_profile.phone|default:"No Phone" }}
+                </small>
+
+                <small>
+                    <i class="fa-solid fa-building-columns"></i>
+                    {{ user.user_profile.department|default:"No Department" }}
+                </small>
+
+                <small>
+                    <i class="fa-solid fa-id-card"></i>
+                    {{ user.user_profile.matric_no|default:"No Matric No" }}
+                </small>
+
+            </div>
+
+            <div class="user-badges">
+
+                {% if user.is_active %}
+                <span class="badge active">
+                    Active
+                </span>
+                {% else %}
+                <span class="badge suspended">
+                    Suspended
+                </span>
+                {% endif %}
+
+                {% if user.is_staff %}
+                <span class="badge admin">
+                    Staff
+                </span>
+                {% endif %}
+
+            </div>
+            <div class="online-status">
+
+                {% if user.user_profile.is_online %}
+                <span class="online-dot"></span>
+                Online
+                {% else %}
+                <span class="offline-dot"></span>
+                Offline
+                {% endif %}
+
+            </div>
+
+            <div class="actions">
+                <button onclick="openUser('{{ user.id }}')">View</button>
+                <button class="delete-btn" onclick="deleteUser('{{ user.id }}')">Delete</button>
+            </div>
+
+        </div>
+        {% endfor %}
+
+    </div>
+
+    <div class="view-modal" id="viewModal">
+
+        <div class="view-content">
+
+            <h3>User Details</h3>
+
+            <div class="view-profile">
+                <div class="view-image-wrapper">
+
+                    <img id="viewImage" src="/static/images/default-user.png" class="view-img">
+
+                    <div class="status-dot" id="statusDot"></div>
+
+                </div>
+                <h4 id="viewUsername"></h4>
+                <p id="viewEmail"></p>
+                <p id="viewOnlineStatus"></p>
+            </div>
+
+            <div class="view-info">
+
+                <div class="info-grid">
+
+                    <div class="info-card">
+                        <span class="info-label">Role</span>
+                        <span id="viewRole" class="info-value"></span>
+                    </div>
+
+                    <div class="info-card">
+
+                        <span class="info-label">
+                            Gender
+                        </span>
+
+                        <select id="viewGender" class="admin-input">
+                            <option value="">Select</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+
+                    </div>
+
+                    <div class="info-card">
+
+                        <span class="info-label">
+                            Phone
+                        </span>
+
+                        <input type="text" id="viewPhone" class="admin-input">
+
+                    </div>
+
+                    <div class="info-card">
+
+                        <span class="info-label">
+                            Department
+                        </span>
+
+                        <input type="text" id="viewDepartment" class="admin-input">
+
+                    </div>
+
+                    <div class="info-card">
+
+                        <span class="info-label">
+                            Level
+                        </span>
+
+                        <input type="text" id="viewLevel" class="admin-input">
+
+                    </div>
+
+                    <div class="info-card">
+
+                        <span class="info-label">
+                            Matric Number
+                        </span>
+
+                        <input type="text" id="viewMatric" class="admin-input">
+
+                    </div>
+
+                </div>
+
+                <div class="edit-group">
+
+                    <label>Status</label>
+
+                    <select id="statusSelect">
+                        <option value="active">Active</option>
+                        <option value="suspended">Suspended</option>
+                    </select>
+
+                </div>
+
+                <div class="account-dates">
+
+                    <p>
+                        <strong>Joined:</strong>
+                        <span id="viewJoined"></span>
+                    </p>
+
+                    <p>
+                        <strong>Last Login:</strong>
+                        <span id="viewLogin"></span>
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="view-bookings">
+
+                <h4>
+                    <i class="fa-solid fa-bed"></i>
+                    Hostel Information
+                </h4>
+
+                <div class="booking-info-grid">
+
+                    <div class="booking-card">
+                        <i class="fa-solid fa-building"></i>
+                        <span class="booking-label">Hostel</span>
+                        <span id="viewHostel" class="booking-value">
+                            No Hostel
+                        </span>
+                    </div>
+
+                    <div class="booking-card">
+                        <i class="fa-solid fa-door-open"></i>
+                        <span class="booking-label">Room</span>
+                        <span id="viewRoom" class="booking-value">
+                            N/A
+                        </span>
+                    </div>
+
+                    <div class="booking-card">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span class="booking-label">Status</span>
+                        <span id="viewBookingStatus" class="booking-value">
+                            No Booking
+                        </span>
+                    </div>
+
+                    <div class="booking-card">
+                        <i class="fa-solid fa-bed"></i>
+                        <span class="booking-label">Bookings</span>
+                        <span id="viewBookingCount" class="booking-value">
+                            0
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="view-actions">
+
+                <button id="saveUserBtn">
+                    Save Changes
+                </button>
+
+                <button id="closeView">
+                    Close
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <script src="{% static 'dashboard/js/users.js' %}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Hostel</title>
+
+    <link rel="stylesheet" href="{% static 'dashboard/css/add-hostel.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body>
+
+    <div class="page-wrapper">
+
+        <div class="card">
+
+            <div class="card-top">
+                <h2><i class="fa fa-plus-circle"></i> Add New Hostel</h2>
+            </div>
+
+            <form method="POST" action="{% url 'add_hostel' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label>Hostel Name</label>
+                    {{ form.name }}
+                </div>
+
+                <div class="form-group">
+                    <label>Location</label>
+                    {{ form.location }}
+                </div>
+                <div class="form-group">
+                    <label>Hostel Type</label>
+                    {{ form.hostel_type }}
+                </div>
+
+                <div class="form-group">
+                    <label>Price</label>
+                    {{ form.price }}
+                </div>
+                <div class="form-group">
+                    <label>Hostel Capacity</label>
+                    {{ form.capacity }}
+                </div>
+                <div class="form-group">
+                    <label>Total Rooms</label>
+                    {{ form.total_rooms }}
+                </div>
+
+                <div class="form-group">
+                    <label>Description</label>
+                    {{ form.description }}
+                </div>
+
+                <div class="form-group">
+                    <label>Hostel Image</label>
+                    {{ form.image }}
+                </div>
+
+                <div class="btn-area">
+                    <a href="/dashboard/" class="cancel-btn">Cancel</a>
+                    <button type="submit">Add Hostel</button>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+    <script src="{% static 'dashboard/js/add-hostel.js' %}"></script>
+</body>
+
+</html>
