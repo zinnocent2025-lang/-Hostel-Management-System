@@ -1,0 +1,1474 @@
+[
+{
+  "model": "core.profile",
+  "pk": 8,
+  "fields": {
+    "user": 24,
+    "image": "profiles/Natalie-Sparks-25_89grEEZ.jpg",
+    "gender": "",
+    "phone": "",
+    "department": "",
+    "level": "",
+    "matric_no": "",
+    "is_online": true,
+    "last_seen": null
+  }
+},
+{
+  "model": "core.profile",
+  "pk": 48,
+  "fields": {
+    "user": 80,
+    "image": "profiles/IMG_6155-scaled_srqCFWT.png",
+    "gender": "Male",
+    "phone": "08112654780",
+    "department": "CIt",
+    "level": "2",
+    "matric_no": "Not Available",
+    "is_online": true,
+    "last_seen": "2026-06-19T17:47:37.001Z"
+  }
+},
+{
+  "model": "core.profile",
+  "pk": 61,
+  "fields": {
+    "user": 93,
+    "image": "",
+    "gender": "Female",
+    "phone": "07072614948",
+    "department": "",
+    "level": "",
+    "matric_no": "",
+    "is_online": true,
+    "last_seen": null
+  }
+},
+{
+  "model": "core.profile",
+  "pk": 64,
+  "fields": {
+    "user": 96,
+    "image": "",
+    "gender": "Male",
+    "phone": "08112654780",
+    "department": "",
+    "level": "",
+    "matric_no": "",
+    "is_online": true,
+    "last_seen": null
+  }
+},
+{
+  "model": "core.profile",
+  "pk": 66,
+  "fields": {
+    "user": 98,
+    "image": "",
+    "gender": "Male",
+    "phone": "07072614948",
+    "department": "",
+    "level": "",
+    "matric_no": "",
+    "is_online": true,
+    "last_seen": null
+  }
+},
+{
+  "model": "core.hostel",
+  "pk": 68,
+  "fields": {
+    "name": "Blessed Area Hostel",
+    "location": "Behind Jobitech Obosi",
+    "price": "120000.00",
+    "image": "hostels/hostel1.jpg",
+    "description": "Affordable and secure hostel with modern facilities.",
+    "hostel_type": "Hostel",
+    "capacity": 0,
+    "total_rooms": 1,
+    "created_at": "2026-05-06T19:31:55.587Z"
+  }
+},
+{
+  "model": "core.hostel",
+  "pk": 69,
+  "fields": {
+    "name": "Divine Peace Lodge",
+    "location": "Obosi Junction",
+    "price": "150000.00",
+    "image": "hostels/sampl14.jpeg",
+    "description": "Comfortable student hostel close to school.",
+    "hostel_type": "Hostel",
+    "capacity": 0,
+    "total_rooms": 1,
+    "created_at": "2026-05-06T19:31:55.599Z"
+  }
+},
+{
+  "model": "core.hostel",
+  "pk": 70,
+  "fields": {
+    "name": "Golden View Hostel",
+    "location": "Near Federal Road",
+    "price": "170000.00",
+    "image": "hostels/sample1.jpg",
+    "description": "Clean environment with steady water and electricity.",
+    "hostel_type": "Hostel",
+    "capacity": 0,
+    "total_rooms": 1,
+    "created_at": "2026-05-06T19:31:55.609Z"
+  }
+},
+{
+  "model": "core.hostel",
+  "pk": 71,
+  "fields": {
+    "name": "Royal Crown Hostel",
+    "location": "Close To Campus",
+    "price": "180000.00",
+    "image": "hostels/sample10.jpeg",
+    "description": "Perfect hostel for students seeking convenience.",
+    "hostel_type": "Hostel",
+    "capacity": 0,
+    "total_rooms": 1,
+    "created_at": "2026-05-06T19:31:55.619Z"
+  }
+},
+{
+  "model": "core.hostel",
+  "pk": 72,
+  "fields": {
+    "name": "Victory Home Hostel",
+    "location": "Behind Obosi Plaza",
+    "price": "200000.00",
+    "image": "hostels/sample11.jpeg",
+    "description": "Modern rooms with good security and peaceful environment.",
+    "hostel_type": "Hostel",
+    "capacity": 0,
+    "total_rooms": 1,
+    "created_at": "2026-05-06T19:31:55.633Z"
+  }
+},
+{
+  "model": "core.hostel",
+  "pk": 73,
+  "fields": {
+    "name": "Sunrise Student Lodge",
+    "location": "Near Market Square",
+    "price": "220000.00",
+    "image": "hostels/sample12.jpeg",
+    "description": "Affordable and secure hostel with modern facilities.",
+    "hostel_type": "Hostel",
+    "capacity": 0,
+    "total_rooms": 1,
+    "created_at": "2026-05-06T19:31:55.643Z"
+  }
+},
+{
+  "model": "core.hostel",
+  "pk": 74,
+  "fields": {
+    "name": "Pearl Garden Hostel",
+    "location": "Obosi Main Road",
+    "price": "120000.00",
+    "image": "hostels/sample13.webp",
+    "description": "Comfortable student hostel close to school.",
+    "hostel_type": "Hostel",
+    "capacity": 0,
+    "total_rooms": 1,
+    "created_at": "2026-05-06T19:31:55.656Z"
+  }
+},
+{
+  "model": "core.hostel",
+  "pk": 75,
+  "fields": {
+    "name": "Silver Line Hostel",
+    "location": "Near Health Centre",
+    "price": "150000.00",
+    "image": "hostels/sample15.jpeg",
+    "description": "Clean environment with steady water and electricity.",
+    "hostel_type": "Hostel",
+    "capacity": 0,
+    "total_rooms": 1,
+    "created_at": "2026-05-06T19:31:55.667Z"
+  }
+},
+{
+  "model": "core.hostel",
+  "pk": 76,
+  "fields": {
+    "name": "Emerald Hostel",
+    "location": "Behind Jobitech Obosi",
+    "price": "170000.00",
+    "image": "hostels/sample16.jpeg",
+    "description": "Perfect hostel for students seeking convenience.",
+    "hostel_type": "Hostel",
+    "capacity": 0,
+    "total_rooms": 1,
+    "created_at": "2026-05-06T19:31:55.683Z"
+  }
+},
+{
+  "model": "core.hostel",
+  "pk": 77,
+  "fields": {
+    "name": "Crystal Lodge",
+    "location": "Obosi Junction",
+    "price": "180000.00",
+    "image": "hostels/sample17.jpg",
+    "description": "Modern rooms with good security and peaceful environment.",
+    "hostel_type": "Hostel",
+    "capacity": 0,
+    "total_rooms": 1,
+    "created_at": "2026-05-06T19:31:55.692Z"
+  }
+},
+{
+  "model": "core.hostel",
+  "pk": 78,
+  "fields": {
+    "name": "Harmony Hostel",
+    "location": "Near Federal Road",
+    "price": "200000.00",
+    "image": "hostels/sample18.jfif",
+    "description": "Affordable and secure hostel with modern facilities.",
+    "hostel_type": "Hostel",
+    "capacity": 0,
+    "total_rooms": 1,
+    "created_at": "2026-05-06T19:31:55.702Z"
+  }
+},
+{
+  "model": "core.hostel",
+  "pk": 79,
+  "fields": {
+    "name": "Kings Court Hostel",
+    "location": "Close To Campus",
+    "price": "220000.00",
+    "image": "hostels/sample19.jfif",
+    "description": "Comfortable student hostel close to school.",
+    "hostel_type": "Hostel",
+    "capacity": 0,
+    "total_rooms": 1,
+    "created_at": "2026-05-06T19:31:55.711Z"
+  }
+},
+{
+  "model": "core.hostel",
+  "pk": 80,
+  "fields": {
+    "name": "Peace Villa Hostel",
+    "location": "Behind Obosi Plaza",
+    "price": "120000.00",
+    "image": "hostels/sample2.jpeg",
+    "description": "Clean environment with steady water and electricity.",
+    "hostel_type": "Hostel",
+    "capacity": 0,
+    "total_rooms": 1,
+    "created_at": "2026-05-06T19:31:55.719Z"
+  }
+},
+{
+  "model": "core.hostel",
+  "pk": 81,
+  "fields": {
+    "name": "City View Lodge",
+    "location": "Near Market Square",
+    "price": "150000.00",
+    "image": "hostels/sample20.jfif",
+    "description": "Perfect hostel for students seeking convenience.",
+    "hostel_type": "Hostel",
+    "capacity": 0,
+    "total_rooms": 1,
+    "created_at": "2026-05-06T19:31:55.729Z"
+  }
+},
+{
+  "model": "core.hostel",
+  "pk": 82,
+  "fields": {
+    "name": "Prime Hostel",
+    "location": "Obosi Main Road",
+    "price": "170000.00",
+    "image": "hostels/sample21.webp",
+    "description": "Modern rooms with good security and peaceful environment.",
+    "hostel_type": "Hostel",
+    "capacity": 0,
+    "total_rooms": 1,
+    "created_at": "2026-05-06T19:31:55.737Z"
+  }
+},
+{
+  "model": "core.hostel",
+  "pk": 83,
+  "fields": {
+    "name": "Elite Student Lodge",
+    "location": "Near Health Centre",
+    "price": "180000.00",
+    "image": "hostels/sample22.webp",
+    "description": "Affordable and secure hostel with modern facilities.",
+    "hostel_type": "Hostel",
+    "capacity": 0,
+    "total_rooms": 1,
+    "created_at": "2026-05-06T19:31:55.744Z"
+  }
+},
+{
+  "model": "core.hostel",
+  "pk": 84,
+  "fields": {
+    "name": "Comfort Palace Hostel",
+    "location": "Behind Jobitech Obosi",
+    "price": "200000.00",
+    "image": "hostels/sample24.jpg",
+    "description": "Comfortable student hostel close to school.",
+    "hostel_type": "Hostel",
+    "capacity": 0,
+    "total_rooms": 1,
+    "created_at": "2026-05-06T19:31:55.752Z"
+  }
+},
+{
+  "model": "core.hostel",
+  "pk": 85,
+  "fields": {
+    "name": "Dream Home Hostel",
+    "location": "Obosi Junction",
+    "price": "220000.00",
+    "image": "hostels/sample25.jpg",
+    "description": "Clean environment with steady water and electricity.",
+    "hostel_type": "Hostel",
+    "capacity": 0,
+    "total_rooms": 1,
+    "created_at": "2026-05-06T19:31:55.763Z"
+  }
+},
+{
+  "model": "core.hostel",
+  "pk": 86,
+  "fields": {
+    "name": "Evergreen Lodge",
+    "location": "Near Federal Road",
+    "price": "120000.00",
+    "image": "hostels/sample26.jpg",
+    "description": "Perfect hostel for students seeking convenience.",
+    "hostel_type": "Hostel",
+    "capacity": 0,
+    "total_rooms": 1,
+    "created_at": "2026-05-06T19:31:55.771Z"
+  }
+},
+{
+  "model": "core.hostel",
+  "pk": 87,
+  "fields": {
+    "name": "Modern Living Hostel",
+    "location": "Close To Campus",
+    "price": "150000.00",
+    "image": "hostels/sample27.jpg",
+    "description": "Modern rooms with good security and peaceful environment.",
+    "hostel_type": "Hostel",
+    "capacity": 0,
+    "total_rooms": 1,
+    "created_at": "2026-05-06T19:31:55.780Z"
+  }
+},
+{
+  "model": "core.hostel",
+  "pk": 88,
+  "fields": {
+    "name": "Blue Roof Hostel",
+    "location": "Behind Obosi Plaza",
+    "price": "170000.00",
+    "image": "hostels/sample27_jWEqxNs.jpg",
+    "description": "Affordable and secure hostel with modern facilities.",
+    "hostel_type": "Hostel",
+    "capacity": 0,
+    "total_rooms": 2,
+    "created_at": "2026-05-06T19:31:55.788Z"
+  }
+},
+{
+  "model": "core.hostel",
+  "pk": 89,
+  "fields": {
+    "name": "Hilltop Student Lodge",
+    "location": "Near Market Square",
+    "price": "180000.00",
+    "image": "hostels/sample3.jpeg",
+    "description": "Comfortable student hostel close to school.",
+    "hostel_type": "Hostel",
+    "capacity": 0,
+    "total_rooms": 1,
+    "created_at": "2026-05-06T19:31:55.796Z"
+  }
+},
+{
+  "model": "core.hostel",
+  "pk": 90,
+  "fields": {
+    "name": "Urban Nest Hostel",
+    "location": "Obosi Main Road",
+    "price": "200000.00",
+    "image": "hostels/sample4.jpeg",
+    "description": "Clean environment with steady water and electricity.",
+    "hostel_type": "Hostel",
+    "capacity": 0,
+    "total_rooms": 1,
+    "created_at": "2026-05-06T19:31:55.804Z"
+  }
+},
+{
+  "model": "core.hostel",
+  "pk": 91,
+  "fields": {
+    "name": "Smart Choice Hostel",
+    "location": "Near Health Centre",
+    "price": "220000.00",
+    "image": "hostels/sample5.jpeg",
+    "description": "Perfect hostel for students seeking convenience.",
+    "hostel_type": "Hostel",
+    "capacity": 0,
+    "total_rooms": 1,
+    "created_at": "2026-05-06T19:31:55.813Z"
+  }
+},
+{
+  "model": "core.hostel",
+  "pk": 92,
+  "fields": {
+    "name": "Platinum Hostel",
+    "location": "Behind Jobitech Obosi",
+    "price": "120000.00",
+    "image": "hostels/sample6.jpeg",
+    "description": "Modern rooms with good security and peaceful environment.",
+    "hostel_type": "Hostel",
+    "capacity": 0,
+    "total_rooms": 1,
+    "created_at": "2026-05-06T19:31:55.821Z"
+  }
+},
+{
+  "model": "core.hostel",
+  "pk": 93,
+  "fields": {
+    "name": "Fresh Air Lodge",
+    "location": "Obosi Junction",
+    "price": "150000.00",
+    "image": "hostels/sample7.jpeg",
+    "description": "Affordable and secure hostel with modern facilities.",
+    "hostel_type": "Hostel",
+    "capacity": 0,
+    "total_rooms": 1,
+    "created_at": "2026-05-06T19:31:55.829Z"
+  }
+},
+{
+  "model": "core.hostel",
+  "pk": 94,
+  "fields": {
+    "name": "Future Stars Hostel",
+    "location": "Near Federal Road",
+    "price": "170000.00",
+    "image": "hostels/sample8.jpeg",
+    "description": "Comfortable student hostel close to school.",
+    "hostel_type": "Hostel",
+    "capacity": 0,
+    "total_rooms": 1,
+    "created_at": "2026-05-06T19:31:55.837Z"
+  }
+},
+{
+  "model": "core.hostel",
+  "pk": 95,
+  "fields": {
+    "name": "Unity Hostel",
+    "location": "Close To Campus",
+    "price": "180000.00",
+    "image": "hostels/sample9.jpeg",
+    "description": "Clean environment with steady water and electricity.",
+    "hostel_type": "Hostel",
+    "capacity": 0,
+    "total_rooms": 1,
+    "created_at": "2026-05-06T19:31:55.844Z"
+  }
+},
+{
+  "model": "core.contactmessage",
+  "pk": 1,
+  "fields": {
+    "name": "Linda",
+    "email": "vengeancew39@gmail.com",
+    "phone": "55055369011",
+    "message": "hi",
+    "created_at": "2026-04-26T11:30:24.310Z"
+  }
+},
+{
+  "model": "core.contactmessage",
+  "pk": 2,
+  "fields": {
+    "name": "platana",
+    "email": "vengeancew39@gmail.com",
+    "phone": "08112654780",
+    "message": "go",
+    "created_at": "2026-04-26T11:50:37.721Z"
+  }
+},
+{
+  "model": "core.contactmessage",
+  "pk": 3,
+  "fields": {
+    "name": "Innocent Zero",
+    "email": "zinnocent2025@gmail.com",
+    "phone": "08108503435",
+    "message": "I need a hostel",
+    "created_at": "2026-04-26T12:28:56.928Z"
+  }
+},
+{
+  "model": "core.contactmessage",
+  "pk": 4,
+  "fields": {
+    "name": "Innocent Zero",
+    "email": "zinnocent2025@gmail.com",
+    "phone": "08108503435",
+    "message": "yo\r\n",
+    "created_at": "2026-04-26T12:53:31.670Z"
+  }
+},
+{
+  "model": "core.contactmessage",
+  "pk": 5,
+  "fields": {
+    "name": "Innocent Zero",
+    "email": "zinnocent2025@gmail.com",
+    "phone": "",
+    "message": "yo",
+    "created_at": "2026-04-26T12:56:00.883Z"
+  }
+},
+{
+  "model": "core.contactmessage",
+  "pk": 6,
+  "fields": {
+    "name": "Innocent Zero",
+    "email": "zinnocent2025@gmail.com",
+    "phone": "08108503435",
+    "message": "yo",
+    "created_at": "2026-04-26T12:57:55.005Z"
+  }
+},
+{
+  "model": "core.contactmessage",
+  "pk": 7,
+  "fields": {
+    "name": "Innocent Zero",
+    "email": "zinnocent2025@gmail.com",
+    "phone": "08108503435",
+    "message": "yo",
+    "created_at": "2026-04-26T13:02:08.793Z"
+  }
+},
+{
+  "model": "core.contactmessage",
+  "pk": 8,
+  "fields": {
+    "name": "Pamela",
+    "email": "vengeancew39@gmail.com",
+    "phone": "08108503435",
+    "message": "yo",
+    "created_at": "2026-04-26T13:06:24.242Z"
+  }
+},
+{
+  "model": "core.contactmessage",
+  "pk": 9,
+  "fields": {
+    "name": "Innocent Zero",
+    "email": "zinnocent2025@gmail.com",
+    "phone": "08108503435",
+    "message": "yo",
+    "created_at": "2026-04-26T13:20:07.136Z"
+  }
+},
+{
+  "model": "core.contactmessage",
+  "pk": 10,
+  "fields": {
+    "name": "Innocent Zero",
+    "email": "zinnocent2025@gmail.com",
+    "phone": "08108503435",
+    "message": "you're welcome ",
+    "created_at": "2026-04-26T13:23:47.415Z"
+  }
+},
+{
+  "model": "core.contactmessage",
+  "pk": 11,
+  "fields": {
+    "name": "Pamela",
+    "email": "zinnocent2025@gmail.com",
+    "phone": "08108503435",
+    "message": "hostel",
+    "created_at": "2026-04-26T20:02:44.771Z"
+  }
+},
+{
+  "model": "core.contactmessage",
+  "pk": 12,
+  "fields": {
+    "name": "Paul",
+    "email": "Vengeancew39@gmail.com.com",
+    "phone": "07072614948",
+    "message": "I need a hostel ",
+    "created_at": "2026-04-30T13:25:17.706Z"
+  }
+},
+{
+  "model": "core.contactmessage",
+  "pk": 13,
+  "fields": {
+    "name": "Innocent Zero",
+    "email": "zinnocent2025@gmail.com",
+    "phone": "08108503435",
+    "message": "is it working",
+    "created_at": "2026-05-24T11:04:05.081Z"
+  }
+},
+{
+  "model": "core.contactmessage",
+  "pk": 14,
+  "fields": {
+    "name": "Innocent Zero",
+    "email": "vengeancew39@gmail.com",
+    "phone": "08108503435",
+    "message": "is it working ",
+    "created_at": "2026-05-24T11:05:49.529Z"
+  }
+},
+{
+  "model": "core.contactmessage",
+  "pk": 15,
+  "fields": {
+    "name": "Innocent Zero",
+    "email": "zinnocent2025@gmail.com",
+    "phone": "07072614948",
+    "message": "the boys",
+    "created_at": "2026-06-22T13:20:27.897Z"
+  }
+},
+{
+  "model": "core.contactmessage",
+  "pk": 16,
+  "fields": {
+    "name": "Paul",
+    "email": "vengeancew39@gmail.com",
+    "phone": "07072614948",
+    "message": "are there free rooms",
+    "created_at": "2026-06-22T13:27:36.020Z"
+  }
+},
+{
+  "model": "core.hostelanalytics",
+  "pk": 1,
+  "fields": {
+    "electricity": 70,
+    "water": 50,
+    "maintenance": 30,
+    "occupied": 60,
+    "available": 40,
+    "mon": 40,
+    "tue": 30,
+    "wed": 40,
+    "thu": 30,
+    "fri": 60,
+    "sat": 70,
+    "sun": 50
+  }
+},
+{
+  "model": "core.hostelanalytics",
+  "pk": 4,
+  "fields": {
+    "electricity": 70,
+    "water": 80,
+    "maintenance": 55,
+    "occupied": 65,
+    "available": 25,
+    "mon": 20,
+    "tue": 30,
+    "wed": 40,
+    "thu": 50,
+    "fri": 60,
+    "sat": 70,
+    "sun": 80
+  }
+},
+{
+  "model": "core.maleroom",
+  "pk": 1,
+  "fields": {
+    "room_number": "101",
+    "status": "occupied",
+    "image": "rooms/hms_room_1.png",
+    "capacity": 4,
+    "occupied_beds": 0,
+    "created_at": "2026-05-24T07:40:00.927Z"
+  }
+},
+{
+  "model": "core.maleroom",
+  "pk": 2,
+  "fields": {
+    "room_number": "102",
+    "status": "available",
+    "image": "rooms/hms_room_2.png",
+    "capacity": 4,
+    "occupied_beds": 0,
+    "created_at": "2026-05-24T07:40:18.992Z"
+  }
+},
+{
+  "model": "core.maleroom",
+  "pk": 3,
+  "fields": {
+    "room_number": "103",
+    "status": "occupied",
+    "image": "rooms/hms_room_3.png",
+    "capacity": 4,
+    "occupied_beds": 0,
+    "created_at": "2026-05-24T07:40:32.516Z"
+  }
+},
+{
+  "model": "core.maleroom",
+  "pk": 4,
+  "fields": {
+    "room_number": "104",
+    "status": "available",
+    "image": "rooms/hms_room_4.png",
+    "capacity": 4,
+    "occupied_beds": 0,
+    "created_at": "2026-05-24T07:40:46.310Z"
+  }
+},
+{
+  "model": "core.maleroom",
+  "pk": 5,
+  "fields": {
+    "room_number": "105",
+    "status": "occupied",
+    "image": "rooms/hms_room_5.png",
+    "capacity": 4,
+    "occupied_beds": 0,
+    "created_at": "2026-05-24T07:41:03.263Z"
+  }
+},
+{
+  "model": "core.maleroom",
+  "pk": 6,
+  "fields": {
+    "room_number": "106",
+    "status": "available",
+    "image": "rooms/hms_room_6.png",
+    "capacity": 4,
+    "occupied_beds": 0,
+    "created_at": "2026-05-24T07:41:08.086Z"
+  }
+},
+{
+  "model": "core.maleroom",
+  "pk": 7,
+  "fields": {
+    "room_number": "107",
+    "status": "occupied",
+    "image": "rooms/hms_room_7.png",
+    "capacity": 4,
+    "occupied_beds": 0,
+    "created_at": "2026-05-24T07:51:48.173Z"
+  }
+},
+{
+  "model": "core.maleroom",
+  "pk": 8,
+  "fields": {
+    "room_number": "108",
+    "status": "available",
+    "image": "rooms/hms_room_8.png",
+    "capacity": 4,
+    "occupied_beds": 0,
+    "created_at": "2026-05-24T07:52:01.749Z"
+  }
+},
+{
+  "model": "core.maleroom",
+  "pk": 9,
+  "fields": {
+    "room_number": "109",
+    "status": "occupied",
+    "image": "rooms/hms_room_9.png",
+    "capacity": 4,
+    "occupied_beds": 0,
+    "created_at": "2026-05-24T07:52:14.532Z"
+  }
+},
+{
+  "model": "core.maleroom",
+  "pk": 10,
+  "fields": {
+    "room_number": "110",
+    "status": "available",
+    "image": "rooms/hms_room_10.png",
+    "capacity": 4,
+    "occupied_beds": 0,
+    "created_at": "2026-05-24T07:52:28.263Z"
+  }
+},
+{
+  "model": "core.femaleroom",
+  "pk": 1,
+  "fields": {
+    "room_number": "101",
+    "status": "available",
+    "image": "female_rooms/hms_room_1.png",
+    "capacity": 4,
+    "occupied_beds": 0
+  }
+},
+{
+  "model": "core.femaleroom",
+  "pk": 2,
+  "fields": {
+    "room_number": "102",
+    "status": "occupied",
+    "image": "female_rooms/hms_room_4.png",
+    "capacity": 4,
+    "occupied_beds": 0
+  }
+},
+{
+  "model": "core.femaleroom",
+  "pk": 3,
+  "fields": {
+    "room_number": "103",
+    "status": "filling",
+    "image": "female_rooms/hms_room_5.png",
+    "capacity": 4,
+    "occupied_beds": 1
+  }
+},
+{
+  "model": "core.femaleroom",
+  "pk": 4,
+  "fields": {
+    "room_number": "104",
+    "status": "occupied",
+    "image": "female_rooms/hms_room_6.png",
+    "capacity": 4,
+    "occupied_beds": 0
+  }
+},
+{
+  "model": "core.femaleroom",
+  "pk": 5,
+  "fields": {
+    "room_number": "105",
+    "status": "available",
+    "image": "female_rooms/hms_room_7.png",
+    "capacity": 4,
+    "occupied_beds": 0
+  }
+},
+{
+  "model": "core.femaleroom",
+  "pk": 6,
+  "fields": {
+    "room_number": "106",
+    "status": "occupied",
+    "image": "female_rooms/hms_room_8.png",
+    "capacity": 4,
+    "occupied_beds": 0
+  }
+},
+{
+  "model": "core.femaleroom",
+  "pk": 7,
+  "fields": {
+    "room_number": "107",
+    "status": "available",
+    "image": "female_rooms/hms_room_9.png",
+    "capacity": 4,
+    "occupied_beds": 0
+  }
+},
+{
+  "model": "core.femaleroom",
+  "pk": 8,
+  "fields": {
+    "room_number": "108",
+    "status": "occupied",
+    "image": "female_rooms/hms_room_10.png",
+    "capacity": 4,
+    "occupied_beds": 0
+  }
+},
+{
+  "model": "core.femaleroom",
+  "pk": 9,
+  "fields": {
+    "room_number": "109",
+    "status": "available",
+    "image": "female_rooms/hms_room_11.png",
+    "capacity": 4,
+    "occupied_beds": 0
+  }
+},
+{
+  "model": "core.femaleroom",
+  "pk": 10,
+  "fields": {
+    "room_number": "110",
+    "status": "occupied",
+    "image": "female_rooms/hms_room_2.png",
+    "capacity": 4,
+    "occupied_beds": 0
+  }
+},
+{
+  "model": "core.malebooking",
+  "pk": 19,
+  "fields": {
+    "user": 80,
+    "booking_reference": null,
+    "room": 3,
+    "full_name": "Sixtus",
+    "gender": "Male",
+    "phone": "08112654780",
+    "emergency_phone": "07072614949",
+    "department": "CIt",
+    "level": "2",
+    "duration": "2 Academic Session",
+    "note": "fan",
+    "status": "expired",
+    "payment_deadline": "2026-06-18T10:10:54.375Z",
+    "created_at": "2026-06-18T10:08:54.377Z"
+  }
+},
+{
+  "model": "core.femalebooking",
+  "pk": 3,
+  "fields": {
+    "user": 93,
+    "booking_reference": "HMS-F-00003",
+    "room": 3,
+    "full_name": "Chioma",
+    "gender": "Female",
+    "phone": "07072614948",
+    "emergency_phone": "",
+    "department": "Mechanical",
+    "level": "2",
+    "duration": "2 years",
+    "note": "hope she likes boys",
+    "status": "approved",
+    "payment_deadline": "2026-06-29T09:23:15.641Z",
+    "created_at": "2026-06-29T09:22:15.644Z"
+  }
+},
+{
+  "model": "core.externalroom",
+  "pk": 1,
+  "fields": {
+    "hostel": 88,
+    "room_number": "BRH001",
+    "room_type": "Shared Room",
+    "capacity": 2,
+    "price": "140000.00",
+    "status": "occupied"
+  }
+},
+{
+  "model": "core.externalroom",
+  "pk": 2,
+  "fields": {
+    "hostel": 68,
+    "room_number": "BAH001",
+    "room_type": "Shared Room",
+    "capacity": 2,
+    "price": "180000.00",
+    "status": "available"
+  }
+},
+{
+  "model": "core.externalroom",
+  "pk": 3,
+  "fields": {
+    "hostel": 88,
+    "room_number": "BRH002",
+    "room_type": "Shared Room",
+    "capacity": 2,
+    "price": "180000.00",
+    "status": "occupied"
+  }
+},
+{
+  "model": "core.externalroom",
+  "pk": 4,
+  "fields": {
+    "hostel": 81,
+    "room_number": "CVL001",
+    "room_type": "Shared Room",
+    "capacity": 2,
+    "price": "180000.00",
+    "status": "occupied"
+  }
+},
+{
+  "model": "core.externalroom",
+  "pk": 5,
+  "fields": {
+    "hostel": 84,
+    "room_number": "CPH001",
+    "room_type": "Shared Room",
+    "capacity": 2,
+    "price": "180000.00",
+    "status": "occupied"
+  }
+},
+{
+  "model": "core.externalroom",
+  "pk": 6,
+  "fields": {
+    "hostel": 77,
+    "room_number": "CL001",
+    "room_type": "Shared Room",
+    "capacity": 2,
+    "price": "180000.00",
+    "status": "available"
+  }
+},
+{
+  "model": "core.externalroom",
+  "pk": 7,
+  "fields": {
+    "hostel": 69,
+    "room_number": "DPL001",
+    "room_type": "Shared Room",
+    "capacity": 2,
+    "price": "180000.00",
+    "status": "available"
+  }
+},
+{
+  "model": "core.externalroom",
+  "pk": 8,
+  "fields": {
+    "hostel": 85,
+    "room_number": "DHH001",
+    "room_type": "Shared Room",
+    "capacity": 2,
+    "price": "180000.00",
+    "status": "available"
+  }
+},
+{
+  "model": "core.externalroom",
+  "pk": 9,
+  "fields": {
+    "hostel": 83,
+    "room_number": "ESL001",
+    "room_type": "Shared Room",
+    "capacity": 2,
+    "price": "180000.00",
+    "status": "available"
+  }
+},
+{
+  "model": "core.externalroom",
+  "pk": 10,
+  "fields": {
+    "hostel": 76,
+    "room_number": "EH001",
+    "room_type": "Shared Room",
+    "capacity": 2,
+    "price": "180000.00",
+    "status": "available"
+  }
+},
+{
+  "model": "core.externalroom",
+  "pk": 11,
+  "fields": {
+    "hostel": 86,
+    "room_number": "EL001",
+    "room_type": "Shared Room",
+    "capacity": 2,
+    "price": "180000.00",
+    "status": "available"
+  }
+},
+{
+  "model": "core.externalroom",
+  "pk": 12,
+  "fields": {
+    "hostel": 93,
+    "room_number": "FAL001",
+    "room_type": "Shared Room",
+    "capacity": 2,
+    "price": "180000.00",
+    "status": "available"
+  }
+},
+{
+  "model": "core.externalroom",
+  "pk": 13,
+  "fields": {
+    "hostel": 94,
+    "room_number": "FSH001",
+    "room_type": "Shared Room",
+    "capacity": 2,
+    "price": "180000.00",
+    "status": "available"
+  }
+},
+{
+  "model": "core.externalroom",
+  "pk": 14,
+  "fields": {
+    "hostel": 70,
+    "room_number": "GVH001",
+    "room_type": "Shared Room",
+    "capacity": 2,
+    "price": "180000.00",
+    "status": "available"
+  }
+},
+{
+  "model": "core.externalroom",
+  "pk": 15,
+  "fields": {
+    "hostel": 78,
+    "room_number": "HH001",
+    "room_type": "Shared Room",
+    "capacity": 2,
+    "price": "180000.00",
+    "status": "available"
+  }
+},
+{
+  "model": "core.externalroom",
+  "pk": 16,
+  "fields": {
+    "hostel": 89,
+    "room_number": "HSL001",
+    "room_type": "Shared Room",
+    "capacity": 2,
+    "price": "180000.00",
+    "status": "available"
+  }
+},
+{
+  "model": "core.externalroom",
+  "pk": 17,
+  "fields": {
+    "hostel": 79,
+    "room_number": "KCH001",
+    "room_type": "Shared Room",
+    "capacity": 2,
+    "price": "180000.00",
+    "status": "available"
+  }
+},
+{
+  "model": "core.externalroom",
+  "pk": 18,
+  "fields": {
+    "hostel": 87,
+    "room_number": "MLH001",
+    "room_type": "Shared Room",
+    "capacity": 2,
+    "price": "180000.00",
+    "status": "available"
+  }
+},
+{
+  "model": "core.externalroom",
+  "pk": 19,
+  "fields": {
+    "hostel": 80,
+    "room_number": "PVH001",
+    "room_type": "Shared Room",
+    "capacity": 2,
+    "price": "180000.00",
+    "status": "available"
+  }
+},
+{
+  "model": "core.externalroom",
+  "pk": 20,
+  "fields": {
+    "hostel": 74,
+    "room_number": "PGH001",
+    "room_type": "Shared Room",
+    "capacity": 2,
+    "price": "180000.00",
+    "status": "available"
+  }
+},
+{
+  "model": "core.externalroom",
+  "pk": 21,
+  "fields": {
+    "hostel": 92,
+    "room_number": "PH001",
+    "room_type": "Shared Room",
+    "capacity": 2,
+    "price": "180000.00",
+    "status": "available"
+  }
+},
+{
+  "model": "core.externalroom",
+  "pk": 22,
+  "fields": {
+    "hostel": 82,
+    "room_number": "PH001",
+    "room_type": "Shared Room",
+    "capacity": 2,
+    "price": "180000.00",
+    "status": "available"
+  }
+},
+{
+  "model": "core.externalroom",
+  "pk": 23,
+  "fields": {
+    "hostel": 71,
+    "room_number": "RCH001",
+    "room_type": "Shared Room",
+    "capacity": 2,
+    "price": "180000.00",
+    "status": "available"
+  }
+},
+{
+  "model": "core.externalroom",
+  "pk": 26,
+  "fields": {
+    "hostel": 75,
+    "room_number": "SLH001",
+    "room_type": "Shared Room",
+    "capacity": 2,
+    "price": "180000.00",
+    "status": "available"
+  }
+},
+{
+  "model": "core.externalroom",
+  "pk": 27,
+  "fields": {
+    "hostel": 91,
+    "room_number": "SCH001",
+    "room_type": "Shared Room",
+    "capacity": 2,
+    "price": "180000.00",
+    "status": "available"
+  }
+},
+{
+  "model": "core.externalroom",
+  "pk": 28,
+  "fields": {
+    "hostel": 73,
+    "room_number": "SSL001",
+    "room_type": "Shared Room",
+    "capacity": 2,
+    "price": "180000.00",
+    "status": "available"
+  }
+},
+{
+  "model": "core.externalroom",
+  "pk": 29,
+  "fields": {
+    "hostel": 95,
+    "room_number": "UH001",
+    "room_type": "Shared Room",
+    "capacity": 2,
+    "price": "180000.00",
+    "status": "available"
+  }
+},
+{
+  "model": "core.externalroom",
+  "pk": 30,
+  "fields": {
+    "hostel": 90,
+    "room_number": "UNH001",
+    "room_type": "Shared Room",
+    "capacity": 2,
+    "price": "180000.00",
+    "status": "available"
+  }
+},
+{
+  "model": "core.externalroom",
+  "pk": 31,
+  "fields": {
+    "hostel": 72,
+    "room_number": "VHH001",
+    "room_type": "Shared Room",
+    "capacity": 2,
+    "price": "180000.00",
+    "status": "available"
+  }
+},
+{
+  "model": "core.systemsettings",
+  "pk": 1,
+  "fields": {
+    "version": 21534,
+    "male_booking_deadline": 1,
+    "female_booking_deadline": 1,
+    "external_booking_deadline": 2,
+    "allow_male_booking": true,
+    "allow_female_booking": true,
+    "allow_external_booking": true,
+    "male_hostel_price": "10000.00",
+    "female_hostel_price": "10000.00"
+  }
+},
+{
+  "model": "dashboard.booking",
+  "pk": 1,
+  "fields": {
+    "student_name": "Paul",
+    "room": "301",
+    "date": "2026-04-01",
+    "status": "approved"
+  }
+},
+{
+  "model": "dashboard.booking",
+  "pk": 2,
+  "fields": {
+    "student_name": "Mary",
+    "room": "302",
+    "date": "2026-04-01",
+    "status": "pending"
+  }
+},
+{
+  "model": "dashboard.booking",
+  "pk": 3,
+  "fields": {
+    "student_name": "John",
+    "room": "303",
+    "date": "2026-04-01",
+    "status": "approved"
+  }
+},
+{
+  "model": "dashboard.booking",
+  "pk": 4,
+  "fields": {
+    "student_name": "Adam",
+    "room": "304",
+    "date": "2026-04-01",
+    "status": "rejected"
+  }
+},
+{
+  "model": "dashboard.uploadedfile",
+  "pk": 4,
+  "fields": {
+    "file": "uploads/C21.docx",
+    "file_type": "document",
+    "uploaded_at": "2026-04-14T10:35:29.881Z"
+  }
+},
+{
+  "model": "dashboard.uploadedfile",
+  "pk": 5,
+  "fields": {
+    "file": "uploads/C21.pdf",
+    "file_type": "",
+    "uploaded_at": "2026-04-14T14:14:17.655Z"
+  }
+},
+{
+  "model": "dashboard.uploadedfile",
+  "pk": 12,
+  "fields": {
+    "file": "uploads/Michael_Jackson_-_In_the_Closet_Official_Video_-_Upscaled_1_aSVNHxp.mp4",
+    "file_type": "",
+    "uploaded_at": "2026-04-20T14:18:40.337Z"
+  }
+},
+{
+  "model": "dashboard.uploadedfile",
+  "pk": 13,
+  "fields": {
+    "file": "uploads/44687527_804_gZvhF80.jpg",
+    "file_type": "",
+    "uploaded_at": "2026-04-20T21:12:04.896Z"
+  }
+},
+{
+  "model": "dashboard.uploadedfile",
+  "pk": 16,
+  "fields": {
+    "file": "uploads/2015_11largeimg07_Nov_2015_212811507_uEf3UnY.jpg",
+    "file_type": "",
+    "uploaded_at": "2026-04-20T21:27:45.270Z"
+  }
+},
+{
+  "model": "dashboard.uploadedfile",
+  "pk": 17,
+  "fields": {
+    "file": "uploads/4961e739-cd1b-4438-aeed-c1d795812946_w1080_h608.jpg",
+    "file_type": "",
+    "uploaded_at": "2026-04-21T18:42:51.697Z"
+  }
+},
+{
+  "model": "dashboard.fileitem",
+  "pk": 9,
+  "fields": {
+    "user": 24,
+    "folder": null,
+    "file": "file_manager/gear_3gg8ayh.png",
+    "uploaded_at": "2026-05-21T13:38:52.348Z"
+  }
+},
+{
+  "model": "dashboard.fileitem",
+  "pk": 12,
+  "fields": {
+    "user": 24,
+    "folder": 24,
+    "file": "file_manager/C21_bRtdbHc.docx",
+    "uploaded_at": "2026-05-21T18:51:58.704Z"
+  }
+},
+{
+  "model": "dashboard.folder",
+  "pk": 24,
+  "fields": {
+    "user": 24,
+    "name": "reciepts",
+    "created_at": "2026-05-21T18:27:06.093Z"
+  }
+},
+{
+  "model": "dashboard.folder",
+  "pk": 25,
+  "fields": {
+    "user": 24,
+    "name": "image",
+    "created_at": "2026-05-22T16:02:22.373Z"
+  }
+}
+]

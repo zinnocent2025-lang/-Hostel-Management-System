@@ -9,7 +9,7 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         if os.path.exists("data.json"):
             self.stdout.write("Importing data.json...")
-            call_command("loaddata", "data.json")
+            call_command("loaddata", "project_data.json")
             self.stdout.write(self.style.SUCCESS("Data imported successfully."))
         else:
             self.stdout.write(self.style.WARNING("data.json not found."))
