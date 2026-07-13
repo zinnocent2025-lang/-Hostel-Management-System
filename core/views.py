@@ -1099,7 +1099,7 @@ def db_check(request):
     )
 
 def import_data(request):
-    data_file = os.path.join(settings.BASE_DIR, "data.json")
+    data_file = os.path.join(settings.BASE_DIR, "project_data.json")
 
     if not os.path.exists(data_file):
         return HttpResponse("data.json not found!")
