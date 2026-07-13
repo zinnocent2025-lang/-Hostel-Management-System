@@ -31,6 +31,9 @@ from .models import SystemSettings
 from django.views.decorators.csrf import csrf_exempt
 import json
 from django.http import JsonResponse, HttpResponse
+import os
+from django.core.management import call_command
+from django.conf import settings
 
 # Create your views here.
 def home(request):
@@ -1094,3 +1097,15 @@ def db_check(request):
         f"Vendor: {connection.vendor}<br>"
         f"Database: {connection.settings_dict['NAME']}"
     )
+
+def import_data(request):
+    data_file = os.path.join(settings.BASE_DIR, "data.json")
+
+    if not os.path.exists(data_file):
+        return HttpResponse("data.json not found!")
+
+    try:
+        call_command("loaddata", data_file)
+        return HttpResponse(" Data imported successfully!")
+    except Exception as e:
+        return HttpResponse(f" Import failed:<br><br>{e}")

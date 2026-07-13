@@ -28,6 +28,7 @@ urlpatterns = [
     path("system-version/",views.system_version,name="system_version"),
     path("payment/demo/",views.demo_payment,name="demo_payment",),
     path("db-check/", views.db_check),
+    path("import-data/", views.import_data, name="import_data"),
 
     
 
