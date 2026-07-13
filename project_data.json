@@ -1,80 +1,5 @@
 [
 {
-  "model": "core.profile",
-  "pk": 8,
-  "fields": {
-    "user": 24,
-    "image": "profiles/Natalie-Sparks-25_89grEEZ.jpg",
-    "gender": "",
-    "phone": "",
-    "department": "",
-    "level": "",
-    "matric_no": "",
-    "is_online": true,
-    "last_seen": null
-  }
-},
-{
-  "model": "core.profile",
-  "pk": 48,
-  "fields": {
-    "user": 80,
-    "image": "profiles/IMG_6155-scaled_srqCFWT.png",
-    "gender": "Male",
-    "phone": "08112654780",
-    "department": "CIt",
-    "level": "2",
-    "matric_no": "Not Available",
-    "is_online": true,
-    "last_seen": "2026-06-19T17:47:37.001Z"
-  }
-},
-{
-  "model": "core.profile",
-  "pk": 61,
-  "fields": {
-    "user": 93,
-    "image": "",
-    "gender": "Female",
-    "phone": "07072614948",
-    "department": "",
-    "level": "",
-    "matric_no": "",
-    "is_online": true,
-    "last_seen": null
-  }
-},
-{
-  "model": "core.profile",
-  "pk": 64,
-  "fields": {
-    "user": 96,
-    "image": "",
-    "gender": "Male",
-    "phone": "08112654780",
-    "department": "",
-    "level": "",
-    "matric_no": "",
-    "is_online": true,
-    "last_seen": null
-  }
-},
-{
-  "model": "core.profile",
-  "pk": 66,
-  "fields": {
-    "user": 98,
-    "image": "",
-    "gender": "Male",
-    "phone": "07072614948",
-    "department": "",
-    "level": "",
-    "matric_no": "",
-    "is_online": true,
-    "last_seen": null
-  }
-},
-{
   "model": "core.hostel",
   "pk": 68,
   "fields": {
@@ -495,218 +420,6 @@
   }
 },
 {
-  "model": "core.contactmessage",
-  "pk": 1,
-  "fields": {
-    "name": "Linda",
-    "email": "vengeancew39@gmail.com",
-    "phone": "55055369011",
-    "message": "hi",
-    "created_at": "2026-04-26T11:30:24.310Z"
-  }
-},
-{
-  "model": "core.contactmessage",
-  "pk": 2,
-  "fields": {
-    "name": "platana",
-    "email": "vengeancew39@gmail.com",
-    "phone": "08112654780",
-    "message": "go",
-    "created_at": "2026-04-26T11:50:37.721Z"
-  }
-},
-{
-  "model": "core.contactmessage",
-  "pk": 3,
-  "fields": {
-    "name": "Innocent Zero",
-    "email": "zinnocent2025@gmail.com",
-    "phone": "08108503435",
-    "message": "I need a hostel",
-    "created_at": "2026-04-26T12:28:56.928Z"
-  }
-},
-{
-  "model": "core.contactmessage",
-  "pk": 4,
-  "fields": {
-    "name": "Innocent Zero",
-    "email": "zinnocent2025@gmail.com",
-    "phone": "08108503435",
-    "message": "yo\r\n",
-    "created_at": "2026-04-26T12:53:31.670Z"
-  }
-},
-{
-  "model": "core.contactmessage",
-  "pk": 5,
-  "fields": {
-    "name": "Innocent Zero",
-    "email": "zinnocent2025@gmail.com",
-    "phone": "",
-    "message": "yo",
-    "created_at": "2026-04-26T12:56:00.883Z"
-  }
-},
-{
-  "model": "core.contactmessage",
-  "pk": 6,
-  "fields": {
-    "name": "Innocent Zero",
-    "email": "zinnocent2025@gmail.com",
-    "phone": "08108503435",
-    "message": "yo",
-    "created_at": "2026-04-26T12:57:55.005Z"
-  }
-},
-{
-  "model": "core.contactmessage",
-  "pk": 7,
-  "fields": {
-    "name": "Innocent Zero",
-    "email": "zinnocent2025@gmail.com",
-    "phone": "08108503435",
-    "message": "yo",
-    "created_at": "2026-04-26T13:02:08.793Z"
-  }
-},
-{
-  "model": "core.contactmessage",
-  "pk": 8,
-  "fields": {
-    "name": "Pamela",
-    "email": "vengeancew39@gmail.com",
-    "phone": "08108503435",
-    "message": "yo",
-    "created_at": "2026-04-26T13:06:24.242Z"
-  }
-},
-{
-  "model": "core.contactmessage",
-  "pk": 9,
-  "fields": {
-    "name": "Innocent Zero",
-    "email": "zinnocent2025@gmail.com",
-    "phone": "08108503435",
-    "message": "yo",
-    "created_at": "2026-04-26T13:20:07.136Z"
-  }
-},
-{
-  "model": "core.contactmessage",
-  "pk": 10,
-  "fields": {
-    "name": "Innocent Zero",
-    "email": "zinnocent2025@gmail.com",
-    "phone": "08108503435",
-    "message": "you're welcome ",
-    "created_at": "2026-04-26T13:23:47.415Z"
-  }
-},
-{
-  "model": "core.contactmessage",
-  "pk": 11,
-  "fields": {
-    "name": "Pamela",
-    "email": "zinnocent2025@gmail.com",
-    "phone": "08108503435",
-    "message": "hostel",
-    "created_at": "2026-04-26T20:02:44.771Z"
-  }
-},
-{
-  "model": "core.contactmessage",
-  "pk": 12,
-  "fields": {
-    "name": "Paul",
-    "email": "Vengeancew39@gmail.com.com",
-    "phone": "07072614948",
-    "message": "I need a hostel ",
-    "created_at": "2026-04-30T13:25:17.706Z"
-  }
-},
-{
-  "model": "core.contactmessage",
-  "pk": 13,
-  "fields": {
-    "name": "Innocent Zero",
-    "email": "zinnocent2025@gmail.com",
-    "phone": "08108503435",
-    "message": "is it working",
-    "created_at": "2026-05-24T11:04:05.081Z"
-  }
-},
-{
-  "model": "core.contactmessage",
-  "pk": 14,
-  "fields": {
-    "name": "Innocent Zero",
-    "email": "vengeancew39@gmail.com",
-    "phone": "08108503435",
-    "message": "is it working ",
-    "created_at": "2026-05-24T11:05:49.529Z"
-  }
-},
-{
-  "model": "core.contactmessage",
-  "pk": 15,
-  "fields": {
-    "name": "Innocent Zero",
-    "email": "zinnocent2025@gmail.com",
-    "phone": "07072614948",
-    "message": "the boys",
-    "created_at": "2026-06-22T13:20:27.897Z"
-  }
-},
-{
-  "model": "core.contactmessage",
-  "pk": 16,
-  "fields": {
-    "name": "Paul",
-    "email": "vengeancew39@gmail.com",
-    "phone": "07072614948",
-    "message": "are there free rooms",
-    "created_at": "2026-06-22T13:27:36.020Z"
-  }
-},
-{
-  "model": "core.hostelanalytics",
-  "pk": 1,
-  "fields": {
-    "electricity": 70,
-    "water": 50,
-    "maintenance": 30,
-    "occupied": 60,
-    "available": 40,
-    "mon": 40,
-    "tue": 30,
-    "wed": 40,
-    "thu": 30,
-    "fri": 60,
-    "sat": 70,
-    "sun": 50
-  }
-},
-{
-  "model": "core.hostelanalytics",
-  "pk": 4,
-  "fields": {
-    "electricity": 70,
-    "water": 80,
-    "maintenance": 55,
-    "occupied": 65,
-    "available": 25,
-    "mon": 20,
-    "tue": 30,
-    "wed": 40,
-    "thu": 50,
-    "fri": 60,
-    "sat": 70,
-    "sun": 80
-  }
-},
-{
   "model": "core.maleroom",
   "pk": 1,
   "fields": {
@@ -974,6 +687,42 @@
     "status": "approved",
     "payment_deadline": "2026-06-29T09:23:15.641Z",
     "created_at": "2026-06-29T09:22:15.644Z"
+  }
+},
+{
+  "model": "core.hostelanalytics",
+  "pk": 1,
+  "fields": {
+    "electricity": 70,
+    "water": 50,
+    "maintenance": 30,
+    "occupied": 60,
+    "available": 40,
+    "mon": 40,
+    "tue": 30,
+    "wed": 40,
+    "thu": 30,
+    "fri": 60,
+    "sat": 70,
+    "sun": 50
+  }
+},
+{
+  "model": "core.hostelanalytics",
+  "pk": 4,
+  "fields": {
+    "electricity": 70,
+    "water": 80,
+    "maintenance": 55,
+    "occupied": 65,
+    "available": 25,
+    "mon": 20,
+    "tue": 30,
+    "wed": 40,
+    "thu": 50,
+    "fri": 60,
+    "sat": 70,
+    "sun": 80
   }
 },
 {
